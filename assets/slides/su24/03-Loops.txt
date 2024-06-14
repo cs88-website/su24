@@ -1,0 +1,152 @@
+Last login: Mon Jan 22 13:41:16 on ttys006
+
+michael at wifi-10-43-53-105 in ~
+👉 python3
+Python 3.10.12 (main, Aug 14 2023, 02:22:17) [Clang 15.0.0 (clang-1500.0.40.1)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+
+michael at wifi-10-43-53-105 in ~
+👉 
+
+
+
+
+
+
+
+michael at wifi-10-43-53-105 in ~
+👉 python3
+Python 3.10.12 (main, Aug 14 2023, 02:22:17) [Clang 15.0.0 (clang-1500.0.40.1)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 8 * 11
+88
+>>> 88 / 11
+8.0
+>>> 
+
+michael at wifi-10-43-53-105 in ~
+👉 python3
+Python 3.10.12 (main, Aug 14 2023, 02:22:17) [Clang 15.0.0 (clang-1500.0.40.1)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> exit()
+
+michael at wifi-10-43-53-105 in ~
+👉 python3
+Python 3.10.12 (main, Aug 14 2023, 02:22:17) [Clang 15.0.0 (clang-1500.0.40.1)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 8 * 11
+88
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+
+
+
+
+
+
+
+
+
+
+
+>>> 1 + 2
+3
+>>> 1 -2
+-1
+>>> 2 ** 10
+1024
+>>> (2 ** 10) / 2
+512.0
+>>> "Hello, " + "C88C"
+'Hello, C88C'
+>>> 'Hello, ' + "C88C"
+'Hello, C88C'
+>>> 
+
+
+
+>>> 
+>>> len('Berkeley')
+8
+>>> max(88, 61)
+88
+>>> min(88, 61)
+61
+>>> min(8, 88, 61)
+8
+>>> min(100, 0)
+0
+>>> min
+<built-in function min>
+>>> x
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'x' is not defined
+>>> max
+<built-in function max>
+>>> help(max)
+Help on built-in function max in module builtins:
+
+max(...)
+    max(iterable, *[, default=obj, key=func]) -> value
+    max(arg1, arg2, *args, *[, key=func]) -> value
+    
+    With a single iterable argument, return its biggest item. The
+    default keyword-only argument specifies an object to return if
+    the provided iterable is empty.
+    With two or more arguments, return the largest argument.
+
+>>> 
+>>> 
+>>> max('Stanford', 'Berkeley')
+'Stanford'
+>>> max('😀',' 😇')
+'😀'
+>>> "a"
+'a'
+>>> 'a'
+'a'
+>>> 
+
+
+
+
+
+
+>>> 
+>>> course = 'C88C'
+>>> course
+'C88C'
+>>> "Hello, " + course
+'Hello, C88C'
+>>> f"Hello, {course}"
+'Hello, C88C'
+>>> f""
+''
+>>> f"Hello, C{8 * 11}C"
+'Hello, C88C'
+>>> greeting = f"Hello, C{8 * 11}C"
+>>> greeting
+'Hello, C88C'
+>>> 
+>>> 3 < 5
+True
+>>> 3 == 5
+False
+>>> "C88C" == course
+True
+>>> len(greeting) >= 7
+True
+>>> len(greeting)
+11
+>>> 11 >= 7
+True
+>>> len(greeting) > 7 and len(greeting) < 20
+True
+>>> 
+

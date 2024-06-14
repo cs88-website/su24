@@ -1,0 +1,172 @@
+michael at wifi-10-44-54-69 in ~/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24 on main [!?]
+👉 python3
+Python 3.11.6 (main, Oct  2 2023, 13:45:54) [Clang 15.0.0 (clang-1500.0.40.1)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> [ 0 for item in range(5) ]
+[0, 0, 0, 0, 0]
+>>> [ item for item in range(5) ]
+[0, 1, 2, 3, 4]
+>>> [ item * item  for item in range(5) ]
+[0, 1, 4, 9, 16]
+>>> [ item for item in range(10) if item % 2 == 0 ]
+[0, 2, 4, 6, 8]
+>>> [ item*item  for item in range(10) if item % 2 == 0 ]
+[0, 4, 16, 36, 64]
+>>>
+
+
+
+>>>
+>>> courses = ['DATA C88C', 'DATA 8', 'POLSCI 2', 'MATH 54']
+>>> courses[0]
+'DATA C88C'
+>>> courses[0].split()
+['DATA', 'C88C']
+>>> courses[0].split('88')
+['DATA C', 'C']
+>>> courses[0].split('A')
+['D', 'T', ' C88C']
+>>> courses[0].split()
+['DATA', 'C88C']
+>>> courses
+['DATA C88C', 'DATA 8', 'POLSCI 2', 'MATH 54']
+>>> [ course.split() for course in courses ]
+[['DATA', 'C88C'], ['DATA', '8'], ['POLSCI', '2'], ['MATH', '54']]
+>>> [ course.split()[0] for course in courses ]
+['DATA', 'DATA', 'POLSCI', 'MATH']
+>>> 'MATH' in [ course.split()[0] for course in courses ]
+True
+>>> 'DATA C88C'.split('')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: empty separator
+>>> 'DATA C88C'.split()
+['DATA', 'C88C']
+>>> 'DATA C88C'.split('T')
+['DA', 'A C88C']
+>>> data = [ course.split() for course in courses ]
+>>>
+>>>
+>>> data
+[['DATA', 'C88C'], ['DATA', '8'], ['POLSCI', '2'], ['MATH', '54']]
+>>> data[0][0]
+'DATA'
+>>> data
+[['DATA', 'C88C'], ['DATA', '8'], ['POLSCI', '2'], ['MATH', '54']]
+>>> data[0]
+['DATA', 'C88C']
+>>> data[0][0]
+'DATA'
+>>> data[0][0][0]
+'D'
+>>> data[2][0][0]
+'P'
+>>> data
+[['DATA', 'C88C'], ['DATA', '8'], ['POLSCI', '2'], ['MATH', '54']]
+>>> data = [ course.split() for course in courses ]
+>>>
+
+
+>>> import operators
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'operators'
+>>> import operator
+>>> operator.add(1, 3)
+4
+>>> 1 + 3
+4
+>>> from math import pi, sqrt
+>>> pi
+3.141592653589793
+>>> def square(n):
+...     return n * n
+...
+>>> square(2)
+4
+>>> square
+<function square at 0x1027c14e0>
+>>> s =square
+>>>
+>>>
+>>> s =square
+>>> s
+<function square at 0x1027c14e0>
+>>> def sum_generic(n, func):
+...     """Sum the first N cubes of natural numbers.
+...     >>> sum_cubes(5)
+...     225
+...     """
+...     total = 0
+...     print(func)
+...     for i in range(n + 1):
+...         total += pow(i, 3)
+...     return total
+...
+>>> sum_generic(10, square)
+<function square at 0x1027c14e0>
+3025
+>>>
+>>> def sum_generic(n, func):
+...     """Sum the first N cubes of natural numbers.
+...     >>> sum_cubes(5)
+...     225
+...     """
+...     total = 0
+...     for i in range(n + 1):
+...         total += func(i)
+...     return total
+...
+>>> sum_generic(10, square)
+385
+>>> def identity(k):
+...     return k
+...
+>>>
+>>> sum_generic(10, identity)
+55
+>>>
+>>>
+>>> for i in range(10):
+...     print(square(i))
+...
+0
+1
+4
+9
+16
+25
+36
+49
+64
+81
+>>> for i in range(10):
+...     print(identity((i))
+...
+...
+...
+KeyboardInterrupt
+>>> for i in range(10):
+...     print(identity(i))
+...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+>>>
+>>>
+>>> def sum_generic(n, func):
+...     total = 0
+...     for i in range(n + 1):
+...         total += func(i)
+...     return total
+...
+>>> sum_generic(10, square)
+385
+>>>

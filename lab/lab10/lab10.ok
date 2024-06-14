@@ -1,0 +1,27 @@
+{
+    "name": "Lab 10",
+    "endpoint": "cal/cs88/sp24/lab10",
+    "src": [
+        "lab10.py"
+    ],
+    "tests": {
+        "lab10.py:countdown": "doctest",
+        "lab10.py:Countdown": "doctest",
+        "lab10.py:is_prime": "doctest",
+        "lab10.py:primes": "doctest"
+    },
+    "default_tests": [
+        "countdown",
+        "Countdown",
+        "is_prime",
+        "primes"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}

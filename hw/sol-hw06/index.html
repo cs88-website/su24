@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+
+    <meta name="description" content ="C88C: Computational Structures in Data Science" />
+    <meta name="keywords" content ="CS88, C88C, Computer Science, Data Science, Programming, Berkeley, EECS, Python, intro CS, comp sci" />
+    <meta name="author" content ="Eric Kim, John Teng, Satleen Gill, Mia Lopez, Naveen Nathan, Jiayi Li, Mira	Wagner" />
+
+    <link rel="stylesheet" href="/su24/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/style.css">
+    <link rel="icon" href="/su24/assets/images/favicon.ico">
+    <link rel="stylesheet" href="/su24/assets/css/mono-blue.css">
+
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/resource.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/css/hw.css"/>
+
+
+    <title>Homework 6 Solutions | C88C Summer 2024</title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section" aria-label="Toggle Nav Menu" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/su24/">C88C</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-section">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/su24/">Calendar</a></li>
+            <li><a href="/su24/articles/resources.html">Resources</a></li>
+            <li><a href="/su24/weekly-schedule.html">Google Calendar</a></li>
+            <li><a href="/su24/articles/about.html">Syllabus</a></li>
+            <li><a href="https://edstem.org/us/courses/59252/discussion/" target="_blank">Ed</a></li>
+            <li><a href="/su24/staff.html">Staff</a></li>
+            <!-- disable for DATA C88C su24 <li><a href="https://oh.c88c.org/" target="_blank">OH Queue</a></li> -->
+            <li><a href="https://tutor.cs61a.org/" target="_blank">Python Tutor</a></li>
+            <li><a href="https://bcourses.berkeley.edu/courses/1534781/external_tools/90481" target="_blank">Recordings</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+
+    <div id="content" class="container">
+      <div class='row'>
+  <div class='col-md-9'>
+    <div class='page-header'>
+      <div class="row row-no-gutters">
+    <div class="col-md-8">
+        <h1 class="content-title-brand" style="padding-top: 0;">
+            Homework 6 Solutions
+        </h1>
+    </div>
+    <div class="col-md-4">
+        <a class="h1 btn btn-lg" href="hw06.py">hw06.py solution</a>
+    </div>
+</div>
+    </div>
+
+    
+
+    
+
+
+<h2 id="recursion">Recursion</h2>
+
+
+<h3 class="question" id="q1">Question 1: Count Digit</h3>
+
+<p>Write a function that takes a positive integer <code>n</code> and returns the
+number of times the number <code>digit</code> appears. <em>Do not use any assignment statements.</em></p>
+
+<solution>
+
+<pre><code>def count_digit(n, digit):
+    &quot;&quot;&quot;Return how many times digit appears in n.
+
+    &gt;&gt;&gt; count_digit(55055, 5)
+    4
+    &gt;&gt;&gt; count_digit(1231421, 1)
+    3
+    &gt;&gt;&gt; count_digit(12, 3)
+    0
+    &quot;&quot;&quot;
+<span class="sol-highlight">    if n == 0:
+        return 0
+    if n % 10 == digit:
+        return count_digit(n // 10, digit) + 1
+    else:
+        return count_digit(n // 10, digit)</span></code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q count_digit</code></pre>
+
+<h3 class="question" id="q2">Question 2: Reduce</h3>
+
+<p>Write the recursive version of the function <code>reduce</code> which takes</p>
+
+<ul>
+  <li><code>reducer</code> - a two-argument function that reduces elements to a single value</li>
+  <li><code>seq</code> - a sequence of values</li>
+  <li><code>start</code> - the starting value in the reduction. This is usually the identity of the reducer</li>
+</ul>
+
+<p>As a hint, think about the parameters of <code>reduce</code>.</p>
+
+<solution>
+
+<pre><code>from operator import add, mul
+
+def reduce(reducer, seq, start):
+    &quot;&quot;&quot;Reduce a sequence under a two&#x2d;argument function starting from a start value.
+
+    &gt;&gt;&gt; def add(x, y):
+    ...     return x + y
+    &gt;&gt;&gt; def mul(x, y):
+    ...     return x*y
+    &gt;&gt;&gt; reduce(add, [1,2,3,4], 0)
+    10
+    &gt;&gt;&gt; reduce(mul, [1,2,3,4], 0)
+    0
+    &gt;&gt;&gt; reduce(mul, [1,2,3,4], 1)
+    24
+    &quot;&quot;&quot;
+<span class="sol-highlight">    if seq == []:
+        return start
+    next_base = reducer(start, seq[0])
+    return reduce(reducer, seq[1:], next_base)</span></code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q reduce</code></pre>
+
+<h3 class="question" id="q3">Question 3: Remove Last from Sequence</h3>
+
+<p>Complete the recursive function <code>remove_last</code> which creates a new list identical to the input list <code>lst</code> but with the last element in the sequence that is equal to <code>x</code> removed.</p>
+
+<blockquote><p><em>Hint:</em> Remember that you can use negative indexing on lists! For example <code>lst[&#x2d;1]</code> refers to the last element in a list <code>lst</code>, <code>lst[&#x2d;2]</code> refers to the second to last element...</p></blockquote>
+
+<solution>
+
+<pre><code>def remove_last(x, lst):
+    &quot;&quot;&quot;Create a new list that is identical to lst but with the last
+    element from the list that is equal to x removed.
+
+    &gt;&gt;&gt; remove_last(1,[])
+    []
+    &gt;&gt;&gt; remove_last(1,[1])
+    []
+    &gt;&gt;&gt; remove_last(1,[1,1])
+    [1]
+    &gt;&gt;&gt; remove_last(1,[2,1])
+    [2]
+    &gt;&gt;&gt; remove_last(1,[3,1,2])
+    [3, 2]
+    &gt;&gt;&gt; remove_last(1,[3,1,2,1])
+    [3, 1, 2]
+    &gt;&gt;&gt; remove_last(5, [3, 5, 2, 5, 11])
+    [3, 5, 2, 11]
+    &quot;&quot;&quot;
+<span class="sol-highlight">    if not lst:
+        return []
+    elif lst[&#x2d;1] == x:
+        return lst[0:&#x2d;1]
+    else:
+        return remove_last(x, lst[0:&#x2d;1]) + [lst[&#x2d;1]]</span></code></pre>
+
+</solution>
+
+<p>Illustrated here is a more complete doctest that shows good testing methodology.
+It is a little cumbersome as documentation, but you'll want to think about it
+for your projects.  Test every condition that might come up.  Then you won't be
+surprised when it does.</p>
+
+</question Remove from sequence>
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q remove_last</code></pre>
+
+<h3 class="question" id="q4">Question 4: Map</h3>
+
+<p>Write the recursive version of the function <code>map</code> which takes</p>
+
+<ul>
+  <li><code>m</code> - a one-argument function that you want to map onto each element in the list.</li>
+  <li><code>s</code> - a sequence of values</li>
+</ul>
+
+<solution>
+
+<pre><code>def map(f, seq):
+    &quot;&quot;&quot;
+    Map a function f onto a sequence.
+
+    &gt;&gt;&gt; def double(x):
+    ...     return x * 2
+    &gt;&gt;&gt; def square(x):
+    ...     return x ** 2
+    &gt;&gt;&gt; def toLetter(x):
+    ...     alpha = [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27;, &#x27;f&#x27;, &#x27;g&#x27;, &#x27;h&#x27;, &#x27;i&#x27;, &#x27;j&#x27;, &#x27;k&#x27;, &#x27;l&#x27;, &#x27;m&#x27;, &#x27;n&#x27;, &#x27;o&#x27;, &#x27;p&#x27;, &#x27;q&#x27;, &#x27;r&#x27;, &#x27;s&#x27;, &#x27;t&#x27;, &#x27;u&#x27;, &#x27;v&#x27;, &#x27;w&#x27;, &#x27;x&#x27;, &#x27;y&#x27;, &#x27;z&#x27;]
+    ...     return alpha[x%26]
+    &gt;&gt;&gt; map(double, [1,2,3,4])
+    [2, 4, 6, 8]
+    &gt;&gt;&gt; map(square, [1, 2, 3, 4, 5, 10])
+    [1, 4, 9, 16, 25, 100]
+    &gt;&gt;&gt; map(toLetter, [3, 0, 19, 0])
+    [&#x27;d&#x27;, &#x27;a&#x27;, &#x27;t&#x27;, &#x27;a&#x27;]
+
+    &quot;&quot;&quot;
+<span class="sol-highlight">    if seq == []:
+        return seq
+    return [f(seq[0])] + map(f, seq[1:])</span></code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q map</code></pre>
+
+<h3 class="question" id="q5">Question 5: Hailstone</h3>
+
+<p>For the <code>hailstone</code> function from previously, you pick a positive
+integer <code>n</code> as the start. If <code>n</code> is even, divide it by 2. If <code>n</code> is
+odd, multiply it by 3 and add 1. Repeat this process until <code>n</code> is 1.
+Write a recursive version of hailstone that prints out the values of
+the sequence and returns the number of steps.</p>
+
+<solution>
+
+<pre><code>def hailstone_iterative(n):
+    &quot;&quot;&quot;Print out the hailstone sequence starting at n, and return the
+    number of elements in the sequence.
+
+    &gt;&gt;&gt; a = hailstone_iterative(10)
+    10
+    5
+    16
+    8
+    4
+    2
+    1
+    &gt;&gt;&gt; a
+    7
+    &quot;&quot;&quot;
+<span class="sol-highlight">    print(n)
+    if n == 1:
+        return 1
+    elif n % 2 == 0:
+        return 1 + hailstone_iterative(n // 2)
+    else:
+        return 1 + hailstone_iterative(3 * n + 1)</span>
+
+def hailstone_recursive(n):
+    &quot;&quot;&quot;Print out the hailstone sequence starting at n, and return the
+    number of elements in the sequence.
+
+    &gt;&gt;&gt; a = hailstone_recursive(10)
+    10
+    5
+    16
+    8
+    4
+    2
+    1
+    &gt;&gt;&gt; a
+    7
+    &quot;&quot;&quot;
+<span class="sol-highlight">    print(n)
+    if n == 1:
+        return 1
+    elif n % 2 == 0:
+        return 1 + hailstone_recursive(n // 2)
+    else:
+        return 1 + hailstone_recursive(3 * n + 1)</span></code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q hailstone_iterative
+python3 ok -q hailstone_recursive</code></pre>
+
+
+<h2 id="tree-recursion">Tree Recursion</h2>
+
+
+<h3 class="question" id="q6">Question 6: Count Generations</h3>
+
+<p>Consider the following "family tree":</p>
+
+<pre>
+family_tree = [("Jordan", "Alex"), [
+    [("Taylor", "Morgan"), [
+        [("Riley", None), []],
+        [("Avery", None), []]
+    ]]
+]]
+</pre>
+
+<p>In this family tree, we see a series of nested lists which takes the format <code>[(parents), [children]]</code>. An empty list means that person has no children.
+This tree represents 3 generations.</p>
+
+<p>The goal is to count the maximum number of "generations" represented in the family tree. In this simple tree, there are 3 generations.</p>
+
+<p>Here is a visualization of the simple tree:
+<img class="img-responsive center-block" src="assets/doctest1.png" alt="simple tree visualization"></p>
+
+<p>Here is a visualization of a more complicated tree covered in the last doctest:
+<img class="img-responsive center-block" src="assets/doctest2.png" alt="hard tree visualization"></p>
+
+<p>Hint: Subtrees are also family trees</p>
+
+<pre><code>def count_generations(family_tree):
+    &quot;&quot;&quot;
+    Count the number of generations in a nested list&#x2d;based family tree.
+
+    &gt;&gt;&gt; count_generations([(&quot;A&quot;), []])
+    1
+    &gt;&gt;&gt; count_generations([(&quot;A&quot;), [[(&quot;B&quot;), []], [(&quot;C&quot;), []] ] ])
+    2
+    &gt;&gt;&gt; family_tree = [(&quot;Jordan&quot;, &quot;Alex&quot;), [
+    ...     [(&quot;Taylor&quot;, &quot;Morgan&quot;), [
+    ...         [(&quot;Riley&quot;, None), []],
+    ...         [(&quot;Avery&quot;, None), []]
+    ...     ]]
+    ... ]]
+    &gt;&gt;&gt; count_generations(family_tree)
+    3
+    &gt;&gt;&gt; family_tree = [(&quot;Jordan&quot;, &quot;Alex&quot;), [
+    ...     [(&quot;Taylor&quot;, &quot;Morgan&quot;), [
+    ...         [(&quot;Riley&quot;, &quot;Sam&quot;), [
+    ...             [(&quot;Avery&quot;, None), []]
+    ...         ]]
+    ...     ]],
+    ...     [(&quot;Casey&quot;, &quot;Jamie&quot;), [
+    ...         [(&quot;Quinn&quot;, &quot;Chris&quot;), [
+    ...             [(&quot;Dakota&quot;, None), []],
+    ...             [(&quot;Skyler&quot;, None), []]
+    ...         ]],
+    ...         [(&quot;Jesse&quot;, &quot;Jordan&quot;), []]
+    ...         ]]
+    ...     ]]
+    &gt;&gt;&gt; count_generations(family_tree)
+    4
+    &quot;&quot;&quot;
+    if not family_tree:
+        return 0
+    parents = family_tree[0]
+    children = family_tree[1]
+
+<span class="sol-highlight">    max_gen = 0
+    # for child in children:
+    #     gen = count_generations(child)
+    #     if gen &gt; max_gen:
+    #         max_gen = gen
+    if len(children) &gt; 0:
+        max_gen = max([count_generations(child) for child in children])
+    return 1 + max_gen</span></code></pre>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q count_generations</code></pre>
+
+
+  </div>
+
+  <div class='col-md-3'>
+    <nav class='hidden-print hidden-sm hidden-xs sidebar'>
+      <ul>
+  <li><a href="#recursion">Recursion</a></li>
+  <ul>
+  <li><a href="#q1">Question 1: Count Digit</a></li>
+  <li><a href="#q2">Question 2: Reduce</a></li>
+  <li><a href="#q3">Question 3: Remove Last from Sequence</a></li>
+  <li><a href="#q4">Question 4: Map</a></li>
+  <li><a href="#q5">Question 5: Hailstone</a></li>
+</ul>
+
+  <li><a href="#tree-recursion">Tree Recursion</a></li>
+  <ul>
+  <li><a href="#q6">Question 6: Count Generations</a></li>
+</ul>
+
+</ul>
+
+    </nav>
+  </div>
+
+</div>
+    </div>
+
+    <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/su24/assets/js/bootstrap.min.js"></script>
+    <!-- TODO: Move to specific pages... -->
+    <script src="/su24/assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+  $('.sidebar ul').addClass('nav nav-stacked');
+  $('body').scrollspy({
+    target: '.sidebar',
+    offset: 40
+  });
+</script>
+
+  </body>
+</html>

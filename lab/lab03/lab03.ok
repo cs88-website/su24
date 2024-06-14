@@ -1,0 +1,26 @@
+{
+    "name": "Lab 3",
+    "endpoint": "cal/cs88/sp24/lab03",
+    "src": [
+        "lab03.py"
+    ],
+    "tests": {
+        "lab03.py:intersects": "doctest",
+        "lab03.py:make_buzzer": "doctest",
+        "lab03.py:funception": "doctest",
+        "lab03.py:match_pairs": "doctest"
+    },
+    "default_tests": [
+        "make_buzzer",
+        "intersects",
+        "funception",
+        "match_pairs"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "backup"
+    ]
+}

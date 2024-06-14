@@ -1,5 +1,498 @@
-<html>
-<body>
-	<p> Hi, this is a placeholder Data C88C Summer 2024 page. </p>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+
+    <meta name="description" content ="C88C: Computational Structures in Data Science" />
+    <meta name="keywords" content ="CS88, C88C, Computer Science, Data Science, Programming, Berkeley, EECS, Python, intro CS, comp sci" />
+    <meta name="author" content ="Eric Kim, John Teng, Satleen Gill, Mia Lopez, Naveen Nathan, Jiayi Li, Mira	Wagner" />
+
+    <link rel="stylesheet" href="/su24/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/style.css">
+    <link rel="icon" href="/su24/assets/images/favicon.ico">
+    <link rel="stylesheet" href="/su24/assets/css/mono-blue.css">
+
+    
+
+    <title> C88C Summer 2024</title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section" aria-label="Toggle Nav Menu" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/su24/">C88C</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-section">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/su24/">Calendar</a></li>
+            <li><a href="/su24/articles/resources.html">Resources</a></li>
+            <li><a href="/su24/weekly-schedule.html">Google Calendar</a></li>
+            <li><a href="/su24/articles/about.html">Syllabus</a></li>
+            <li><a href="https://edstem.org/us/courses/59252/discussion/" target="_blank">Ed</a></li>
+            <li><a href="/su24/staff.html">Staff</a></li>
+            <!-- disable for DATA C88C su24 <li><a href="https://oh.c88c.org/" target="_blank">OH Queue</a></li> -->
+            <li><a href="https://tutor.cs61a.org/" target="_blank">Python Tutor</a></li>
+            <li><a href="https://bcourses.berkeley.edu/courses/1534781/external_tools/90481" target="_blank">Recordings</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+
+    <div id="content" class="container">
+      <div class='page-header'>
+  <h1>
+    <span class="content-title-brand">CS 88</span>:
+    Computational Structures in Data Science
+    <img src = "assets/images/cs88-logo.png" alt = "c88c logo" style="float:right;width:150px;height:150px;">
+    <div class="small">Summer 2024</div>
+    <div class="small">Instructor: Eric Kim</div>
+  </h1>
+  <h3>
+    M - Th 3pm - 4pm PT (Remote)
+  </h3>
+</div>
+
+<section>
+  <h2>Announcements</h2>
+
+  <div id="assignment-quick-list"></div>
+
+  <div id='announcements'>
+    
+  </div>
+</section>
+
+<!-- <div id='resources'>
+  <div id='resources-description'>
+    Resource/Piazza Search <br/>
+    <small>Search for terms like "recursion", "homework 3", or "practice"</small>
+  </div>
+
+  <div id='resources-input'>
+    <input type='text' id='resources-search-box' class='search' placeholder='Search for resources/posts on Piazza'>
+  </div>
+
+  <div id='resources-display'>
+    
+    <table id='resource-table' class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Tags</th>
+            </tr>
+        </thead>
+        <tbody class="list">
+            
+        <tr>
+            <td class='resource-name'>Lecture 1: 1: Welcome & Intro</td>
+            <td class='resource-type'>Lecture</td>
+            <td class='resource-tags'></td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="https://www.composingprograms.com/pages/12-elements-of-programming.html#" class="", target="">Readings: section 1.2</a></td>
+            <td class='resource-type'>Reading</td>
+            <td class='resource-tags'></td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="https://www.composingprograms.com/pages/21-introduction.html#" class="", target="">Readings: section 2.1</a></td>
+            <td class='resource-type'>Reading</td>
+            <td class='resource-tags'></td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'>Lecture 2: 2: Abstractions & Functions</td>
+            <td class='resource-type'>Lecture</td>
+            <td class='resource-tags'></td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="https://www.composingprograms.com/pages/13-defining-new-functions.html#" class="", target="">Readings: section 1.3</a></td>
+            <td class='resource-type'>Reading</td>
+            <td class='resource-tags'></td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="https://www.composingprograms.com/pages/14-designing-functions.html#" class="", target="">Readings: section 1.4</a></td>
+            <td class='resource-type'>Reading</td>
+            <td class='resource-tags'></td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="https://www.composingprograms.com/pages/15-control.html#" class="", target="">Readings: section 1.5</a></td>
+            <td class='resource-type'>Reading</td>
+            <td class='resource-tags'></td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="articles/about.html" class="", target="">Syllabus</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'></td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="articles/composition.html" class="", target="">Composition Guide</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Programming</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="articles/debugging.html" class="", target="">Debugging Guide</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Programming</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="articles/using-ok.html" class="", target="">Using OK</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>OK</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="articles/unix.html" class="", target="">UNIX Tutorial</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>UNIX</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="articles/sublime.html" class="", target="">Sublime Text</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Text Editors</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="articles/vim.html" class="", target="">Vim</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Text Editors</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="articles/emacs.html" class="", target="">Emacs</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Text Editors</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'>Weekly Schedule</td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'></td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'>Staff</td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'></td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="http://www.youtube.com/watch?v=54-wuFsPi0w" class="", target="">Windows: set up Python</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Setting up</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="http://www.youtube.com/watch?v=gDDaz6Sb8jo" class="", target="">Windows: connecting from home (video)</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Setting up</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="http://inst.eecs.berkeley.edu/~cs61a/fa13/pdfs/connect-windows.pdf" class="", target="">Windows: connecting form home (pdf)</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Setting up</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="http://www.youtube.com/watch?v=smHuBHxJdK8" class="", target="">Mac: set up Python</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Setting up</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="http://www.youtube.com/watch?v=6tQx-J4nBSY" class="", target="">Mac: set up Emacs</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Setting up</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="http://www.youtube.com/watch?v=irwlU7esODA" class="", target="">Mac: connecting from home (video)</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Setting up</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="http://inst.eecs.berkeley.edu/~cs61a/fa13/pdfs/connect-mac.pdf" class="", target="">Mac: connecting from home (pdf)</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Setting up</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="http://tutor.composingprograms.com/visualize.html" class="", target="">Online Python tutor</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Environment Diagrams</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="https://www.youtube.com/playlist?list=PL-XXv-cvA_iBM29DgZsGaQihJp8lLQn3J" class="", target="">Spring 2015 screencasts</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Video, John DeNero</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="https://www.youtube.com/playlist?list=PL-XXv-cvA_iDbsAvTYyJnMkObr12IIkyg" class="", target="">Fall 2014 screencasts</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Video, John DeNero</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="http://www.youtube.com/view_play_list?p=-XXv-cvA_iCIEwJhyDVdyLMCiimv6Tup" class="", target="">Fall 2013 screencasts</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>Video, John DeNero</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="http://www.ee.surrey.ac.uk/Teaching/Unix/" class="", target="">Another UNIX tutorial</a></td>
+            <td class='resource-type'>Article</td>
+            <td class='resource-tags'>UNIX</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="http://albertwu.org/cs61a/" class="", target="">Albert Wu's practice problems</a></td>
+            <td class='resource-type'>Practice</td>
+            <td class='resource-tags'></td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'><a href="http://markmiyashita.com/cs61a/sp14/practice/" class="", target="">Mark Miyashita's practice problems</a></td>
+            <td class='resource-type'>Practice</td>
+            <td class='resource-tags'></td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'>Functions and expressions practice problems</td>
+            <td class='resource-type'>Practice</td>
+            <td class='resource-tags'>Functions</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'>Control structures practice problems</td>
+            <td class='resource-type'>Practice</td>
+            <td class='resource-tags'>Control Structures</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'>Higher Order Functions practice problems</td>
+            <td class='resource-type'>Practice</td>
+            <td class='resource-tags'>Higher Order Functions</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'>Lambda expressions practice problems</td>
+            <td class='resource-type'>Practice</td>
+            <td class='resource-tags'>Lambdas</td>
+        </tr>
+
+        <tr>
+            <td class='resource-name'>Recursion practice problems</td>
+            <td class='resource-type'>Practice</td>
+            <td class='resource-tags'>Recursion, Tree Recursion</td>
+        </tr>
+        </tbody>
+    </table>
+  </div>
+</div> -->
+
+<section>
+  <h2>Calendar</h2>
+
+  <div class="table-responsive">
+    <table id="calendar">
+
+        <tr>
+            <th scope="col">Wk</th>
+<th scope="col">Date</th>
+<th scope="col">Lecture</th>
+<th scope="col">Reading</th>
+<th scope="col">Lab & Discussion</th>
+<th scope="col">Assignments</th>
+        </tr>
+<tr>
+<td rowspan="3" class="weeknum odd">1</td>
+<td>Mon 6/17</td>
+<td>1: Welcome & Intro</td>
+<td><a href="https://www.composingprograms.com/pages/12-elements-of-programming.html#" class="label label-outline", target="_blank">1.2</a><br/>
+<a href="https://www.composingprograms.com/pages/21-introduction.html#" class="label label-outline", target="_blank">2.1</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tue 6/18</td>
+<td>2: Abstractions & Functions</td>
+<td><a href="https://www.composingprograms.com/pages/13-defining-new-functions.html#" class="label label-outline", target="_blank">1.3</a><br/>
+<a href="https://www.composingprograms.com/pages/14-designing-functions.html#" class="label label-outline", target="_blank">1.4</a><br/>
+<a href="https://www.composingprograms.com/pages/15-control.html#" class="label label-outline", target="_blank">1.5</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Wed 6/19</td>
+<td>No Lecture: Juneteenth</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+  </div>
+</section>
+    </div>
+
+    <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/su24/assets/js/bootstrap.min.js"></script>
+    <!-- TODO: Move to specific pages... -->
+    <script src="/su24/assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+<script>
+$(document).ready(function() {
+  // Resource search
+  var options = {
+    valueNames: ['resource-name', 'resource-type', 'resource-tags']
+  };
+  var resourceList = new List('resources', options);
+
+  // Piazza search
+  // var client = $.algolia.Client('LHANIWJEIC', '968c2f288acce3b95639b2af4ff66250');
+  // var index = client.initIndex('CS61A Fa15 Piazza'); // Change this depending on semester
+  var piazzaResultLimit = 5;
+  var piazzaCache = {};
+
+  function piazzaSearchCallback(err, content) {
+    if (err || content.hits.length === 0) {
+      return;
+    }
+    // Scan all hits and display them
+    for (var i = 0; i < Math.min(content.hits.length, piazzaResultLimit); ++i) {
+
+      var hit = content.hits[i];
+      if (hit.qid in piazzaCache) {
+        piazzaCache[hit.qid].show();
+        continue;
+      }
+
+
+      newPost = resourceList.add({
+          'resource-name': '<a href="' + hit.urlto + '">'
+                           + '@' + hit.qid.toString() + ': ' + hit.subject
+                           + '</a>',
+          'resource-type': 'Piazza post',
+          'resource-tags': hit.tags.join(', ')
+        });
+      newPost[0].show();
+      piazzaCache[hit.qid] = newPost[0];
+
+
+    }
+  }
+
+  function urlExists(url, callback) {
+      // adapted from http://stackoverflow.com/a/1591653
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+          xhr.readyState === 4 && callback(xhr.status < 400);
+      };
+      xhr.open('HEAD', url);
+      xhr.send();
+  }
+
+  // Assignment quick list
+  var assignments = [];
+
+  $(document).ready(function() {
+    $("#resources-search-box").keyup(function() {
+      if (!this.value) {
+        $('#resources-display').hide();
+      } else {
+        index.search($("#resources-search-box").val(), piazzaSearchCallback);
+        $('#resources-display').show();
+      }
+    });
+
+    var currentTime = Date.now();
+    var quickListCount = 0;
+    assignments.forEach(function(assignment) {
+      var due = new Date(assignment.due);
+      due.setDate(due.getDate() + 1);
+      if (currentTime <= due) {
+        urlExists(assignment.link, function(exists) {
+          if (!exists) return;
+        if (quickListCount % 4 === 0) {
+          $('#assignment-quick-list').append('<div class="row"></div>');
+          quickListCount++;
+        }
+        $('#assignment-quick-list > div').last().append(
+            `<div class="col-xs-6 col-md-3">
+              <div class="quick-list-item">
+                <a href="${assignment.link}">
+                  <span class="quick-list-item-link"></span>
+                  ${assignment.name}
+                </a>
+                <hr/>Due ${assignment.due}
+              </div></div>`);
+        });
+      }
+    });
+  });
+
+  // Announcements
+  var announcementIndex = 0;
+
+  function setAnnouncements(offset) {
+    var newIndex = announcementIndex  + offset;
+    var announcementNumber = $('.announcement').length;
+
+    if (newIndex < 0 || newIndex >= announcementNumber) {
+      return;
+    }
+
+    $('#announcement-' + announcementIndex).hide(0, function() {
+      $('#announcement-' + newIndex).show(0);
+    });
+
+    announcementIndex = newIndex;
+
+    if (announcementIndex >= announcementNumber - 1) {
+      $('#announcement-' + announcementIndex + ' .announcement-btn-older')
+        .addClass('disabled');
+    }
+    if (announcementIndex === 0) {
+      $('#announcement-' + announcementIndex + ' .announcement-btn-newer')
+        .addClass('disabled');
+    }
+  }
+  setAnnouncements(0);
+
+  $('.announcement-btn-newer > a').click(function() {
+    setAnnouncements(-1);
+  });
+  $('.announcement-btn-older > a').click(function() {
+    setAnnouncements(1);
+  });
+});
+</script>
+  </body>
 </html>

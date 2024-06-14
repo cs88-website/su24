@@ -1,0 +1,370 @@
+Last login: Mon Feb  5 12:35:23 on ttys001
+
+michael at wifi-10-44-54-69 in ~/Dropbox/Projects/cs88/cs88/src on main [!]
+👉 python3
+Python 3.10.12 (main, Aug 14 2023, 02:22:17) [Clang 15.0.0 (clang-1500.0.40.1)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+
+michael at wifi-10-44-54-69 in ~/Dropbox/Projects/cs88/cs88/src on main [!?]
+👉 cd assets/slides/sp24/
+
+michael at wifi-10-44-54-69 in ~/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24 on main [!?]
+👉 python3 -m doctest -v 06-
+06-Lists_HOFs.pptx  06-Lists_HOFs.py    
+
+michael at wifi-10-44-54-69 in ~/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24 on main [!?]
+👉 python3 -m doctest -v 06-Lists_HOFs.py 
+Trying:
+    acronym_hof(cal, keep_words)
+Expecting:
+    "UCB"
+**********************************************************************
+File "/Users/michael/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24/06-Lists_HOFs.py", line 146, in 06-Lists_HOFs.acronym_hof
+Failed example:
+    acronym_hof(cal, keep_words)
+Expected:
+    "UCB"
+Got:
+    'UCB'
+Trying:
+    acronym_hof(copycats, keep_words)
+Expecting:
+    "UCLA"
+**********************************************************************
+File "/Users/michael/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24/06-Lists_HOFs.py", line 148, in 06-Lists_HOFs.acronym_hof
+Failed example:
+    acronym_hof(copycats, keep_words)
+Expected:
+    "UCLA"
+Got:
+    'UCLA'
+Trying:
+    acronym_hof(jc, keep_words)
+Expecting:
+    "LSJU"
+**********************************************************************
+File "/Users/michael/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24/06-Lists_HOFs.py", line 150, in 06-Lists_HOFs.acronym_hof
+Failed example:
+    acronym_hof(jc, keep_words)
+Expected:
+    "LSJU"
+Got:
+    'LSJU'
+Trying:
+    courses = ['DATA C88C', 'DATA 8', 'POLSCI 2', 'MATH 54']
+Expecting nothing
+ok
+Trying:
+    depts = [ course.split() for course in courses ]
+Expecting nothing
+ok
+Trying:
+    reduce(group_by, depts)
+Expecting:
+    [['DATA', ['C88C', '8']], ['POLSCI', ['2']], ['MATH', ['54']]]
+ok
+Trying:
+    courses = ['DATA C88C', 'DATA 8', 'POLSCI 2', 'MATH 54']
+Expecting nothing
+ok
+Trying:
+    depts = [ course.split() for course in courses ]
+Expecting nothing
+ok
+Trying:
+    reduce(group_by_count, depts)
+Expecting:
+    [['DATA', 2], ['POLSCI', 1], ['MATH', 1]]
+ok
+21 items had no tests:
+    06-Lists_HOFs
+    06-Lists_HOFs.acronym
+    06-Lists_HOFs.add_1
+    06-Lists_HOFs.add_2
+    06-Lists_HOFs.add_3
+    06-Lists_HOFs.add_4
+    06-Lists_HOFs.add_5
+    06-Lists_HOFs.add_one
+    06-Lists_HOFs.compose
+    06-Lists_HOFs.embiggen
+    06-Lists_HOFs.emojify
+    06-Lists_HOFs.first_letter
+    06-Lists_HOFs.is_even
+    06-Lists_HOFs.is_uppercase
+    06-Lists_HOFs.keep_words
+    06-Lists_HOFs.leq_maker
+    06-Lists_HOFs.long_word
+    06-Lists_HOFs.make_adder
+    06-Lists_HOFs.shout
+    06-Lists_HOFs.square
+    06-Lists_HOFs.un_emojify
+2 items passed all tests:
+   3 tests in 06-Lists_HOFs.group_by
+   3 tests in 06-Lists_HOFs.group_by_count
+**********************************************************************
+1 items had failures:
+   3 of   3 in 06-Lists_HOFs.acronym_hof
+9 tests in 24 items.
+6 passed and 3 failed.
+***Test Failed*** 3 failures.
+
+michael at wifi-10-44-54-69 in ~/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24 on main [!?]
+👉 
+
+michael at wifi-10-44-54-69 in ~/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24 on main [!?]
+👉 
+
+michael at wifi-10-44-54-69 in ~/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24 on main [!?]
+👉 python3 -i 06-
+06-Lists_HOFs.pdf   06-Lists_HOFs.pptx  06-Lists_HOFs.py    
+
+michael at wifi-10-44-54-69 in ~/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24 on main [!?]
+👉 python3 -i 06-Lists_HOFs.py 
+>>> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>> 
+>>> 
+>>> add_one = lambda n: n + 1
+>>> add_
+add_1(    add_2(    add_3(    add_4(    add_5(    add_one(  
+>>> add_one
+<function <lambda> at 0x104eebc70>
+>>> add_one(3)
+4
+>>> truth = lambda : True
+>>> truth()
+True
+>>> (lambda x: x + 2)
+<function <lambda> at 0x104eebd00>
+>>> (lambda x: x + 2)(4)
+6
+>>> 
+
+
+
+
+
+
+
+
+
+>>> 
+>>> 
+>>> 
+>>> max([1, 2, 3, 4, 5])
+5
+>>> max([1, 2, 3, 4, 5], key = lambda x: -x)
+1
+>>> max([1, 2, 3, 4, 5], key = lambda x: x)
+5
+>>> max([ [1, 5], [2, 4], [3, 3], [4, 2], [5, 1] ])
+[5, 1]
+>>> max([ [1, 5], [2, 4], [3, 3], [4, 2], [5, 1] ], key = lambda x : x[1] )
+[1, 5]
+>>> max([1, 2, 3, 4, 5], key = lambda x: -x)
+1
+>>> max([1, 2, 3, 4, 5], key = lambda x: x)
+
+
+
+
+
+
+>>> max([1, 2, 3, 4, 5], key = lambda x: x)
+5
+>>> 
+>>> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>> 
+>>> 
+>>> map
+<class 'map'>
+>>> square(2)
+4
+>>> map(square, range(10))
+<map object at 0x104ee5c30>
+>>> list(map(square, range(10)))
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+>>> list(map(lambda x : x * x, range(10)))
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+>>> list(map(lambda x : "DONT DO THIS", range(10)))
+['DONT DO THIS', 'DONT DO THIS', 'DONT DO THIS', 'DONT DO THIS', 'DONT DO THIS', 'DONT DO THIS', 'DONT DO THIS', 'DONT DO THIS', 'DONT DO THIS', 'DONT DO THIS']
+>>> 
+>>> 
+>>> list(map(square, range(10)))
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+>>> list(map(lambda x : x * x, range(10)))
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+>>> 
+>>> 
+>>> is_even
+<function is_even at 0x104d29a20>
+>>> is_even(4)
+True
+>>> is_even(5)
+False
+>>> list ( filter ( is_even, range(10) ) )
+[0, 2, 4, 6, 8]
+>>> list(range(10))
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> list ( map ( is_even, range(10) ) )
+[True, False, True, False, True, False, True, False, True, False]
+>>> list ( filter ( is_even, range(10) ) )
+[0, 2, 4, 6, 8]
+>>> list ( filter ( lambda x : x % 2 == 0, range(10) ) )
+[0, 2, 4, 6, 8]
+>>> list ( filter ( lambda x : x % 2 == 1, range(10) ) )
+[1, 3, 5, 7, 9]
+>>> filter ( lambda x : x % 2 == 1, range(10) )
+<filter object at 0x104ee5c00>
+>>> range(10)
+range(0, 10)
+>>> 
+>>> 
+>>> 
+>>> list ( filter( lambda x: False, range(10) ) )
+[]
+>>> list( map( em
+embiggen(  emojify(   
+>>> list( map( emojify, 'hello c88c') )
+['😇', '😄', '😋', '😋', '😎', '🖿', '😂', '🗗', '🗗', '😂']
+>>> emojify('c')
+'😂'
+>>> emojify('z')
+'😙'
+>>> 0 === False
+  File "<stdin>", line 1
+    0 === False
+        ^
+SyntaxError: invalid syntax
+>>> 0 == False
+True
+>>> lambda x : False
+<function <lambda> at 0x104eebd90>
+>>> (lambda x: False) (0)
+False
+>>> 
+>>> list ( filter( lambda x: False, range(10) ) )
+[]
+>>> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>> 
+>>> 
+>>> from functools import reduce
+>>> 
+>>> reduce
+<built-in function reduce>
+>>> reduce( lambda x, y: x + y, range(1, 11) )
+55
+>>> 1 + 2
+3
+>>> 3  + 3
+6
+>>> 6 + 4
+10
+>>> reduce( lambda x, y: x + y, [1, 2, 3] )
+6
+>>> reduce( lambda x, y: x + y, [1, 2] )
+3
+>>> reduce( lambda x, y: x + y, [1] )
+1
+>>> reduce( lambda x, y: x + y, [1] )
+>>> reduce( lambda x, y: x + y, [1] )
+1
+>>> 
+>>> 
+>>> reduce( lambda x, y: x + y, ['h', 'e', 'l', 'l', 'o' ])
+'hello'
+>>> '' + 'h'
+'h'
+>>> 'h' + 'e'
+'he'
+>>> courses
+['DATA C88C', 'DATA 8', 'POLSCI 2', 'MATH 54']
+>>> depts = list( map( lambda x: x.split(), course) )
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'course' is not defined. Did you mean: 'courses'?
+>>> depts = list( map( lambda x: x.split(), courses) )
+>>> depts
+[['DATA', 'C88C'], ['DATA', '8'], ['POLSCI', '2'], ['MATH', '54']]
+>>> 
+>>> 
+>>> 
+>>> 
+>>> depts = list( map( lambda x: x.split(), courses) )
+>>> depts
+[['DATA', 'C88C'], ['DATA', '8'], ['POLSCI', '2'], ['MATH', '54']]
+>>> group_by_count
+<function group_by_count at 0x104d29c60>
+>>> reduce(group_
+group_by(        group_by_count(  
+>>> reduce(group_by_count, depts)
+[['DATA', 2], ['POLSCI', 1], ['MATH', 1]]
+>>> 
+
+
+
+
+
+
+
+
+
+

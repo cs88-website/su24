@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+
+    <meta name="description" content ="C88C: Computational Structures in Data Science" />
+    <meta name="keywords" content ="CS88, C88C, Computer Science, Data Science, Programming, Berkeley, EECS, Python, intro CS, comp sci" />
+    <meta name="author" content ="Eric Kim, John Teng, Satleen Gill, Mia Lopez, Naveen Nathan, Jiayi Li, Mira	Wagner" />
+
+    <link rel="stylesheet" href="/su24/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/style.css">
+    <link rel="icon" href="/su24/assets/images/favicon.ico">
+    <link rel="stylesheet" href="/su24/assets/css/mono-blue.css">
+
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/resource.css" />
+<link rel="stylesheet" type="text/css" href="/su24/assets/css/hw.css"/>
+
+
+    <title>Homework 3 | C88C Summer 2024</title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section" aria-label="Toggle Nav Menu" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/su24/">C88C</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-section">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/su24/">Calendar</a></li>
+            <li><a href="/su24/articles/resources.html">Resources</a></li>
+            <li><a href="/su24/weekly-schedule.html">Google Calendar</a></li>
+            <li><a href="/su24/articles/about.html">Syllabus</a></li>
+            <li><a href="https://edstem.org/us/courses/59252/discussion/" target="_blank">Ed</a></li>
+            <li><a href="/su24/staff.html">Staff</a></li>
+            <!-- disable for DATA C88C su24 <li><a href="https://oh.c88c.org/" target="_blank">OH Queue</a></li> -->
+            <li><a href="https://tutor.cs61a.org/" target="_blank">Python Tutor</a></li>
+            <li><a href="https://bcourses.berkeley.edu/courses/1534781/external_tools/90481" target="_blank">Recordings</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+
+    <div id="content" class="container">
+      <div class='row'>
+  <div class='col-md-9'>
+    <div class='page-header'>
+      <div class="row row-no-gutters">
+    <div class="col-md-8">
+        <h1 class="content-title-brand" style="padding-top: 0;">
+            Homework 3
+            <br>
+            <small><i>Due at 11:59:59 pm on Thursday, 2/15/2024.</i></small>
+        </h1>
+    </div>
+    <div class="col-md-4">
+        <a class="h1 btn btn-lg" href="hw03.zip">hw03.zip</a>
+    </div>
+</div>
+    </div>
+
+    <h2>Instructions</h2>
+
+<p>Download <a href="hw03.zip"> hw03.zip</a>.
+    Inside the archive, you will find starter files for the questions in this homework,
+    along with a copy of the OK autograder.</p>
+
+<p><strong>Readings:</strong> This homework relies on following references:</p>
+
+<ul>
+  <li><a href="http://composingprograms.com/pages/16-higher-order-functions.html#functions-as-arguments">Section 1.6</a></li>
+</ul>
+
+    
+
+
+<h2 id="lists-review">Lists Review</h2>
+
+
+<h3 class="question" id="q1">Question 1: Adding matrices</h3>
+
+<p>Write a function that adds two matrices together using
+list comprehensions. The function should take in two 2D lists of the same dimensions. If you're not familiar with matrix multiplication, check out this <a href="https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:adding-and-subtracting-matrices/a/adding-and-subtracting-matrices">article</a>. Note: We are not trying to test your understanding on linear algebra, but rather want to put your programming skills to the test!</p>
+
+<p>Hint: Try to think about how we would index into a matrix to get a singular element. How is a single row of the matrix represented? How can we get an element at a particular row and column?</p>
+
+<p>For an extra (optional) challenge, try to implement this in one line!</p>
+
+<solution>
+
+<pre><code>def add_matrices(x, y):
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; matrix1 = [[1, 3],
+    ...            [2, 0]]
+    &gt;&gt;&gt; matrix2 = [[&#x2d;3, 0],
+    ...            [1, 2]]
+    &gt;&gt;&gt; add_matrices(matrix1, matrix2)
+    [[&#x2d;2, 3], [3, 2]]
+    &gt;&gt;&gt; matrix4 = [[ 1, &#x2d;2,  3],
+    ...            [&#x2d;4,  5, &#x2d;6]]
+    &gt;&gt;&gt; matrix5 = [[&#x2d;1,  2, &#x2d;3],
+    ...            [ 4, &#x2d;5,  6]]
+    &gt;&gt;&gt; add_matrices(matrix4, matrix5)
+    [[0, 0, 0], [0, 0, 0]]
+    &quot;&quot;&quot;
+    "*** YOUR CODE HERE ***"
+    </code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q add_matrices</code></pre>
+
+
+<h2 id="higher-order-functions">Higher Order Functions</h2>
+
+
+<h3 class="question" id="q2">Question 2: This Question is so Derivative</h3>
+
+<p>Define a function <code>make_derivative</code> that returns a function: the derivative of a
+function <code>f</code>. Assuming that <code>f</code> is a single-variable mathematical function, its
+derivative will also be a single-variable function. When called with a number
+<code>a</code>, the derivative will estimate the slope of <code>f</code> at point <code>(a, f(a))</code>.</p>
+
+<p>Recall that the formula for finding the derivative of <code>f</code> at point <code>a</code> is:</p>
+
+<p><img class="img-responsive center-block" src="assets/derivative.png" alt="Derivative"></p>
+
+<p>where <code>h</code> approaches 0. We will approximate the derivative by choosing a very
+small value for <code>h</code>. The closer <code>h</code> is to 0, the better the estimate of the
+derivative will be.</p>
+
+<solution>
+
+<pre><code>def make_derivative(f):
+    &quot;&quot;&quot;Returns a function that approximates the derivative of f.
+
+    Recall that f&#x27;(a) = (f(a + h) &#x2d; f(a)) / h as h approaches 0. We will
+    approximate the derivative by choosing a very small value for h.
+
+    &gt;&gt;&gt; def square(x): 
+    ...     # equivalent to: square = lambda x: x * x
+    ...     return x * x
+    &gt;&gt;&gt; derivative = make_derivative(square)
+    &gt;&gt;&gt; result = derivative(3)
+    &gt;&gt;&gt; round(result, 3) # approximately 2 * 3
+    6.0
+    &quot;&quot;&quot;
+    h = 0.00001
+    "*** YOUR CODE HERE ***"</code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q make_derivative</code></pre>
+
+<h3 class="question" id="q3">Question 3: Reduce</h3>
+
+<p>Write the higher order function <code>reduce</code> which takes</p>
+
+<ul>
+  <li><code>reducer</code> - a two-argument function that reduces elements to a single value</li>
+  <li><code>s</code> - a sequence of values</li>
+  <li><code>base</code> - the starting value in the reduction.  This is usually the identity of the reducer</li>
+</ul>
+
+<p>If you're feeling stuck, think about the parameters of <code>reduce</code>. This problem is meant to provide a hands-on experience of understanding what the function <a href="https://docs.python.org/3/library/functools.html#functools.reduce"><code>reduce</code> from the <code>functools</code> library</a> does.</p>
+
+<solution>
+
+<pre><code>from operator import add, mul
+
+def reduce(reducer, s, base):
+    &quot;&quot;&quot;Reduce a sequence under a two&#x2d;argument function starting from a base value.
+
+    &gt;&gt;&gt; def add(x, y):
+    ...     return x + y
+    &gt;&gt;&gt; def mul(x, y):
+    ...     return x * y
+    &gt;&gt;&gt; reduce(add, [1, 2, 3, 4], 0)
+    10
+    &gt;&gt;&gt; reduce(mul, [1, 2, 3, 4], 0)
+    0
+    &gt;&gt;&gt; reduce(mul, [1, 2, 3, 4], 1)
+    24
+    &quot;&quot;&quot;
+    "*** YOUR CODE HERE ***"
+    </code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q reduce</code></pre>
+
+<h3 class="question" id="q4">Question 4: Smooth</h3>
+
+<p>The idea of smoothing a function is an important concept in signal
+processing. If <code>f</code> is a one-argument function and <code>dx</code> is some small
+number, then the smoothed version of <code>f</code> is the function whose value at
+a point <code>x</code> is the average of <code>f(x &#x2d; dx)</code>, <code>f(x)</code>, and <code>f(x + dx)</code>.
+Write a function <code>smooth</code> that takes as input a function <code>f</code> and a
+value to use for <code>dx</code> and returns a function that computes the smoothed
+version of <code>f</code>. Do not use any <code>def</code> statements inside of <code>smooth</code>; use
+<code>lambda</code> expressions instead.</p>
+
+<solution>
+
+<pre><code>def smooth(f, dx):
+    &quot;&quot;&quot;Returns the smoothed version of f, g where
+
+    g(x) = (f(x &#x2d; dx) + f(x) + f(x + dx)) / 3
+
+    &gt;&gt;&gt; square = lambda x: x ** 2
+    &gt;&gt;&gt; smoothed_square = smooth(square, 1)
+    &gt;&gt;&gt; round(smoothed_square(0), 3)
+    0.667
+    &quot;&quot;&quot;
+    "*** YOUR CODE HERE ***"</code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q smooth</code></pre>
+
+<h3 class="question" id="q5">Question 5: I Heard You Liked Functions...</h3>
+
+<p>Define a function <code>cycle</code> that takes in three functions <code>f1</code>, <code>f2</code>,
+<code>f3</code>, as arguments. <code>cycle</code> will return another function that should
+take in an integer argument <code>n</code> and return another function.  That
+final function should take in an argument <code>x</code> and cycle through
+applying <code>f1</code>, <code>f2</code>, and <code>f3</code> to <code>x</code>, depending on what <code>n</code>
+was. Here's the what the final function should do to <code>x</code> for a few
+values of <code>n</code>:</p>
+
+<ul>
+  <li><code>n = 0</code>, return <code>x</code></li>
+  <li><code>n = 1</code>, apply <code>f1</code> to <code>x</code>, or return <code>f1(x)</code></li>
+  <li><code>n = 2</code>, apply <code>f1</code> to <code>x</code> and then <code>f2</code> to the result of that, or
+  return <code>f2(f1(x))</code></li>
+  <li><code>n = 3</code>, apply <code>f1</code> to <code>x</code>, <code>f2</code> to the result of applying <code>f1</code>,
+  and then <code>f3</code> to the result of applying <code>f2</code>, or <code>f3(f2(f1(x)))</code></li>
+  <li><code>n = 4</code>, start the cycle again applying <code>f1</code>, then <code>f2</code>, then <code>f3</code>,
+  then <code>f1</code> again, or <code>f1(f3(f2(f1(x))))</code></li>
+  <li>And so forth.</li>
+</ul>
+
+<p><em>Hint</em>: most of the work goes inside the most nested function.
+<br/>
+<em>Hint 2</em>: given <code>n</code>, how many function calls are made on <code>x</code>?
+<br/>
+<em>Hint 3</em>: for help with how to cycle through the
+functions (i.e., how to go back to applying <code>f1</code> as your outermost
+function call when <code>n = 4</code>), consider looking at
+<a href="https://pythontutor.com/visualize.html#code=def%20alternator%28lst%29%3A%0A%20%20%20%20%22%22%22%0A%20%20%20%20Creates%20a%20new%20list%20that%20itself%20consists%20of%20two%20lists,%0A%20%20%20%20the%20first%20containing%20all%20elements%20from%20even%20indices%20of%20lst,%0A%20%20%20%20the%20second%20containing%20all%20elements%20from%20odd%20indices%20of%20lst.%0A%20%20%20%20%3E%3E%3E%20alternator%28%5B1,%207,%203,%202,%204,%206%5D%29%0A%20%20%20%20%5B%5B1,%203,%204%5D,%20%5B7,%202,%206%5D%5D%0A%20%20%20%20%22%22%22%0A%20%20%20%20lst1%20%3D%20%5B%5D%0A%20%20%20%20lst2%20%3D%20%5B%5D%0A%20%20%20%20for%20i%20in%20range%28len%28lst%29%29%3A%0A%20%20%20%20%20%20%20%20if%20i%20%25%202%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20lst1.append%28lst%5Bi%5D%29%0A%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20lst2.append%28lst%5Bi%5D%29%0A%20%20%20%20return%20%5Blst1,%20lst2%5D%0A%0Aans%20%3D%20alternator%28%5B1,%207,%203,%202,%204,%206%5D%29&cumulative=true&heapPrimitives=nevernest&mode=edit&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false">this</a> Python Tutor demo
+which has similar cycling behaviour.
+<br/>
+
+<solution></p>
+
+<pre><code>def cycle(f1, f2, f3):
+    &quot;&quot;&quot; Returns a function that is itself a higher order function
+    &gt;&gt;&gt; def add1(x):
+    ...     return x + 1
+    &gt;&gt;&gt; def times2(x):
+    ...     return x * 2
+    &gt;&gt;&gt; def add3(x):
+    ...     return x + 3
+    &gt;&gt;&gt; my_cycle = cycle(add1, times2, add3)   # f1 = add1, f2 = times2, f3 = add3
+    &gt;&gt;&gt; identity = my_cycle(0)                 # n = 0
+    &gt;&gt;&gt; identity(5)                            # return x, where x = 5
+    5
+    &gt;&gt;&gt; add_one_then_double = my_cycle(2)      # n = 2
+    &gt;&gt;&gt; add_one_then_double(1)                 # return f2(f1(x)), where x = 1
+    4
+    &gt;&gt;&gt; do_all_functions = my_cycle(3)         # n = 3
+    &gt;&gt;&gt; do_all_functions(2)                    # return f3(f2(f1(x))), where x = 2
+    9
+    &gt;&gt;&gt; do_more_than_a_cycle = my_cycle(4)     # n = 4
+    &gt;&gt;&gt; do_more_than_a_cycle(2)                # return f1(f3(f2(f1(x)))), where x = 2
+    10
+    &gt;&gt;&gt; do_two_cycles = my_cycle(6)            # n = 6
+    &gt;&gt;&gt; do_two_cycles(1)                       # return f3(f2(f1(f3(f2(f1(x)))))), where x = 1
+    19
+    &quot;&quot;&quot;
+    "*** YOUR CODE HERE ***"</code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q cycle</code></pre>
+
+<h3 class="question" id="q6">Question 6: The Word Guessing Game</h3>
+
+<p>Write a higher order function called <code>store_word</code> that takes in a secret word. It will return the length of the secret word and another function, <code>guess_word</code>, that the user can use to try to guess the secret word.</p>
+
+<p>Assume that when the user tries to guess the secret word, they will only guess words that are equal in length to the secret word. The user can pass their guess into the <code>guess_word</code> function, and it will return a list where every element in the list is a boolean, True or False, indicating whether the letter at that index matches the letter in the secret word!</p>
+
+<solution>
+
+<pre><code>def store_word(secret):
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; word_len, guess_word = store_word(&quot;cake&quot;)
+    &gt;&gt;&gt; word_len
+    4
+    &gt;&gt;&gt; guess_word(&quot;corn&quot;)
+    [True, False, False, False]
+    &gt;&gt;&gt; guess_word(&quot;come&quot;)
+    [True, False, False, True]
+    &gt;&gt;&gt; guess_word(&quot;cake&quot;)
+    [True, True, True, True]
+    &gt;&gt;&gt; word_len, guess_word = store_word(&quot;pop&quot;)
+    &gt;&gt;&gt; word_len
+    3
+    &gt;&gt;&gt; guess_word(&quot;ate&quot;)
+    [False, False, False]
+    &gt;&gt;&gt; guess_word(&quot;top&quot;)
+    [False, True, True]
+    &gt;&gt;&gt; guess_word(&quot;pop&quot;)
+    [True, True, True]
+    &quot;&quot;&quot;
+    "*** YOUR CODE HERE ***"</code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q store_word</code></pre>
+
+
+
+<h2 id='submission'>Submission</h2>
+
+<p>
+    When you are done, submit your file to <a href="https://www.gradescope.com/courses/786589" target="_blank">Gradescope</a>.
+    You only need to upload the following files:
+    
+<ul>
+  <li><code>hw03.py</code></li>
+</ul>
+
+    You may submit more than once before the deadline; only the final submission will be graded.
+    It is your responsibility to check that the autograder on Gradescope runs as expected after
+    you upload your submission.
+</p>
+  </div>
+
+  <div class='col-md-3'>
+    <nav class='hidden-print hidden-sm hidden-xs sidebar'>
+      <ul>
+  <li><a href="#lists-review">Lists Review</a></li>
+  <ul>
+  <li><a href="#q1">Question 1: Adding matrices</a></li>
+</ul>
+
+  <li><a href="#higher-order-functions">Higher Order Functions</a></li>
+  <ul>
+  <li><a href="#q2">Question 2: This Question is so Derivative</a></li>
+  <li><a href="#q3">Question 3: Reduce</a></li>
+  <li><a href="#q4">Question 4: Smooth</a></li>
+  <li><a href="#q5">Question 5: I Heard You Liked Functions...</a></li>
+  <li><a href="#q6">Question 6: The Word Guessing Game</a></li>
+</ul>
+
+</ul>
+
+    </nav>
+  </div>
+
+</div>
+    </div>
+
+    <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/su24/assets/js/bootstrap.min.js"></script>
+    <!-- TODO: Move to specific pages... -->
+    <script src="/su24/assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+  $('.sidebar ul').addClass('nav nav-stacked');
+  $('body').scrollspy({
+    target: '.sidebar',
+    offset: 40
+  });
+</script>
+
+  </body>
+</html>

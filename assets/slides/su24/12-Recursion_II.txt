@@ -1,0 +1,173 @@
+Last login: Wed Feb 28 12:25:35 on ttys001
+
+michael at dhcp-153-88 in ~/Dropbox/Projects/cs88/cs88/src on main [!?]
+👉 current slides
+-bash: current: command not found
+
+michael at dhcp-153-88 in ~/Dropbox/Projects/cs88/cs88/src on main [!?]
+👉 cs88
+(env) 
+michael at dhcp-153-88 in ~/Dropbox/Projects/cs88/cs88/src on main [!?]
+👉 current slides
+assets/slides/sp24/
+(env) 
+michael at dhcp-153-88 in ~/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24 on main [!?]
+👉 c
+(env) 
+michael at dhcp-153-88 in ~/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24 on main [!?]
+👉 
+
+
+
+
+
+
+
+(env) 
+michael at dhcp-153-88 in ~/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24 on main [!?]
+👉 g s
+(env) 
+michael at dhcp-153-88 in ~/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24 on main
+👉 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(env) 
+michael at dhcp-153-88 in ~/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24 on main
+👉 python3 -i 12-
+12-Recursion_II.pdf   12-Recursion_II.pptx  12-Recursion_II.py    
+(env) 
+michael at dhcp-153-88 in ~/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24 on main
+👉 python3 -i 12-Recursion_II.py 
+>>> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>> panindrome('C88C')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'panindrome' is not defined. Did you mean: 'palindrome'?
+>>> palindrome('C88C')
+True
+>>> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>> first('hello')
+'h'
+>>> rest('hello')
+'ello'
+>>> def reverse(s):
+...     if not s:
+...             return ''
+...     return reverse(rest(s)) + first(s)
+... 
+>>> reverse('hello')
+'olleh'
+>>> 'o'[1:]
+''
+>>> s = 'o'
+>>> not s
+False
+>>> s = ''
+>>> not s
+True
+>>> not None
+True
+>>> reverse(None)
+''
+>>> len(s) == 0
+True
+>>> len(None) == 0
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: object of type 'NoneType' has no len()
+>>> 
+>>> 
+>>> 
+>>> def sum(n):
+...     if n == 0:
+...             return 0
+...     return sum(n-1) + n
+... 
+>>> sum(10)
+55
+>>> def sum(n):
+...     if n == 0:
+...     return n + sum(n - 1)
+  File "<stdin>", line 3
+    return n + sum(n - 1)
+    ^
+IndentationError: expected an indented block after 'if' statement on line 2
+>>> def sum(n):
+...     if n == 0:
+...             return 0
+...     return n + sum( n - 1)
+... 
+>>> 
+>>> min_r([5, 6, 2, 9])
+2
+>>> min(5, 6)
+5
+>>> min(5, 2)
+2
+>>> l = [5, 6, 2, 9]
+>>> min(5, rest(l))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: '<' not supported between instances of 'list' and 'int'
+>>> min(5, min(rest(l)))
+2
+>>> z
+KeyboardInterrupt
+>>> 
+
+
+
+
+
+

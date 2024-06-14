@@ -1,0 +1,28 @@
+{
+    "name": "Lab 8",
+    "endpoint": "cal/cs88/sp24/lab08",
+    "src": [
+        "lab08.py"
+    ],
+    "tests": {
+        "tests/link.py": "ok_test",
+        "lab08.py:CheckingAccount": "doctest",
+        "lab08.py:list_to_link": "doctest",
+        "lab08.py:reverse": "doctest",
+        "lab08.py:slice_link": "doctest"
+    },
+    "default_tests": [
+        "CheckingAccount",
+        "list_to_link",
+        "reverse",
+        "slice_link"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "grading",        
+        "unlock",
+        "analytics",
+        "backup"
+    ]
+}

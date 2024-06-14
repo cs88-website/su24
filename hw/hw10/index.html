@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+
+    <meta name="description" content ="C88C: Computational Structures in Data Science" />
+    <meta name="keywords" content ="CS88, C88C, Computer Science, Data Science, Programming, Berkeley, EECS, Python, intro CS, comp sci" />
+    <meta name="author" content ="Eric Kim, John Teng, Satleen Gill, Mia Lopez, Naveen Nathan, Jiayi Li, Mira	Wagner" />
+
+    <link rel="stylesheet" href="/su24/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/style.css">
+    <link rel="icon" href="/su24/assets/images/favicon.ico">
+    <link rel="stylesheet" href="/su24/assets/css/mono-blue.css">
+
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/resource.css" />
+<link rel="stylesheet" type="text/css" href="/su24/assets/css/hw.css"/>
+
+
+    <title>Homework 10 | C88C Summer 2024</title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section" aria-label="Toggle Nav Menu" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/su24/">C88C</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-section">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/su24/">Calendar</a></li>
+            <li><a href="/su24/articles/resources.html">Resources</a></li>
+            <li><a href="/su24/weekly-schedule.html">Google Calendar</a></li>
+            <li><a href="/su24/articles/about.html">Syllabus</a></li>
+            <li><a href="https://edstem.org/us/courses/59252/discussion/" target="_blank">Ed</a></li>
+            <li><a href="/su24/staff.html">Staff</a></li>
+            <!-- disable for DATA C88C su24 <li><a href="https://oh.c88c.org/" target="_blank">OH Queue</a></li> -->
+            <li><a href="https://tutor.cs61a.org/" target="_blank">Python Tutor</a></li>
+            <li><a href="https://bcourses.berkeley.edu/courses/1534781/external_tools/90481" target="_blank">Recordings</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+
+    <div id="content" class="container">
+      <div class='row'>
+  <div class='col-md-9'>
+    <div class='page-header'>
+      <div class="row row-no-gutters">
+    <div class="col-md-8">
+        <h1 class="content-title-brand" style="padding-top: 0;">
+            Homework 10
+            <br>
+            <small><i>Due at 11:59:59 pm on Thursday, 4/18/2024.</i></small>
+        </h1>
+    </div>
+    <div class="col-md-4">
+        <a class="h1 btn btn-lg" href="hw10.zip">hw10.zip</a>
+    </div>
+</div>
+    </div>
+
+    <h2>Instructions</h2>
+
+<p>Download <a href="hw10.zip"> hw10.zip</a>.
+    Inside the archive, you will find starter files for the questions in this homework,
+    along with a copy of the OK autograder.</p>
+
+<p><strong>Readings:</strong> This homework relies on following references:</p>
+
+<ul>
+  <li><a href="http://composingprograms.com/pages/42-implicit-sequences.html">Section 4.2</a></li>
+</ul>
+
+    
+
+
+<h2 id="iterator-generator-questions">Iterator/Generator Questions</h2>
+
+<h3 class="question" id="q1">Question 1: Scale</h3>
+
+<p>Implement an iterator class called <code>ScaleIterator</code> that scales elements in an iterable <code>iterable</code> by a number <code>scale</code>. The elements are <strong>not</strong> scaled on initialization, they are scaled when they are retrieved from the iterator (by calling <code>next</code>).</p>
+
+<p>For testing, we are using the <code>naturals()</code> generator, which is an infinite generator of the natural numbers (all positive integers, which does not include 0). The implementation of this generator can be found at the bottom of the starter code file.</p>
+
+<solution>
+
+<pre><code>class ScaleIterator:
+    &quot;&quot;&quot;An iterator the scales elements of the iterable by a number scale.
+
+    &gt;&gt;&gt; s = ScaleIterator([1, 5, 2], 5)
+    &gt;&gt;&gt; list(s)
+    [5, 25, 10]
+    &gt;&gt;&gt; m = ScaleIterator(naturals(), 2)
+    &gt;&gt;&gt; [next(m) for _ in range(5)]
+    [2, 4, 6, 8, 10]
+    &quot;&quot;&quot;
+    def __init__(self, iterable, scale):
+        "*** YOUR CODE HERE ***"
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        "*** YOUR CODE HERE ***"</code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q ScaleIterator</code></pre>
+
+<h3 class="question" id="q2">Question 2: Restart</h3>
+
+<p>Implement an iterator class called <code>IteratorRestart</code> that will reset to the beginning when <code>__iter__</code> is called again. Normally, calling <code>__iter__</code> will simply continue from the last element that was iterated on, however you should implement this class such that it starts over from the very beginning.</p>
+
+<p>In the provided doctest, we initialize an <code>IteratorRestart</code> object that will iterate from ints 2 to 7. Every time a for loop is used, python implicitly calls <code>__iter__</code> automatically on the object you are iterating through.</p>
+
+<p>We iterate through all of the numbers in our IteratorRestart object, and then in the second for loop when <code>__iter__</code> is called again, it resets the object. Thus, when we iterate again, it starts from the beginning.</p>
+
+<solution>
+
+<pre><code>class IteratorRestart:
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; iterator = IteratorRestart(2, 7)
+    &gt;&gt;&gt; for num in iterator:
+    ...     print(num)
+    2
+    3
+    4
+    5
+    6
+    7
+    &gt;&gt;&gt; for num in iterator:
+    ...     print(num)
+    2
+    3
+    4
+    5
+    6
+    7
+    &quot;&quot;&quot;
+    def __init__(self, start, end):
+        "*** YOUR CODE HERE ***"
+
+    def __next__(self):
+        "*** YOUR CODE HERE ***"
+
+    def __iter__(self):
+        "*** YOUR CODE HERE ***"</code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q IteratorRestart</code></pre>
+
+<h3 class="question" id="q3">Question 3: Hailstone</h3>
+
+<p>Write a generator that outputs the hailstone sequence from Lab 01.</p>
+
+<p>Here's a quick refresher on how the hailstone sequence is defined:</p>
+
+<ol>
+  <li>Pick a positive integer <code>n</code> as the start.</li>
+  <li>If <code>n</code> is even, divide it by 2.</li>
+  <li>If <code>n</code> is odd, multiply it by 3 and add 1.</li>
+  <li>Continue this process until <code>n</code> is 1.</li>
+</ol>
+
+<solution>
+
+<pre><code>def hailstone(n):
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; hs = hailstone(10)
+    &gt;&gt;&gt; type(hs)
+    &lt;class &#x27;generator&#x27;&gt;
+    &gt;&gt;&gt; for num in hailstone(10):
+    ...     print(num)
+    ...
+    10
+    5
+    16
+    8
+    4
+    2
+    1
+    &quot;&quot;&quot;
+    "*** YOUR CODE HERE ***"</code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q hailstone</code></pre>
+
+<h3 class="question" id="q4">Question 4: Pairs (generator)</h3>
+
+<p>Write a generator function <code>pairs</code> that takes a list and yields all the
+possible pairs of elements from that list.</p>
+
+<p>Note that this means that you should be yielding a <em>tuple</em>.</p>
+
+<solution>
+
+<pre><code>def pairs(lst):
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; type(pairs([3, 4, 5]))
+    &lt;class &#x27;generator&#x27;&gt;
+    &gt;&gt;&gt; for x, y in pairs([3, 4, 5]):
+    ...     print(x, y)
+    ...
+    3 3
+    3 4
+    3 5
+    4 3
+    4 4
+    4 5
+    5 3
+    5 4
+    5 5
+    &quot;&quot;&quot;
+    "*** YOUR CODE HERE ***"</code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q pairs</code></pre>
+
+<h3 class="question" id="q5">Question 5: Pairs (iterator)</h3>
+
+<p>Now write an iterator that does the same thing. You are only allowed
+to use a linear amount of space - so computing a list of all of the
+possible pairs is not a valid answer. Notice how much harder it is -
+this is why generators are useful.</p>
+
+<solution>
+
+<pre><code>class PairsIterator:
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; for x, y in PairsIterator([3, 4, 5]):
+    ...     print(x, y)
+    ...
+    3 3
+    3 4
+    3 5
+    4 3
+    4 4
+    4 5
+    5 3
+    5 4
+    5 5
+    &quot;&quot;&quot;
+    def __init__(self, lst):
+        "*** YOUR CODE HERE ***"
+
+    def __next__(self):
+        "*** YOUR CODE HERE ***"
+
+    def __iter__(self):
+        "*** YOUR CODE HERE ***"</code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q PairsIterator</code></pre>
+
+<h3 class="question" id="q6">Question 6: Merge</h3>
+
+<p>Implement <code>merge(r0, r1)</code>, which takes two iterables <code>r0</code> and <code>r1</code> whose
+elements are ordered. <code>merge</code> yields elements from <code>r0</code> and <code>r1</code> in sorted
+order, eliminating repetition. <strong>You may also assume <code>r0</code> and <code>r1</code> represent infinite
+sequences; that is, their iterators never raise <code>StopIteration</code></strong>.</p>
+
+<p>See the doctests for example behavior. For testing, we are using the <code>naturals()</code> generator, which is an infinite generator of the natural numbers (all positive integers, which does not include 0). The implementation of this generator can be found at the bottom of the starter code file.</p>
+
+<solution>
+
+<pre><code>def merge(r0, r1):
+    &quot;&quot;&quot;Yield the elements of strictly increasing iterables r0 and r1 and
+    make sure to remove the repeated values in both.
+    You can also assume that r0 and r1 represent infinite sequences.
+
+    &gt;&gt;&gt; twos = naturals(initial = 2, step = 2)
+    &gt;&gt;&gt; threes = naturals(initial = 3, step = 3)
+    &gt;&gt;&gt; m = merge(twos, threes)
+    &gt;&gt;&gt; type(m)
+    &lt;class &#x27;generator&#x27;&gt;
+    &gt;&gt;&gt; [next(m) for _ in range(10)]
+    [2, 3, 4, 6, 8, 9, 10, 12, 14, 15]
+    &quot;&quot;&quot;
+    i0 = iter(r0)
+    i1 = iter(r1)
+    e0 = next(i0)
+    e1 = next(i1)
+    "*** YOUR CODE HERE ***"</code></pre>
+
+</solution>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q merge</code></pre>
+
+
+
+<h2 id='submission'>Submission</h2>
+
+<p>
+    When you are done, submit your file to <a href="https://www.gradescope.com/courses/786589" target="_blank">Gradescope</a>.
+    You only need to upload the following files:
+    
+<ul>
+  <li><code>hw10.py</code></li>
+</ul>
+
+    You may submit more than once before the deadline; only the final submission will be graded.
+    It is your responsibility to check that the autograder on Gradescope runs as expected after
+    you upload your submission.
+</p>
+  </div>
+
+  <div class='col-md-3'>
+    <nav class='hidden-print hidden-sm hidden-xs sidebar'>
+      <ul>
+  <li><a href="#iterator-generator-questions">Iterator/Generator Questions</a></li>
+  <ul>
+  <li><a href="#q1">Question 1: Scale</a></li>
+  <li><a href="#q2">Question 2: Restart</a></li>
+  <li><a href="#q3">Question 3: Hailstone</a></li>
+  <li><a href="#q4">Question 4: Pairs (generator)</a></li>
+  <li><a href="#q5">Question 5: Pairs (iterator)</a></li>
+  <li><a href="#q6">Question 6: Merge</a></li>
+</ul>
+
+</ul>
+
+    </nav>
+  </div>
+
+</div>
+    </div>
+
+    <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/su24/assets/js/bootstrap.min.js"></script>
+    <!-- TODO: Move to specific pages... -->
+    <script src="/su24/assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+  $('.sidebar ul').addClass('nav nav-stacked');
+  $('body').scrollspy({
+    target: '.sidebar',
+    offset: 40
+  });
+</script>
+
+  </body>
+</html>

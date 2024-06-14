@@ -1,0 +1,13 @@
+# This file is also copied to the main website.
+
+published
+.DS_Store
+.token
+__pycache__
+
+*~
+
+# Exclude compiled zips for convenience
+# Also, the zips include unlocked test cases
+*autograder.zip
+*gradescope.zip

@@ -1,0 +1,32 @@
+{
+    "name": "Lab 05",
+    "endpoint": "cal/cs88/sp24/lab05",
+    "src": [
+        "lab05.py"
+    ],
+    "tests": {
+        "lab05.py:distance": "doctest",
+        "lab05.py:closer_city": "doctest",
+        "lab05.py:check_abstraction": "doctest",
+        "lab05.py:make_food": "doctest",
+        "lab05.py:get_food_name": "doctest",
+        "lab05.py:get_size": "doctest",
+        "lab05.py:get_price": "doctest"
+    },
+    "default_tests": [
+        "distance",
+        "closer_city",
+        "check_abstraction", 
+        "make_food",
+        "get_food_name",
+        "get_size",
+        "get_price"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "backup"
+    ]
+}

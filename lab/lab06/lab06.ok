@@ -1,0 +1,26 @@
+{
+    "name": "Lab 06",
+    "endpoint": "cal/cs88/sp24/lab06",
+    "src": [
+        "lab06.py"
+    ],
+    "tests": {
+        "lab06.py:ab_plus_c": "doctest",
+        "lab06.py:filter": "doctest",
+        "lab06.py:decimal": "doctest",
+        "lab06.py:paths": "doctest"
+    },
+    "default_tests": [
+        "ab_plus_c",
+        "filter",
+        "decimal", 
+        "paths"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "backup"
+    ]
+}

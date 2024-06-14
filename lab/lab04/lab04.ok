@@ -1,0 +1,28 @@
+{
+  "name": "Lab 4",
+  "endpoint": "cal/cs88/sp24/lab04",
+  "src": [
+    "lab04.py"
+  ],
+  "tests": {
+    "tests/lambda.py": "ok_test",
+    "lab04.py:exponent_fun": "doctest",
+    "lab04.py:compare_lambda": "doctest",
+    "lab04.py:flip_dict": "doctest",
+    "lab04.py:common_players": "doctest"
+  },
+  "default_tests": [
+    "exponent_fun",
+    "compare_lambda",
+    "flip_dict",
+    "common_players"
+  ],
+  "protocols": [
+      "restore",
+      "file_contents",
+      "grading",
+      "unlock",
+      "analytics",
+      "backup"
+  ]
+}

@@ -1,0 +1,29 @@
+:root {
+  /* UC Berkeley Color Palette from brand.berkeley.edu */
+  /* legacy / classic colors */
+  --berkeley-blue: #003262;
+  --california-gold: #fdb515;
+  --founders-rock: #3b7ea1;
+  --medalist: #c4820e;
+
+  /* secondary palette */
+  /* neutrals */
+  --wellman-tile: #d9661f;
+  --bay-fog: #ddd5c7;
+  --sather-gate: #b9d3b6;
+
+  /* vibrant variants */
+  --rose-garden: #ee1f60;
+  --lawrence: #00b0da;
+  --ion: #cfdd45;
+
+  /* brights */
+  --golden-gate: #ed4e33;
+  --lap-lane: #00a598;
+  --soybean: #859438;
+
+  /* darks */
+  --south-hall: #6c3302;
+  --pacific: #46535e;
+  --stone-pine: #584f29;
+}

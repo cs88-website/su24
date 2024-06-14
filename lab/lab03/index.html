@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+
+    <meta name="description" content ="C88C: Computational Structures in Data Science" />
+    <meta name="keywords" content ="CS88, C88C, Computer Science, Data Science, Programming, Berkeley, EECS, Python, intro CS, comp sci" />
+    <meta name="author" content ="Eric Kim, John Teng, Satleen Gill, Mia Lopez, Naveen Nathan, Jiayi Li, Mira	Wagner" />
+
+    <link rel="stylesheet" href="/su24/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/style.css">
+    <link rel="icon" href="/su24/assets/images/favicon.ico">
+    <link rel="stylesheet" href="/su24/assets/css/mono-blue.css">
+
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/resource.css" />
+<link rel="stylesheet" type="text/css" href="/su24/assets/css/lab.css" />
+
+
+    <title>Lab 3: Environments and Higher Order Functions | C88C Summer 2024</title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section" aria-label="Toggle Nav Menu" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/su24/">C88C</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-section">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/su24/">Calendar</a></li>
+            <li><a href="/su24/articles/resources.html">Resources</a></li>
+            <li><a href="/su24/weekly-schedule.html">Google Calendar</a></li>
+            <li><a href="/su24/articles/about.html">Syllabus</a></li>
+            <li><a href="https://edstem.org/us/courses/59252/discussion/" target="_blank">Ed</a></li>
+            <li><a href="/su24/staff.html">Staff</a></li>
+            <!-- disable for DATA C88C su24 <li><a href="https://oh.c88c.org/" target="_blank">OH Queue</a></li> -->
+            <li><a href="https://tutor.cs61a.org/" target="_blank">Python Tutor</a></li>
+            <li><a href="https://bcourses.berkeley.edu/courses/1534781/external_tools/90481" target="_blank">Recordings</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+
+    <div id="content" class="container">
+      <div class='row'>
+  <div class='col-md-9'>
+    <div class='page-header'>
+      <div class="row row-no-gutters">
+  <div class="col-md-8">
+      <h1 class="content-title-brand" style="padding-top: 0;">
+          Lab 3: Environments and Higher Order Functions
+          <br>
+          <small><i>Due at 11:59:59 pm on 2/13/2024.</i></small>
+      </h1>
+  </div>
+  <div class="col-md-4">
+      <a class="h1 btn btn-lg" href="lab03.zip">lab03.zip</a>
+  </div>
+</div>
+    </div>
+
+    <h2 id='starter-files'>Starter Files</h2>
+
+<p>Download <a href="lab03.zip">lab03.zip</a>.
+Inside the archive, you will find starter files for the questions in this lab,
+  along with a copy of the OK autograder.</p>
+
+    
+
+
+<h1 id="introduction">Introduction</h1>
+
+
+<p>In this lab, we will introduce you to environments and explore higher order functions (HOFs).</p>
+
+
+<h2 id="python-tutor">Python Tutor</h2>
+
+<p>Python Tutor is a website that allows you to write Python code in your web browser and see it visualized step by step. Before we explain more, let’s experiment with it a little.
+First, head to the Python Tutor <a href="https://pythontutor.com/composingprograms.html#mode=edit">website</a>.</p>
+
+<p>Copy and paste this code snippet into the box:</p>
+
+<pre><code>y = 3
+x = 5
+z = y + x
+print(z)</code></pre>
+
+<p>Press “visualize execution”.</p>
+
+<p>You can press the “forward” and “back” buttons to step forward or backwards in the code. Every time you step forward, Python will run that line of code. Notice the legend on the bottom left of the visualizer that tells you what the color of the arrows mean.</p>
+
+<p>You may notice that when you press the forward button for the first time, something pops up on the right side of the screen.</p>
+
+<p><img class="img-responsive center-block" src="assets/python-tutor-1.jpg" alt=""></p>
+
+<p>Given the line that you just ran, what do you think this diagram means?
+Try running a few more lines.</p>
+
+<p>What Python Tutor is doing is showing you exactly what each variable is and what its value is., It shows you the output of the print statement in the box above the diagram.</p>
+
+<p><img class="img-responsive center-block" src="assets/python-tutor-print.png" alt="python-tutor-print"></p>
+
+<p>What’s the difference between the value that appears in the interpreter after evaluating an expression and the output displayed by a print statement?</p>
+
+<p>The value that appears after evaluating is a feature that only the interpreter has. When you actually run the code from a file, that return value does not get printed. The print statement actually does print directly to your terminal.</p>
+
+<p>Python Tutor is a great tool because it helps you understand exactly what your code is doing and also keeps track of what variables’ values are along the way. If you ever have trouble understanding what your code is doing, or finding a bug, pull up python tutor and step through it!</p>
+
+<p>When we assign variables, Python Tutor visualizes this with the variable’s name and a box next to it with the variable’s value. This is just what a variable is! Something that can get assigned a value.</p>
+
+<p>The frame is called “global” for a reason. We will explain that later on.</p>
+
+<p>Let’s throw a function in there.
+Copy and paste this into the Python Tutor:</p>
+
+<pre><code>from operator import add
+y = 3
+x = 5
+z = add(x,y)
+print(z)</code></pre>
+
+<p>If you step until step 5, we see that there is something under the “objects” category.</p>
+
+<p><img class="img-responsive center-block" src="assets/python-tutor-2.png" alt="python-tutor-2"></p>
+
+<p>Add is a function, and functions live in object land. We denote which names correspond to which functions with an arrow.</p>
+
+<p>You can think of everything in “frame land” as a box. The box holds something, but is not the thing itself. Some boxes hold integers directly, like the values of x and y in the above image. Other boxes hold more complicated things like functions which cannot be stored directly in the box. Instead, the box holds a pointer to the function which actually lives in object land. In this lab, we are not worried about that, we want you to pay attention to the boxes.</p>
+
+<p>What about floats, booleans, and strings? They also live inside the box, as seen below.</p>
+
+<p><img class="img-responsive center-block" src="assets/python-tutor-3.png" alt="python-tutor-3"></p>
+
+<p>Now that you understand a little bit of how Python Tutor works, let’s write a function to visualize.</p>
+
+
+<h2 id="functions-and-python-tutor">Functions and Python Tutor</h2>
+
+
+<p>Let’s see what function calls look like in the Python interpreter.</p>
+
+<p>Paste this code into the interpreter. If you are not in edit mode, click the “edit this code” hyperlink.</p>
+
+<pre><code>def sum(x,y):
+	z = x + y
+	return z
+x = 3
+y = 4
+z = sum(x,y)
+a = z + 1</code></pre>
+
+<p>Now step through the code.
+Notice in step 5 something interesting happens. A new frame pops up and the execution arrow miraculously moves all the way to the first line. How did we get back there? Think about what would cause this jump before reading the answer below.</p>
+
+<p>When we call the sum function, we need to step through the function itself and execute all of its lines. Where is the function defined? In line 1! Thus, the python interpreter needs to go back there and step through each individual line.</p>
+
+<p><img class="img-responsive center-block" src="assets/python-tutor1.png" alt="python-tutor1"></p>
+
+<p>This new frame seen above is a local frame. It is a frame for the <code>sum</code> function that was just called. Everything that happens inside the <code>sum</code> function will be shown inside <code>sum</code>’s local frame.</p>
+
+<p>Step through the rest of the code to see what happens.</p>
+
+<p>Notice that between steps 8 and 9, the function jumps from line 3 to line 6. What’s that all about? Why doesn’t it just go straight to line 4?</p>
+
+<p>Remember how the interpreter had to jump into the <code>sum</code> function to execute it? Well, when it finishes the function, it needs to jump back to the line it was running before the function. That line was line 6.</p>
+
+<p>Now, let’s see what happens if a function calls a function.
+Copy the following code into python tutor.</p>
+
+<pre><code>def sum(x,y):
+	z = x + y
+	return z
+def square_sum(x,y):
+	z = 2
+	return sum(x, y)**z
+x = 3
+y = 4
+square_sum(x,y)</code></pre>
+
+<p>Now press “forward” 2 times.</p>
+
+<p>You may notice that during steps 1 and 2, the visualizer skips over the bodies of the functions. This is because the functions have not been called yet, so the python interpreter will not unpack the function and go into it. It only notes that there are two functions named sum and <code>square_sum</code>, and assigns them to functions living in object land.</p>
+
+<p>Try clicking forward to step 6. In step 6, the interpreter enters the <code>square_sum</code> function. See the new local frame that appeared.</p>
+
+<p><img class="img-responsive center-block" src="assets/python-tutor2.png" alt="python-tutor2"></p>
+
+<p>Fun fact: Because the frames are stacked this way, we call the group of frames the call stack.</p>
+
+<p>If you click forward one more time, you’ll see z pop up, which is set to 2. Then, we enter the <code>sum</code> function. Step to step 11.</p>
+
+<p><img class="img-responsive center-block" src="assets/python-tutor3.png" alt="python-tutor3"></p>
+
+<p>At this point, you see that we have many variables all names the same thing. How does Python know which variable we are referring to when we want the value of “x”? Is it the first, the second, or the third?</p>
+
+<p>This is where scope comes in.</p>
+
+<p>Everything inside a function’s local frame is said to be in its “scope”. A functions scope contains all the variables and functions it can access/manipulate/use.</p>
+
+<p>There are two big categories for scope: local and global.</p>
+
+<ul>
+  <li>Global scope is just whatever lies in the global frame.</li>
+  <li>Local scope is the scope of any individual function.</li>
+</ul>
+
+<p>When we are in the sum function, when we ask for z, we will retrieve z in sum’s local frame. When we are in <code>square_sum</code>, we will retrieve the z in <code>square_sum</code>’s local frame.</p>
+
+<p>Let’s continue exploring our function.</p>
+
+<p>After returning from <code>sum</code>, we go back to the line where we called sum: 6. Now that we have the result of sum (7), we can raise it to the power of z, which is 2, and return it.</p>
+
+<p>Now that you’ve seen a bit of defining functions, calling functions, and how both look like when they are visualized in python tutor, we will move on to learning about text editors.</p>
+
+
+<h2 id="scopes-and-nested-functions">Scopes and Nested Functions</h2>
+
+
+<p>Let’s see what nested function calls look like in the Python interpreter.</p>
+
+<p><a href="http://pythontutor.com/visualize.html#mode=edit">PythonTutor</a></p>
+
+<p>Paste this code into the interpreter or follow this link <a href="https://goo.gl/xv6RpW">Ex1</a></p>
+
+<pre><code>def bonus(score):
+    previousScore = score
+    multiplier = 1
+    if score &gt; 25:
+      multiplier = 2
+    score *= multiplier
+    return score
+print(bonus(score))
+print(previousScore)</code></pre>
+
+<p>Now step through the code. Why does it error out?
+The error message reads</p>
+
+<pre><code>NameError: name &#x27;previousScore&#x27; is not defined</code></pre>
+
+<p>But didn't we define <code>previousScore</code> in the body of the <code>bonus</code> function? We did, but that <code>previousScore</code> is only defined in the scope of the function. So it is not accessible outside in the global scope.</p>
+
+<p>Let's try another function <a href="https://goo.gl/41rJjb">Ex2</a></p>
+
+<pre><code>def totalScore(score):
+    multiplier = 2
+    def bonus(score):
+      if score &gt; 25:
+        score *= multiplier
+      else:
+        score /= multiplier
+      return score
+  return score, bonus(score)
+score = 12
+totalScore(score)
+print(score)</code></pre>
+
+<p>There's a lot to unpack here. We purposefully gave the variables the same names so you can see how Python lookups values for variables. The general principle is that python looks for the value in the current scope first. If it can't find the variable there, it checks it's parent scope, and the parent's parent, all the way up to the global scope. If the variable still isn't found there, an error is raised. Walk through the lookup for multiplier on line 7 in your head as a sanity check.</p>
+
+
+<h1 id="functions-as-arguments-funargs">Functions as Arguments (Funargs)</h1>
+
+
+<p>So far we have used several types of data - ints, floats, booleans,
+strings, lists, tuples, and numpy.arrays.  We perform operations on them by
+constructing expressions; we assign them to variables; we pass them to functions
+and return them as results.  So what about functions themselves?  So far we have
+<em>called them</em>, that is we applied them to arguments.  Sometimes we <em>compose</em> them -
+just like in math; apply a function to the result of applying a function.  You
+did that several times above.</p>
+
+<p>In modern programming languages like Python, functions are <em>first class citizens</em>;
+we can pass them around and put them in data structures.  Take a look at the following
+and try it out for various functions that you have available in the <code>.py</code> file for this
+lab.</p>
+
+<pre><code>&gt;&gt;&gt; square(square(3))
+81
+&gt;&gt;&gt; square
+&lt;function square at 0x102033d90&gt;
+&gt;&gt;&gt; x = square
+&gt;&gt;&gt; x(3)
+9
+&gt;&gt;&gt; x(x(2))
+16
+&gt;&gt;&gt;</code></pre>
+
+
+<h1 id="higher-order-functions">Higher Order Functions</h1>
+
+
+<p>Thus far, in Python Tutor, we’ve visualized Python programs in the form of environment diagrams that display which variables are tied to which values within different frames. However, as we noted when introducing Python, values are not necessarily just primitive expressions or types like float, string, integer, and boolean.</p>
+
+<p>In a nutshell, a higher order function is any function that takes a function as a parameter or provides a function has a return value. We will be exploring many applications of higher order functions.</p>
+
+<p>Let's think about a more practical use of higher order functions. Pretend you’re a math teacher, and you want to teach your students how coefficients affect the shape of a parabola.</p>
+
+<p>Let's open Python Tutor again in a new tab!</p>
+
+<p><a href="http://pythontutor.com/visualize.html#mode=edit">PythonTutor</a></p>
+
+<p>Paste this code into the interpreter:</p>
+
+<pre><code>def define_parabola(a, b, c):
+    def parabola(x):
+        return a*(x**2) + b*x + c
+    return parabola
+
+parabola = define_parabola(&#x2d;2, 3, &#x2d;4)
+y1 = parabola(1)
+y2 = parabola(10)
+print(y1, y2)</code></pre>
+
+<p>Now step through the code. In the <code>define_parabola</code> function, the coefficient values of 'a', 'b', and 'c' are taken in, and in return, a parabolic function with those coefficient values is returned.</p>
+
+<p>As you step through the second half of the code, notice how the value of <code>parabola</code> points at a function object! The <code>define_parabola</code> higher order nature comes from the fact that its return value is a function.</p>
+
+<p>Another thing noting is where the pointer moves after the <code>parabola</code> function is called. Notice that the pointer goes to line 2, where <code>parabola</code> was originally defined. In a nutshell, this example is meant to show how a closure is returned from the <code>define_parabola</code> function.</p>
+
+<h3 class="question" id="q1">Question 1: Flight of the Bumblebee</h3>
+
+<p>Write a function that takes in a number <code>n</code> and returns a function
+that takes in a number <code>m</code> which will print all numbers from <code>0</code>
+to <code>m &#x2d; 1</code> (including <code>0</code> but excluding <code>m</code>) but print <code>Buzz!</code>
+instead for all the numbers that are divisible by <code>n</code>.</p>
+
+
+
+<pre><code>def make_buzzer(n):
+    &quot;&quot;&quot; Returns a function that prints numbers in a specified
+    range except those divisible by n.
+
+    &gt;&gt;&gt; i_hate_fives = make_buzzer(5)
+    &gt;&gt;&gt; i_hate_fives(10)
+    Buzz!
+    1
+    2
+    3
+    4
+    Buzz!
+    6
+    7
+    8
+    9
+    &quot;&quot;&quot;
+<div class="alt 1">    "*** YOUR CODE HERE ***"
+    
+</div><div class="solution 1">&#x20;&#x20;&#x20;&#x20;&#x64;&#x65;&#x66;&#x20;&#x62;&#x75;&#x7a;&#x7a;&#x28;&#x6d;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x20;&#x3d;&#x20;&#x30;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x77;&#x68;&#x69;&#x6c;&#x65;&#x20;&#x69;&#x20;&#x3c;&#x20;&#x6d;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x69;&#x20;&#x25;&#x20;&#x6e;&#x20;&#x3d;&#x3d;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x70;&#x72;&#x69;&#x6e;&#x74;&#x28;&#x27;&#x42;&#x75;&#x7a;&#x7a;&#x21;&#x27;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x70;&#x72;&#x69;&#x6e;&#x74;&#x28;&#x69;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x20;&#x2b;&#x3d;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x62;&#x75;&#x7a;&#x7a;</div></code></pre>
+
+
+    <button id='1' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q make_buzzer</code></pre>
+
+<h3 class="question" id="q2">Question 2: Intersect</h3>
+
+<p>Two functions intersect at an argument <code>x</code> if they return equal values.
+Implement <code>intersects</code>, which takes a one-argument functions <code>f</code> and a value
+<code>x</code>. It returns a function that takes another function <code>g</code> and returns whether
+<code>f</code> and <code>g</code> intersect at <code>x</code>.</p>
+
+
+
+<pre><code>def intersects(f, x):
+    &quot;&quot;&quot;Returns a function that returns whether f intersects g at x.
+
+    &gt;&gt;&gt; def square(x):
+    ...     return x * x
+    &gt;&gt;&gt; def triple(x):
+    ...     return x * 3
+    &gt;&gt;&gt; def increment(x):
+    ...     return x + 1
+    &gt;&gt;&gt; def identity(x):
+    ...     return x
+    &gt;&gt;&gt; at_three = intersects(square, 3)
+    &gt;&gt;&gt; at_three(triple) # triple(3) == square(3)
+    True
+    &gt;&gt;&gt; at_three(increment)
+    False
+    &gt;&gt;&gt; at_one = intersects(identity, 1)
+    &gt;&gt;&gt; at_one(square)
+    True
+    &gt;&gt;&gt; at_one(triple)
+    False
+    &quot;&quot;&quot;
+<div class="alt 2">    "*** YOUR CODE HERE ***"
+    
+</div><div class="solution 2">&#x20;&#x20;&#x20;&#x20;&#x64;&#x65;&#x66;&#x20;&#x61;&#x74;&#x5f;&#x78;&#x28;&#x67;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x66;&#x28;&#x78;&#x29;&#x20;&#x3d;&#x3d;&#x20;&#x67;&#x28;&#x78;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x61;&#x74;&#x5f;&#x78;</div></code></pre>
+
+
+    <button id='2' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q intersects</code></pre>
+
+<h3 class="question" id="q3">Question 3: Funception</h3>
+
+<p>Write a function (funception) that takes in another function <code>func_a</code> and a number <code>start</code> and returns a one-argument function (<code>func_b</code>) that takes in the stop value.
+<code>func_b</code> should take the following into consideration the following in order:</p>
+
+<ol>
+  <li>Take in the stop value.</li>
+  <li>If the value of <code>start</code> is less than 0, return immediately with no output.</li>
+  <li>If the value of <code>start</code> is greater than stop, apply <code>func_a</code> on <code>start</code> and return the result.</li>
+  <li>If not, apply <code>func_a</code> on all the numbers from start (inclusive) up to stop (exclusive) and return the product.</li>
+</ol>
+
+
+
+<pre><code>def funception(func_a, start):
+    &quot;&quot;&quot; Takes in a function (function A) and a start value.
+    Returns a function (function B) that will find the product of 
+    function A applied to the range of numbers from 
+    start (inclusive) to stop (exclusive)
+
+    &gt;&gt;&gt; def func_a(num):
+    ...     return num + 1
+    &gt;&gt;&gt; func_b1 = funception(func_a, 3)
+    &gt;&gt;&gt; func_b1(2)
+    4
+    &gt;&gt;&gt; func_b2 = funception(func_a, &#x2d;2)
+    &gt;&gt;&gt; func_b2(&#x2d;3)
+    &gt;&gt;&gt; func_b3 = funception(func_a, &#x2d;1)
+    &gt;&gt;&gt; func_b3(4)
+    &gt;&gt;&gt; func_b4 = funception(func_a, 0)
+    &gt;&gt;&gt; func_b4(3)
+    6
+    &gt;&gt;&gt; func_b5 = funception(func_a, 1)
+    &gt;&gt;&gt; func_b5(4)
+    24
+    &quot;&quot;&quot;
+<div class="alt 3">    "*** YOUR CODE HERE ***"
+    
+</div><div class="solution 3">&#x20;&#x20;&#x20;&#x20;&#x64;&#x65;&#x66;&#x20;&#x66;&#x75;&#x6e;&#x63;&#x5f;&#x62;&#x28;&#x73;&#x74;&#x6f;&#x70;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x20;&#x3d;&#x20;&#x73;&#x74;&#x61;&#x72;&#x74;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x70;&#x72;&#x6f;&#x64;&#x75;&#x63;&#x74;&#x20;&#x3d;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x73;&#x74;&#x61;&#x72;&#x74;&#x20;&#x3c;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x4e;&#x6f;&#x6e;&#x65;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x73;&#x74;&#x61;&#x72;&#x74;&#x20;&#x3e;&#x20;&#x73;&#x74;&#x6f;&#x70;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x66;&#x75;&#x6e;&#x63;&#x5f;&#x61;&#x28;&#x73;&#x74;&#x61;&#x72;&#x74;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x77;&#x68;&#x69;&#x6c;&#x65;&#x20;&#x69;&#x20;&#x3c;&#x20;&#x73;&#x74;&#x6f;&#x70;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x70;&#x72;&#x6f;&#x64;&#x75;&#x63;&#x74;&#x20;&#x2a;&#x3d;&#x20;&#x66;&#x75;&#x6e;&#x63;&#x5f;&#x61;&#x28;&#x69;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x20;&#x2b;&#x3d;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x70;&#x72;&#x6f;&#x64;&#x75;&#x63;&#x74;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x66;&#x75;&#x6e;&#x63;&#x5f;&#x62;</div></code></pre>
+
+
+    <button id='3' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q funception</code></pre>
+
+
+<h1 id="lists-and-hofs">Lists and HOFs</h1>
+
+
+<h3 class="question" id="q4">Question 4: Match Pairs</h3>
+
+<p>Return a list containing all pairs of distinct elements that satisfy the function <code>fn</code>. We say the pair <code>[a, b]</code> satisfies a function <code>fn</code> when calling <code>fn(a, b)</code> returns <code>True</code>. Also note that the pair <code>[1, 1]</code> should never be included in the final pairing since its elements are not distinct.</p>
+
+<p>For example, all the possible pairs with disinct elements of <code>[1, 2, 3]</code> are <code>[1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2]</code> but only <code>[1, 2], [2, 1], [2, 3], [3, 2]</code> satisfy the condition that the sum of their elements is odd.</p>
+
+<p>Assume that all elements of <code>lst</code> are distinct.</p>
+
+<pre><code>&gt;&gt;&gt; lst = [1, 2, 3]
+&gt;&gt;&gt; def sum_to_odd(a, b):
+...     return (a + b) % 2 == 1 
+&gt;&gt;&gt; match_pairs(lst, sum_to_odd) # pairs can be returned in any order, this is an example
+[[1, 2], [2, 1], [2, 3], [3, 2]]</code></pre>
+
+<p>More examples can be found in the doctests.</p>
+
+
+
+<pre><code>def match_pairs(lst, fn):
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; lst = [&quot;bobby&quot;, &quot;frodo&quot;, &quot;sally&quot;, &quot;kyoko&quot;, &quot;beth&quot;]
+    &gt;&gt;&gt; def same_last_char(a, b):
+    ...     return a[&#x2d;1] == b[&#x2d;1]
+    &gt;&gt;&gt; sorted(match_pairs(lst, same_last_char)) # sorted is used for testing 
+    [[&#x27;bobby&#x27;, &#x27;sally&#x27;], [&#x27;frodo&#x27;, &#x27;kyoko&#x27;], [&#x27;kyoko&#x27;, &#x27;frodo&#x27;], [&#x27;sally&#x27;, &#x27;bobby&#x27;]]
+    &gt;&gt;&gt; def same_first_char(a, b):
+    ...     return a[0] == b[0]
+    &gt;&gt;&gt; sorted(match_pairs(lst, same_first_char))
+    [[&#x27;beth&#x27;, &#x27;bobby&#x27;], [&#x27;bobby&#x27;, &#x27;beth&#x27;]]
+    &quot;&quot;&quot;
+<div class="alt 4">    "*** YOUR CODE HERE ***"
+</div><div class="solution 4">&#x20;&#x20;&#x20;&#x20;&#x6d;&#x61;&#x74;&#x63;&#x68;&#x65;&#x73;&#x20;&#x3d;&#x20;&#x5b;&#x5d;&#xa;&#x20;&#x20;&#x20;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x69;&#x20;&#x69;&#x6e;&#x20;&#x6c;&#x73;&#x74;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x6a;&#x20;&#x69;&#x6e;&#x20;&#x6c;&#x73;&#x74;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x69;&#x20;&#x21;&#x3d;&#x20;&#x6a;&#x20;&#x61;&#x6e;&#x64;&#x20;&#x66;&#x6e;&#x28;&#x69;&#x2c;&#x20;&#x6a;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6d;&#x61;&#x74;&#x63;&#x68;&#x65;&#x73;&#x2e;&#x61;&#x70;&#x70;&#x65;&#x6e;&#x64;&#x28;&#x5b;&#x69;&#x2c;&#x20;&#x6a;&#x5d;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x6d;&#x61;&#x74;&#x63;&#x68;&#x65;&#x73;</div></code></pre>
+
+
+    <button id='4' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q match_pairs</code></pre>
+
+
+
+<h2 id='submission'>Submission</h2>
+
+<p>
+    When you are done, submit your file to <a href="https://www.gradescope.com/courses/786589" target="_blank">Gradescope</a>.
+    You only need to upload the following files:
+    
+<ul>
+  <li><code>lab03.py</code></li>
+</ul>
+
+    You may submit more than once before the deadline; only the final submission will be graded.
+    It is your responsibility to check that the autograder on Gradescope runs as expected after
+    you upload your submission.
+</p>
+  </div>
+
+  <div class='col-md-3'>
+    <nav class='hidden-print hidden-sm hidden-xs sidebar'>
+      <ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <ul>
+  <li><a href="#python-tutor">Python Tutor</a></li>
+  <li><a href="#functions-and-python-tutor">Functions and Python Tutor</a></li>
+  <li><a href="#scopes-and-nested-functions">Scopes and Nested Functions</a></li>
+</ul>
+
+  <li><a href="#functions-as-arguments-funargs">Functions as Arguments (Funargs)</a></li>
+  <li><a href="#higher-order-functions">Higher Order Functions</a></li>
+  <ul>
+  <li><a href="#q1">Question 1: Flight of the Bumblebee</a></li>
+  <li><a href="#q2">Question 2: Intersect</a></li>
+  <li><a href="#q3">Question 3: Funception</a></li>
+</ul>
+
+  <li><a href="#lists-and-hofs">Lists and HOFs</a></li>
+  <ul>
+  <li><a href="#q4">Question 4: Match Pairs</a></li>
+</ul>
+
+</ul>
+
+    </nav>
+  </div>
+
+</div>
+    </div>
+
+    <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/su24/assets/js/bootstrap.min.js"></script>
+    <!-- TODO: Move to specific pages... -->
+    <script src="/su24/assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+  $('.sidebar ul').addClass('nav nav-stacked');
+  $('body').scrollspy({
+    target: '.sidebar',
+    offset: 40
+  });
+</script>
+<!-- <script src="//code.jquery.com/jquery-latest.js"></script> -->
+<!-- <script>
+  $(function() {
+    if (new Date("2/26/24") < new Date()) {
+      $('.toggleButton').css('display', 'inline-block');
+      $('.toggleButton').click(function() {
+        var solution_id = $(this).attr('id');
+        $('div.' + solution_id).slideToggle(600);
+      });
+    }
+    // Always display these toggle buttons
+    $('.toggleButtonShow').click(function() {
+      var solution_id = $(this).attr('id');
+      $('div.' + solution_id).slideToggle(600);
+    });
+  });
+</script> -->
+  </body>
+</html>

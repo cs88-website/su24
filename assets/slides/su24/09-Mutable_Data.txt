@@ -1,0 +1,147 @@
+
+michael at MacBook-Pro in ~/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24 on main
+👉 python3 -i 09-Mutable_Data.py
++=, Before: [1, 2, 3]
++=, After: [1, 2, 3, 4]
+=, Before: [10, 9, 8]
+=, After: [10, 9, 8, 7]
+=, Before: [10, 9, 8]
+=, After: [10, 9, 8, 7]
+Traceback (most recent call last):
+  File "/Users/michael/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24/09-Mutable_Data.py", line 128, in <module>
+    counter_fun()
+  File "/Users/michael/Dropbox/Projects/cs88/cs88/src/assets/slides/sp24/09-Mutable_Data.py", line 125, in counter_fun
+    counter += 1
+    ^^^^^^^
+UnboundLocalError: cannot access local variable 'counter' where it is not associated with a value
+>>>
+>>>
+>>>
+>>> course
+{'name': 'Comp Structures in Data Science', 'number': 'C88C', 'room': '155 Dwinelle Hall'}
+>>> course['name']
+'Comp Structures in Data Science'
+>>> course.get('name')
+'Comp Structures in Data Science'
+>>> course['time']
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 'time'
+>>> course['time'] = '2:00 pm'
+>>> course
+{'name': 'Comp Structures in Data Science', 'number': 'C88C', 'room': '155 Dwinelle Hall', 'time': '2:00 pm'}
+>>> course['students'] = []
+>>> course['students']
+[]
+>>> course['students'] += [ 'Michael']
+>>> course['students']
+['Michael']
+>>> 'instructor' in course
+False
+>>> 'number' in course
+True
+>>> course
+{'name': 'Comp Structures in Data Science', 'number': 'C88C', 'room': '155 Dwinelle Hall', 'time': '2:00 pm', 'students': ['Michael']}
+>>> 'C88C' in course
+False
+>>> course['students'] += [ 'Viper']
+>>> course
+{'name': 'Comp Structures in Data Science', 'number': 'C88C', 'room': '155 Dwinelle Hall', 'time': '2:00 pm', 'students': ['Michael', 'Viper']}
+>>>
+>>>
+>>> text = 'One upon a time'
+>>> { word : len(word) for word in text.split() }
+{'One': 3, 'upon': 4, 'a': 1, 'time': 4}
+>>> { num : num * num for num in range(10) }
+{0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81}
+>>> [ x * x for x in range(10) ]
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+>>> course
+{'name': 'Comp Structures in Data Science', 'number': 'C88C', 'room': '155 Dwinelle Hall', 'time': '2:00 pm', 'students': ['Michael', 'Viper']}
+>>> course.keys()
+dict_keys(['name', 'number', 'room', 'time', 'students'])
+>>> course.values()
+dict_values(['Comp Structures in Data Science', 'C88C', '155 Dwinelle Hall', '2:00 pm', ['Michael', 'Viper']])
+>>> course.values()
+dict_values(['Comp Structures in Data Science', 'C88C', '155 Dwinelle Hall', '2:00 pm', ['Michael', 'Viper']])
+>>>
+>>>
+>>> course.item()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'dict' object has no attribute 'item'. Did you mean: 'items'?
+>>> course.items()
+dict_items([('name', 'Comp Structures in Data Science'), ('number', 'C88C'), ('room', '155 Dwinelle Hall'), ('time', '2:00 pm'), ('students', ['Michael', 'Viper'])])
+>>> for key, value in course.items():
+...     print(f"key: {key}, value: {value}")
+...
+key: name, value: Comp Structures in Data Science
+key: number, value: C88C
+key: room, value: 155 Dwinelle Hall
+key: time, value: 2:00 pm
+key: students, value: ['Michael', 'Viper']
+>>> OrderedDict
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'OrderedDict' is not defined
+>>> num = 88
+>>> num
+88
+>>> type(num)
+<class 'int'>
+>>>
+>>>
+>>> id(num)
+4318572056
+>>> id(course)
+4306129216
+>>> alist = [1, 2, 3, 4]
+>>> alist == [1, 2, 3, 4]
+True
+>>> alist is [1, 2, 3, 4]
+False
+>>> blist = [1, 2, 3, 4]
+>>> alist
+[1, 2, 3, 4]
+>>> blist
+[1, 2, 3, 4]
+>>> alist == blist
+True
+>>> alist.append(5)
+>>> alist
+[1, 2, 3, 4, 5]
+>>> alist == blist
+False
+>>> blist
+[1, 2, 3, 4]
+>>>
+>>>
+>>>
+>>> clist = alist
+>>> clist
+[1, 2, 3, 4, 5]
+>>> alist == clist
+True
+>>> alist.append(6)
+>>> alist == clist
+True
+>>> alist
+[1, 2, 3, 4, 5, 6]
+>>> clist
+[1, 2, 3, 4, 5, 6]
+>>> alist is clist
+True
+>>> clist is alist
+True
+>>>
+
+>>>
+>>> c2 = course
+>>> c2
+{'name': 'Comp Structures in Data Science', 'number': 'C88C', 'room': '155 Dwinelle Hall', 'time': '2:00 pm', 'students': ['Michael', 'Viper']}
+>>> c2['time'] = '3:00 pm'
+>>> course
+{'name': 'Comp Structures in Data Science', 'number': 'C88C', 'room': '155 Dwinelle Hall', 'time': '3:00 pm', 'students': ['Michael', 'Viper']}
+>>> c2 is course
+True
+>>>

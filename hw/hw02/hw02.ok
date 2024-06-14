@@ -1,0 +1,33 @@
+{
+    "name": "Homework 2",
+    "endpoint": "cal/cs88/sp24/hw02",
+    "src": [
+        "hw02.py"
+    ],
+    "tests": {
+        "hw02.py:fib": "doctest",
+        "hw02.py:total_cost": "doctest",
+        "hw02.py:tax": "doctest",
+        "hw02.py:deck": "doctest",
+        "hw02.py:arange": "doctest",
+        "hw02.py:reverse_iter_for": "doctest",
+        "hw02.py:reverse_iter_while": "doctest"
+    },
+    "default_tests": [
+        "fib",
+        "total_cost",
+        "tax",
+        "deck",
+        "arange",
+        "reverse_iter_for",
+        "reverse_iter_while"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "analytics",
+        "unlock",
+        "grading",
+        "backup"
+    ]
+}

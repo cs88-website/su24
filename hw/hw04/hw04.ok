@@ -1,0 +1,30 @@
+{
+    "name": "Homework 4",
+    "endpoint": "cal/cs88/sp24/hw04",
+    "src": [
+        "hw04.py"
+    ],
+    "tests": {
+        "hw04.py:operation_inator": "doctest",
+        "hw04.py:higher_order_lambdas":"doctest",
+        "hw04.py:lambda_curry2": "doctest",
+        "hw04.py:replace_all": "doctest",
+        "hw04.py:music_dict": "doctest",
+        "hw04.py:merge_dict": "doctest"
+    },
+    "default_tests": [
+        "operation_inator",
+        "higher_order_lambdas",
+        "lambda_curry2",
+        "replace_all",
+        "music_dict",
+        "merge_dict"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}

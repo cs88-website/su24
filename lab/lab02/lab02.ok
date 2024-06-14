@@ -1,0 +1,32 @@
+{
+    "name": "Lab 2",
+    "endpoint": "cal/cs88/sp24/lab02",
+    "src": [
+        "lab02.py"
+    ],
+    "tests": {
+        "lab02.py:odd_even": "doctest",
+        "lab02.py:classify": "doctest",
+        "lab02.py:find_word": "doctest",
+        "lab02.py:if_this_not_that": "doctest",
+        "lab02.py:shuffle": "doctest",
+        "lab02.py:pairs": "doctest",
+        "lab02.py:coords": "doctest"
+    },
+    "default_tests": [
+        "odd_even",
+        "classify",
+        "find_word",
+        "if_this_not_that",
+        "shuffle",
+        "pairs",
+        "coords"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "backup"
+    ]
+}

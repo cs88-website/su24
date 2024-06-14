@@ -1,0 +1,32 @@
+{
+  "name": "Project 2: Ants Vs. SomeBees",
+  "endpoint": "cal/cs88/sp24/ants",
+  "src": [
+    "ants.py"
+  ],
+  "tests": {
+      "tests/00.py": "ok_test",
+      "tests/01.py": "ok_test",
+      "tests/02.py": "ok_test",
+      "tests/03.py": "ok_test",
+      "tests/04.py": "ok_test",
+      "tests/05.py": "ok_test"
+  },
+  "default_tests": [
+      "00",
+      "01",
+      "02",
+      "03",
+      "04",
+      "05"
+  ],
+  "protocols": [
+      "restore",
+      "file_contents",
+      "unlock",
+      "grading",
+      "analytics",
+      "collaborate",
+      "backup"
+  ]
+}

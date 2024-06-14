@@ -1,0 +1,38 @@
+{
+    "name": "Homework 7",
+    "endpoint": "cal/cs88/sp24/hw07",
+    "src": [
+        "hw07.py",
+        "hw07_extra.py"
+    ],
+    "tests": {
+        "hw07.py:Person": "doctest",
+        "hw07.py:Account": "doctest",
+        "hw07_extra.py:Keyboard": "doctest",
+        "hw07.py:VendingMachine": "doctest",
+        "hw07.py:Arr88.__len__": "doctest",
+        "hw07.py:Arr88.item": "doctest",
+        "hw07.py:Arr88.__add__": "doctest",
+        "hw07.py:Arr88.__mul__": "doctest",
+        "hw07.py:Arr88.negate": "doctest",
+        "hw07.py:Arr88.apply": "doctest"
+    },
+    "default_tests": [
+        "Person",
+        "Account",
+        "VendingMachine",
+        "Arr88.__len__",
+        "Arr88.item",
+        "Arr88.__add__",
+        "Arr88.__mul__",
+        "Arr88.negate",
+        "Arr88.apply"
+    ],    
+    "protocols": [
+        "restore",
+        "file_contents",
+        "analytics",
+        "grading",
+        "backup"
+    ]
+}

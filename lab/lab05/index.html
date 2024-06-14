@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+
+    <meta name="description" content ="C88C: Computational Structures in Data Science" />
+    <meta name="keywords" content ="CS88, C88C, Computer Science, Data Science, Programming, Berkeley, EECS, Python, intro CS, comp sci" />
+    <meta name="author" content ="Eric Kim, John Teng, Satleen Gill, Mia Lopez, Naveen Nathan, Jiayi Li, Mira	Wagner" />
+
+    <link rel="stylesheet" href="/su24/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/style.css">
+    <link rel="icon" href="/su24/assets/images/favicon.ico">
+    <link rel="stylesheet" href="/su24/assets/css/mono-blue.css">
+
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/resource.css" />
+<link rel="stylesheet" type="text/css" href="/su24/assets/css/lab.css" />
+
+
+    <title>Lab 5: Abstract Data Types | C88C Summer 2024</title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section" aria-label="Toggle Nav Menu" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/su24/">C88C</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-section">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/su24/">Calendar</a></li>
+            <li><a href="/su24/articles/resources.html">Resources</a></li>
+            <li><a href="/su24/weekly-schedule.html">Google Calendar</a></li>
+            <li><a href="/su24/articles/about.html">Syllabus</a></li>
+            <li><a href="https://edstem.org/us/courses/59252/discussion/" target="_blank">Ed</a></li>
+            <li><a href="/su24/staff.html">Staff</a></li>
+            <!-- disable for DATA C88C su24 <li><a href="https://oh.c88c.org/" target="_blank">OH Queue</a></li> -->
+            <li><a href="https://tutor.cs61a.org/" target="_blank">Python Tutor</a></li>
+            <li><a href="https://bcourses.berkeley.edu/courses/1534781/external_tools/90481" target="_blank">Recordings</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+
+    <div id="content" class="container">
+      <div class='row'>
+  <div class='col-md-9'>
+    <div class='page-header'>
+      <div class="row row-no-gutters">
+  <div class="col-md-8">
+      <h1 class="content-title-brand" style="padding-top: 0;">
+          Lab 5: Abstract Data Types
+          <br>
+          <small><i>Due at 11:59:59 pm on 2/27/2024.</i></small>
+      </h1>
+  </div>
+  <div class="col-md-4">
+      <a class="h1 btn btn-lg" href="lab05.zip">lab05.zip</a>
+  </div>
+</div>
+    </div>
+
+    <h2 id='starter-files'>Starter Files</h2>
+
+<p>Download <a href="lab05.zip">lab05.zip</a>.
+Inside the archive, you will find starter files for the questions in this lab,
+  along with a copy of the OK autograder.</p>
+
+    
+
+
+<h2 id="cities">Cities</h2>
+
+
+<p>Data abstraction is a powerful concept in computer science that
+allows programmers to treat code as objects --- for example,
+car objects, chair objects, people objects, etc. That way,
+programmers don't have to worry about <em>how</em> code is
+implemented --- they just have to know <em>what</em> it does.</p>
+
+<p>Data abstraction mimics how we think about the world. For example,
+when you want to drive a car, you don't need to know how the
+engine was built or what kind of material the tires are made of.
+You just have to know how to turn the wheel and press the gas pedal.</p>
+
+<p>An abstract data type consists of two types of functions:</p>
+
+<ul>
+  <li>Constructors: functions that build the abstract data type.</li>
+  <li>Selectors: functions that retrieve information from the data type.</li>
+</ul>
+
+<p>For example, say we have an abstract data type called <code>city</code>.
+This <code>city</code> object will hold the <code>city</code>'s name, and
+its latitude and longitude. To create a <code>city</code> object,
+you'd use a constructor like</p>
+
+<pre><code>city = make_city(name, lat, lon)</code></pre>
+
+<p>To extract the information of a <code>city</code> object, you would use the selectors like</p>
+
+<pre><code>get_name(city)
+get_lat(city)
+get_lon(city)</code></pre>
+
+<p>For example, here is how we would use the <code>make_city</code> constructor to create a city object to represent Berkeley
+and the selectors to access its information.</p>
+
+<pre><code>&gt;&gt;&gt; berkeley = make_city(&#x27;Berkeley&#x27;, 122, 37)
+&gt;&gt;&gt; get_name(berkeley)
+&#x27;Berkeley&#x27;
+&gt;&gt;&gt; get_lat(berkeley)
+122
+&gt;&gt;&gt; get_lon(berkeley)
+37</code></pre>
+
+<p>Notice that we don't need to know how these functions were implemented.  We are
+assuming that someone else has defined them for us.</p>
+
+<p>It's okay if the end user doesn't know how functions were implemented.  However,
+the functions still have to be defined by someone. We'll look into defining the
+constructors and selectors later in this discussion.</p>
+
+<h3 class="question" id="q1">Question 1: Distance</h3>
+
+<p>We will now use those selectors to write <code>distance</code>, which computes the distance between two city objects. Recall that the distance between two coordinate pairs, <code>(x1, y1)</code> and <code>(x2, y2)</code> can be found by calculating the <code>sqrt</code> of <code>(x1 &#x2d; x2)**2 + (y1 &#x2d; y2)**2</code>. We have already imported <code>sqrt</code> for your convenience, so use that and the appropriate selectors to fill in the function.</p>
+
+
+
+<pre><code>from math import sqrt
+def distance(city_1, city_2):
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; city1 = make_city(&#x27;city1&#x27;, 0, 1)
+    &gt;&gt;&gt; city2 = make_city(&#x27;city2&#x27;, 0, 2)
+    &gt;&gt;&gt; distance(city1, city2)
+    1.0
+    &quot;&quot;&quot;
+
+<div class="alt 1">    "*** YOUR CODE HERE ***"
+    
+</div><div class="solution 1">&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x74;&#x5f;&#x31;&#x2c;&#x20;&#x6c;&#x6f;&#x6e;&#x5f;&#x31;&#x20;&#x3d;&#x20;&#x67;&#x65;&#x74;&#x5f;&#x6c;&#x61;&#x74;&#x28;&#x63;&#x69;&#x74;&#x79;&#x5f;&#x31;&#x29;&#x2c;&#x20;&#x67;&#x65;&#x74;&#x5f;&#x6c;&#x6f;&#x6e;&#x28;&#x63;&#x69;&#x74;&#x79;&#x5f;&#x31;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x74;&#x5f;&#x32;&#x2c;&#x20;&#x6c;&#x6f;&#x6e;&#x5f;&#x32;&#x20;&#x3d;&#x20;&#x67;&#x65;&#x74;&#x5f;&#x6c;&#x61;&#x74;&#x28;&#x63;&#x69;&#x74;&#x79;&#x5f;&#x32;&#x29;&#x2c;&#x20;&#x67;&#x65;&#x74;&#x5f;&#x6c;&#x6f;&#x6e;&#x28;&#x63;&#x69;&#x74;&#x79;&#x5f;&#x32;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x73;&#x71;&#x72;&#x74;&#x28;&#x28;&#x6c;&#x61;&#x74;&#x5f;&#x31;&#x20;&#x2d;&#x20;&#x6c;&#x61;&#x74;&#x5f;&#x32;&#x29;&#x2a;&#x2a;&#x32;&#x20;&#x2b;&#x20;&#x28;&#x6c;&#x6f;&#x6e;&#x5f;&#x31;&#x20;&#x2d;&#x20;&#x6c;&#x6f;&#x6e;&#x5f;&#x32;&#x29;&#x2a;&#x2a;&#x32;&#x29;</div></code></pre>
+
+
+    <button id='1' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q distance</code></pre>
+
+<h3 class="question" id="q2">Question 2: Closer city</h3>
+
+<p>Implement <code>closer_city</code>, a function that takes a latitude,
+longitude, and two cities, and returns the name of the city that is
+relatively closer to the provided latitude and longitude.</p>
+
+<p>You may only use selectors and constructors (introduced above) for
+this question. You may also use the <code>distance</code> function
+defined above. Remember, the point of data abstraction,
+as we've said, is that we do not need to know how an abstract data type is
+implemented, but rather just how we can interact with and use the data type.</p>
+
+
+
+<pre><code>def closer_city(lat, lon, city1, city2):
+    &quot;&quot;&quot; Returns the name of either city1 or city2, whichever is closest
+        to coordinate (lat, lon).
+
+        &gt;&gt;&gt; berkeley = make_city(&#x27;Berkeley&#x27;, 37.87, 112.26)
+        &gt;&gt;&gt; stanford = make_city(&#x27;Stanford&#x27;, 34.05, 118.25)
+        &gt;&gt;&gt; closer_city(38.33, 121.44, berkeley, stanford)
+        &#x27;Stanford&#x27;
+        &gt;&gt;&gt; bucharest = make_city(&#x27;Bucharest&#x27;, 44.43, 26.10)
+        &gt;&gt;&gt; vienna = make_city(&#x27;Vienna&#x27;, 48.20, 16.37)
+        &gt;&gt;&gt; closer_city(41.29, 174.78, bucharest, vienna)
+        &#x27;Bucharest&#x27;
+    &quot;&quot;&quot;
+<div class="alt 2">    "*** YOUR CODE HERE ***"
+    return &lt;REPLACE THIS&gt;
+</div><div class="solution 2">&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x5f;&#x63;&#x69;&#x74;&#x79;&#x20;&#x3d;&#x20;&#x6d;&#x61;&#x6b;&#x65;&#x5f;&#x63;&#x69;&#x74;&#x79;&#x28;&#x27;&#x61;&#x72;&#x62;&#x27;&#x2c;&#x20;&#x6c;&#x61;&#x74;&#x2c;&#x20;&#x6c;&#x6f;&#x6e;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x64;&#x69;&#x73;&#x74;&#x31;&#x20;&#x3d;&#x20;&#x64;&#x69;&#x73;&#x74;&#x61;&#x6e;&#x63;&#x65;&#x28;&#x63;&#x69;&#x74;&#x79;&#x31;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x5f;&#x63;&#x69;&#x74;&#x79;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x64;&#x69;&#x73;&#x74;&#x32;&#x20;&#x3d;&#x20;&#x64;&#x69;&#x73;&#x74;&#x61;&#x6e;&#x63;&#x65;&#x28;&#x63;&#x69;&#x74;&#x79;&#x32;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x5f;&#x63;&#x69;&#x74;&#x79;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x64;&#x69;&#x73;&#x74;&#x31;&#x20;&#x3c;&#x20;&#x64;&#x69;&#x73;&#x74;&#x32;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x67;&#x65;&#x74;&#x5f;&#x6e;&#x61;&#x6d;&#x65;&#x28;&#x63;&#x69;&#x74;&#x79;&#x31;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x67;&#x65;&#x74;&#x5f;&#x6e;&#x61;&#x6d;&#x65;&#x28;&#x63;&#x69;&#x74;&#x79;&#x32;&#x29;</div></code></pre>
+
+
+    <button id='2' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q closer_city</code></pre>
+
+<h3 class="question" id="q3">Question 3: Closer City Abstraction</h3>
+
+<p>Run the following ok test to make sure that you are using abstraction barriers correctly! You should not need to change your code from the previous question to pass this test.</p>
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q check_abstraction</code></pre>
+
+
+<h2 id="menu">Menu</h2>
+
+<h3 class="question" id="q4">Question 4</h3>
+
+<p>For this question, let's combine ADTs and dictionaries to make an ADT that represents a food object. The <code>menu</code> ADT has a constructor <code>make_food</code>. There are three selector functions: <code>get_name</code>, <code>get_size</code>, and <code>get_price</code>. When you implement an ADT, you have the freedom to choose how you want to represent it. Some common data structures used to represent ADTs are lists and dictionaries. The <code>city</code> ADT was implemented using a list. Now, we will use dictionaries to implemt our <code>menu</code> ADT. You must use a dictionary for this question, or else you will not pass the tests.</p>
+
+<div class="solution 3">
+
+</div>
+    <button id='3' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q make_food
+python3 ok -q get_food_name
+python3 ok -q get_size
+python3 ok -q get_price</code></pre>
+
+
+
+<h2 id='submission'>Submission</h2>
+
+<p>
+    When you are done, submit your file to <a href="https://www.gradescope.com/courses/786589" target="_blank">Gradescope</a>.
+    You only need to upload the following files:
+    
+<ul>
+  <li><code>lab05.py</code></li>
+</ul>
+
+    You may submit more than once before the deadline; only the final submission will be graded.
+    It is your responsibility to check that the autograder on Gradescope runs as expected after
+    you upload your submission.
+</p>
+  </div>
+
+  <div class='col-md-3'>
+    <nav class='hidden-print hidden-sm hidden-xs sidebar'>
+      <ul>
+  <li><a href="#cities">Cities</a></li>
+  <ul>
+  <li><a href="#q1">Question 1: Distance</a></li>
+  <li><a href="#q2">Question 2: Closer city</a></li>
+  <li><a href="#q3">Question 3: Closer City Abstraction</a></li>
+</ul>
+
+  <li><a href="#menu">Menu</a></li>
+  <ul>
+  <li><a href="#q4">Question 4</a></li>
+</ul>
+
+</ul>
+
+    </nav>
+  </div>
+
+</div>
+    </div>
+
+    <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/su24/assets/js/bootstrap.min.js"></script>
+    <!-- TODO: Move to specific pages... -->
+    <script src="/su24/assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+  $('.sidebar ul').addClass('nav nav-stacked');
+  $('body').scrollspy({
+    target: '.sidebar',
+    offset: 40
+  });
+</script>
+<!-- <script src="//code.jquery.com/jquery-latest.js"></script> -->
+<!-- <script>
+  $(function() {
+    if (new Date("3/13/2024") < new Date()) {
+      $('.toggleButton').css('display', 'inline-block');
+      $('.toggleButton').click(function() {
+        var solution_id = $(this).attr('id');
+        $('div.' + solution_id).slideToggle(600);
+      });
+    }
+    // Always display these toggle buttons
+    $('.toggleButtonShow').click(function() {
+      var solution_id = $(this).attr('id');
+      $('div.' + solution_id).slideToggle(600);
+    });
+  });
+</script> -->
+  </body>
+</html>
