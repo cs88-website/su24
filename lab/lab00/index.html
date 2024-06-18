@@ -187,7 +187,13 @@ For Windows users, we recommend downloading a terminal called Git Bash. Please f
 <h3 id="install-python-3">Install Python 3</h3>
 
 
-<p>Python 3 is our primary programming language. Download the latest version of Python for your operating system (Mac, Windows, Linux) <a href="https://www.python.org/downloads/">here</a>. Note: Python 3.10+ is recommended for this class. Then follow the instructions for your specific operating system below.</p>
+<p>Python 3 is our primary programming language. 
+Download the correct version of Python (3.11.5) for your operating system (Mac, Windows, Linux) <a href="https://www.python.org/downloads/release/python-3115/">here</a>.</p>
+
+<p><strong>Important</strong>: <strong>Python 3.11.x</strong> is strongly recommended for this class.
+Notably, Python 3.12+ will <strong>NOT</strong> work (okpy will break with a <code>urllib3</code> ModuleNotFound error).</p>
+
+<p>Next, follow the instructions for your specific operating system below.</p>
 
 <blockquote><p><strong>Optional info about Python versions:</strong> There are 2 major versions of Python in use today: Python 2 and Python 3. In this class, and in most modern applications, we use Python 3 (so when we say "Python" in this class, we really mean "Python 3"). Python 3 is not backwards compatible with Python 2. However, some legacy applications may still use Python 2, which has slightly different syntax and functionality. For example, Python 2 comes preinstalled on Mac, but we want to install Python 3.</p></blockquote>
 
@@ -207,7 +213,7 @@ For Windows users, we recommend downloading a terminal called Git Bash. Please f
 
 <pre><code>python3 &#x2d;&#x2d;version</code></pre>
 
-<p>If installed properly, you should see the following text in your Terminal, where <code>XX.XX</code> is replaced by whichever version of Python 3 you installed. For example, <code>Python 3.11.4</code>.</p>
+<p>If installed properly, you should see the following text in your Terminal, where <code>XX.XX</code> is replaced by whichever version of Python 3 you installed. For example, <code>Python 3.11.5</code>.</p>
 
 <pre><code>Python 3.XX.XX</code></pre>
 
@@ -231,7 +237,7 @@ For Windows users, we recommend downloading a terminal called Git Bash. Please f
 
 <pre><code>python3 &#x2d;&#x2d;version</code></pre>
 
-<p>If installed properly, you should see the following text in your Terminal, where <code>XX.XX</code> is replaced by whichever version of Python 3 you installed. For example, <code>Python 3.11.4</code>.</p>
+<p>If installed properly, you should see the following text in your Terminal, where <code>XX.XX</code> is replaced by whichever version of Python 3 you installed. For example, <code>Python 3.11.5</code>.</p>
 
 <pre><code>Python 3.XX.XX</code></pre>
 
@@ -1099,6 +1105,20 @@ Make sure to:
   This is because the python interpreter doesn’t automatically update the code when you save changes to the file. You must exit the Python interpreter and restart it again to load the updated code.
   </details></li>
 </ol>
+
+<br>
+<details>
+<summary style="color: #4682b4;">8. When I run <code>python3 ok ...</code>, I get an error message like <code>ModuleNotFound ... urllib3</code><span class="icon" >▼</span></summary>
+<br>
+It's highly likely that you installed the incorrect version of Python (namely, Python 3.12+ is known to cause issues with okpy).
+
+<p>The solution is to install any version of Python between 3.8 and 3.11 (inclusive), and <a href="https://www.wikihow.com/Uninstall-Python">uninstall</a> Python 3.12</p>
+
+<p>We recommend installing <a href="https://www.python.org/downloads/release/python-3115/">Python 3.11.5</a>. Scroll down to the Files section and download the <strong>installer</strong> for your operating system (Mac/Windows), do not download the tarball files</p>
+
+<p>Make sure that any previous versions of Python are uninstalled first!</p>
+
+</details>
 
 <!-- Questions from this doc: https://docs.google.com/document/d/1CLyKG1cBisAWvk5TpeGHgAQPMfyoCQO1kAor67P9PEI/edit#heading=h.43i7fxglxw92 -->
 
