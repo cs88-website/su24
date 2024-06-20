@@ -1,0 +1,33 @@
+{
+    "name": "Lab 1",
+    "endpoint": "cal/cs88/sp24/lab01",
+    "src": [
+        "lab01.py",
+        "lab01_extra.py"
+    ],
+    "tests": {
+        "lab01.py:sum_digits": "doctest",
+        "lab01.py:both_positive": "doctest",
+        "lab01_extra.py:triangular_sum": "doctest",
+        "lab01_extra.py:double_eights": "doctest",
+        "lab01_extra.py:right_triangle": "doctest",
+        "tests/truthiness.py": "ok_test",
+        "tests/short_circuiting.py": "ok_test",
+	    "tests/hof.py": "ok_test",
+        "tests/what_if.py": "ok_test",
+        "tests/control.py": "ok_test",
+	    "tests/hof_extra.py": "ok_test"
+    },
+    "default_tests": [
+        "sum_digits",
+        "both_positive"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "analytics",
+        "unlock",
+        "grading",
+        "backup"
+    ]
+}

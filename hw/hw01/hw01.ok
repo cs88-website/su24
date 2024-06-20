@@ -1,0 +1,36 @@
+{
+    "name": "Homework 1",
+    "endpoint": "cal/cs88/sp24/hw01",
+    "src": [
+        "hw01.py",
+        "hw01_extra.py"
+    ],
+    "tests": {
+        "hw01.py:odd": "doctest",
+        "hw01.py:distance": "doctest",
+        "hw01.py:distance3d": "doctest",
+        "hw01.py:quadratic": "doctest",
+        "hw01.py:a_plus_abs_b": "doctest",
+        "hw01.py:falling": "doctest",
+        "hw01.py:hailstone": "doctest",
+        "hw01_extra.py:harmonic_mean": "doctest",
+        "hw01_extra.py:two_of_three": "doctest"
+    },
+    "default_tests": [
+        "odd",
+        "distance",
+        "distance3d",
+        "quadratic",
+        "a_plus_abs_b",
+        "falling",
+        "hailstone"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "analytics",
+        "unlock",
+        "grading",
+        "backup"
+    ]
+}
