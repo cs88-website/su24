@@ -1,0 +1,28 @@
+{
+    "name": "Homework 5",
+    "endpoint": "cal/cs88/sp24/hw05",
+    "src": [
+        "hw05.py"
+    ],
+    "tests": {
+        "hw05.py:get_team": "doctest",
+        "hw05.py:get_stats": "doctest",
+        "hw05.py:add_table": "doctest",
+        "hw05.py:serve": "doctest",
+        "hw05.py:finish_eating": "doctest"
+    },
+    "default_tests": [
+        "get_team",
+        "get_stats",
+        "add_table",
+        "serve",
+        "finish_eating"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "analytics",
+        "grading",
+        "backup"
+    ]
+}
