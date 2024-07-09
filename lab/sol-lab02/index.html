@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+
+    <meta name="description" content ="C88C: Computational Structures in Data Science" />
+    <meta name="keywords" content ="CS88, C88C, Computer Science, Data Science, Programming, Berkeley, EECS, Python, intro CS, comp sci" />
+    <meta name="author" content ="Eric Kim, John Teng, Satleen Gill, Mia Lopez, Naveen Nathan, Jiayi Li, Mira	Wagner" />
+
+    <link rel="stylesheet" href="/su24/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/style.css">
+    <link rel="icon" href="/su24/assets/images/favicon.ico">
+    <link rel="stylesheet" href="/su24/assets/css/mono-blue.css">
+
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/resource.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/css/lab.css"/>
+
+
+    <title>Lab 2 Solutions | C88C Summer 2024</title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section" aria-label="Toggle Nav Menu" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/su24/">C88C</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-section">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/su24/">Calendar</a></li>
+            <li><a href="/su24/articles/resources.html">Resources</a></li>
+            <li><a href="/su24/weekly-schedule.html">Google Calendar</a></li>
+            <li><a href="/su24/articles/about.html">Syllabus</a></li>
+            <li><a href="https://www.gradescope.com/courses/786589" target="_blank">Gradescope</a></li>
+            <li><a href="https://edstem.org/us/courses/59252/discussion/" target="_blank">Ed</a></li>
+            <li><a href="/su24/staff.html">Staff</a></li>
+            <!-- disable for DATA C88C su24 <li><a href="https://oh.c88c.org/" target="_blank">OH Queue</a></li> -->
+            <li><a href="https://tutor.cs61a.org/" target="_blank">Python Tutor</a></li>
+            <li><a href="https://bcourses.berkeley.edu/courses/1534781/external_tools/90481" target="_blank">Recordings</a></li>
+            <li><a href="https://drive.google.com/drive/folders/1eXbpkIomI6kMyXwk-iJj1GAp5CH7qWNf" target="_blank">Lecture Slides</a></li>
+            <li><a href="https://drive.google.com/drive/folders/1x4jjWH1OZm4aXgaYqRv-rQR013jIplp6" target="_blank">Lab Slides</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+
+    <div id="content" class="container">
+      <div class='row'>
+  <div class='col-md-9'>
+    <div class='page-header'>
+      <div class="row row-no-gutters">
+  <div class="col-md-8">
+      <h1 class="content-title-brand" style="padding-top: 0;">
+          Lab 2 Solutions
+      </h1>
+  </div>
+</div>
+    </div>
+
+    
+
+    
+
+
+<h1 id="introduction">Introduction</h1>
+
+
+<p>In the last lab, you learned some basic expressions and wrote some python code. In this lab, we will introduce lists and take a look at how they can be used.</p>
+
+
+<h1 id="lists">Lists</h1>
+
+
+<p>If you are taking or have taken Data 8, you are likely familiar with <code>Tables</code>.  Tables are an extremely useful and powerful data type.  In CS88 we will work with other data types.  Python provides
+several important built-in data types that we can build from.  So far, you have met numberical data types (ints, floats, and booleans) and one sequence type (strings).  Lists, tuples, and dictionaries are other sequence data types in Python.  Here, we will take a closer look at lists. <strong>A list can contain a sequence of values of any type.</strong></p>
+
+<p>You can create a list just by placing the values, separated by commas, within square
+brackets.  Here are some examples. As you will see in one of the examples, lists can contain other lists.</p>
+
+<pre><code>&gt;&gt;&gt; [1,2,3]
+[1, 2, 3]
+&gt;&gt;&gt; [&quot;frog&quot;, 3, 3.1415]
+[&#x27;frog&#x27;, 3, 3.1415]
+&gt;&gt;&gt; [True, [1, 2], 42]
+[True, [1, 2], 42]</code></pre>
+
+<p>Open up your python interpreter and create some lists of your own.
+<br/>
+
+You learned last week that what really makes a data type useful is the operations that you can 
+perform on it.  What can you do with lists?</p>
+
+<pre><code>&gt;&gt;&gt; x = [1,2,3]    # assign them to variables
+&gt;&gt;&gt; len(x)         # get their length, i.e., the number of elements in them
+3
+&gt;&gt;&gt; x + [4,5]      # + is concatenation
+[1, 2, 3, 4, 5]
+&gt;&gt;&gt; [1,2] * 3        # * is replication
+[1, 2, 1, 2, 1, 2]
+&gt;&gt;&gt; len([1,2] * 3)
+6
+&gt;&gt;&gt; [1,2] * [3,4]    # what&#x27;s this?
+TypeError: can&#x27;t multiply sequence by non&#x2d;int of type &#x27;list&#x27;</code></pre>
+
+<p>The <code>in</code> operator is very useful when working with lists.  It operates on the entire list and produces a boolean that answers the question, "Is this item in the list?".</p>
+
+<pre><code>&gt;&gt;&gt; 2 in [1,2,3]
+True
+&gt;&gt;&gt; &quot;frog&quot; in [1,2,3]
+False
+&gt;&gt;&gt; [1,2] in [1,2,3]
+False
+&gt;&gt;&gt; [1,2] in [[1,2],3]
+True</code></pre>
+
+
+<h1 id="list-comprehensions">List Comprehensions</h1>
+
+
+<p>List comprehensions are a compact and powerful way of creating new lists
+out of sequences. Let's work with them directly:</p>
+
+<pre><code>&gt;&gt;&gt; [i**2 for i in [1, 2, 3, 4] if i%2 == 0]
+[4, 16]</code></pre>
+
+<p>is equivalent to</p>
+
+<pre><code>&gt;&gt;&gt; lst = []
+&gt;&gt;&gt; for i in [1, 2, 3, 4]:
+...     if i % 2 == 0:
+...         lst += [i**2]
+&gt;&gt;&gt; lst
+[4, 16]</code></pre>
+
+<p>The general syntax for a list comprehension is</p>
+
+<pre><code>[&lt;expression&gt; for &lt;element&gt; in &lt;sequence&gt; if &lt;conditional&gt;]</code></pre>
+
+<p>The syntax is designed to read like English: "Compute the expression
+for each element in the sequence if the conditional is true."</p>
+
+
+<h1 id="introduction-to-map-filter-and-reduce">Introduction to 'Map', 'Filter', and 'Reduce'</h1>
+
+
+
+<h2 id="map">Map</h2>
+
+
+<p>Higher order functions fit into a domain of programming known as "functional" or "functional form" programming, centered around this idea of passing and returning functions as parameters and arguments. In class, you learned the command <code>map</code> that is a fundamental example of higher order functions.</p>
+
+<p>Let's take a closer look at how <code>map</code> works. At its core, <code>map</code> applies a function to all items in an input list. It takes in a function as the first parameter and a series of inputs as the second parameter.</p>
+
+<pre><code>map(function_to_apply, list_of_inputs)</code></pre>
+
+<p>A potentially easier way to think about <code>map</code> is to draw an equivalent with a list comprehension! Given the <code>func</code> (function to apply) and <code>inputs</code> (list of inputs), a map is similar to this:</p>
+
+<pre><code>[func(x) for x in inputs]</code></pre>
+
+<p><strong>Keep in mind that the <code>map</code> function actually returns a <code>map</code> object, not a list. We need to convert this object to a <code>list</code> by passing it into the <code>list()</code> function.</strong></p>
+
+<p>Let's do a Python Tutor example to understand how map works.</p>
+
+<p>Open <a href="https://goo.gl/MoRuLF">Python Tutor</a> in a new tab.</p>
+
+<p>This code should already be there:</p>
+
+<pre><code>INCR = 2
+def inc(x):
+    return x+INCR
+
+def mymap(fun, seq):
+    return [fun(x) for x in seq]
+
+result = mymap(inc, [5, 6, 7])
+print(result)</code></pre>
+
+<p>So what's happening here? In the first 3 lines, we're defining a function <code>inc</code> which increments an input <code>x</code> by a certain amount, <code>INCR</code>.</p>
+
+<p>Notice that <code>INCR</code> is defined once in the Global frame. This is a nice review of how Python resolves references when there are both local and global variables. When the <code>inc</code> method executes, python needs to find the value <code>INCR</code>. Since the <code>INCR</code> variable isn't declared locally, within the <code>inc</code> function, Python will look at the parent frame, the frame in which <code>inc</code> was declared, for the value of <code>INCR</code>. In this case, since the <code>inc</code> function was declared in the Global frame, the global <code>INC</code> variable value will be used.</p>
+
+<p>The second function, <code>mymap</code>, is an example of how map works in the form of a list comprehension! Notice that <code>mymap</code> takes in a function as its first argument and a sequence as its second. Just like <code>map</code>, this list comprehension runs each element of <code>seq</code> through the <code>fun</code> method.</p>
+
+<p>As you run through the program in Python Tutor, notice how the list comprehension in <code>mymap</code> will repeatedly call the <code>inc</code> function. The functional anatomy of how <code>map</code> works is exactly encapsulated by the <code>mymap</code> function.</p>
+
+
+<h2 id="filter">Filter</h2>
+
+
+<p>The <code>filter</code> keyword is similar in nature to <code>map</code> with a very important distinction. In <code>map</code>, the function we pass in is being applied to every item in our sequence. In <code>filter</code>, the function we pass in <em>filters</em> the elements, only leaving the elements for which the function returns true. For example, if I wanted to remove all negative numbers from a list, I could use the <code>filter</code> function to identify values that are greater than or equal to 0, and filter out the rest.</p>
+
+<pre><code>def isPositive(number):
+    return number &gt;= 0
+
+numbers = [&#x2d;1, 1, &#x2d;2, 2, &#x2d;3, 3, &#x2d;4, 4]
+positive_nums = list(filter(isPositive, numbers))</code></pre>
+
+<p>Again, similar to <code>map</code>, the output of the <code>filter</code> function is a <code>filter</code> object, not a list, so you need to call <code>list()</code>. The equivalent for filter in the form of a list comprehension would look something along the lines of this:</p>
+
+<pre><code>positive_nums = [number for number in numbers if isPositive(number)]</code></pre>
+
+
+<h2 id="reduce">Reduce</h2>
+
+
+<p><code>Reduce</code> takes in three different parameters: A function, a sequence, and an identity. The function and sequence are the same parameters that we saw in <code>map</code> and <code>filter</code>. The identity can be thought of as the container where you are going to store all of your results. In the above case, the identity would be the <code>product</code> variable.</p>
+
+<p><code>Reduce</code> is very useful for performing computations on lists that involve every element in the list. Computations are performed in a rolling fashion, where the function acts upon each element one at a time.</p>
+
+<p>Let's say I wanted to calculate the product of the square roots of a list of numbers. The non-<code>reduce</code> version of this code would look something along the lines of this:</p>
+
+<pre><code>product = 1
+numbers = [4, 9, 16, 25, 36]
+
+for num in numbers:
+    product = product * num**.5</code></pre>
+
+<p>Here's the <code>reduce</code> version</p>
+
+<pre><code>  multiplicative_identity = 1
+  nums = [4, 9, 16, 25, 36]
+  def sqrtProd(x, y):
+      return x * y ** .5
+
+  reduce(sqrtProd, nums, multiplicative_identity)</code></pre>
+
+
+<h1 id="required-problems">Required Problems</h1>
+
+
+
+<h2 id="coding-practice">Coding Practice</h2>
+
+
+<h3 class="question" id="q1">Question 1: Classify the elements</h3>
+
+<p>Complete the function <code>odd_even</code> that returns <code>&#x27;odd&#x27;</code> if the given integer <code>x</code> is odd, and returns <code>&#x27;even&#x27;</code> otherwise.</p>
+
+<p>Additionally, complete another function <code>classify</code> that takes in a list <code>s</code> and returns a new list
+that applies <code>odd_even</code> to all elements in <code>s</code>.</p>
+
+
+
+<pre><code>def odd_even(x):
+    &quot;&quot;&quot;Classify a number as odd or even.
+
+    &gt;&gt;&gt; odd_even(4)
+    &#x27;even&#x27;
+    &gt;&gt;&gt; odd_even(3)
+    &#x27;odd&#x27;
+    &quot;&quot;&quot;
+<div class="alt 1">    "*** YOUR CODE HERE ***"
+</div><div class="solution 1">&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x28;&#x78;&#x20;&#x25;&#x20;&#x32;&#x29;&#x20;&#x3d;&#x3d;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x27;&#x65;&#x76;&#x65;&#x6e;&#x27;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x27;&#x6f;&#x64;&#x64;&#x27;</div>
+def classify(s):
+    &quot;&quot;&quot;
+    Classify all the elements of a sequence as odd or even
+    &gt;&gt;&gt; classify([0, 1, 2, 4])
+    [&#x27;even&#x27;, &#x27;odd&#x27;, &#x27;even&#x27;, &#x27;even&#x27;]
+    &quot;&quot;&quot;
+<div class="alt 1">    "*** YOUR CODE HERE ***"
+</div><div class="solution 1">&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x5b;&#x6f;&#x64;&#x64;&#x5f;&#x65;&#x76;&#x65;&#x6e;&#x28;&#x78;&#x29;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x78;&#x20;&#x69;&#x6e;&#x20;&#x73;&#x5d;</div></code></pre>
+
+
+    <button id='1' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q odd_even</code></pre>
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q classify</code></pre>
+
+<h3 class="question" id="q2">Question 2: Find first word longer than n</h3>
+
+<p>Complete the function <code>find_word</code> that takes in a list <code>words</code> and returns the first word with a length greater than <code>n</code>. If none of the words have length greater than <code>n</code>, return the empty string <code>&#x27;&#x27;</code>.</p>
+
+
+
+<pre><code>def find_word(words, n):
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; find_word([&quot;cat&quot;, &quot;window&quot;, &quot;zookeeper&quot;], 5)
+    &#x27;window&#x27;
+    &gt;&gt;&gt; find_word([&quot;cat&quot;, &quot;dog&quot;, &quot;fish&quot;], 3)
+    &#x27;fish&#x27;
+    &gt;&gt;&gt; find_word([&quot;cat&quot;, &quot;dog&quot;, &quot;bro&quot;], 3)
+    &#x27;&#x27;
+    &gt;&gt;&gt; find_word([&quot;python&quot;, &quot;java&quot;, &quot;SQL&quot;], 4)
+    &#x27;python&#x27;
+    &quot;&quot;&quot;
+<div class="alt 2">    "*** YOUR CODE HERE ***"
+</div><div class="solution 2">&#x20;&#x20;&#x20;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x77;&#x6f;&#x72;&#x64;&#x20;&#x69;&#x6e;&#x20;&#x77;&#x6f;&#x72;&#x64;&#x73;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x6c;&#x65;&#x6e;&#x28;&#x77;&#x6f;&#x72;&#x64;&#x29;&#x20;&#x3e;&#x20;&#x6e;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x77;&#x6f;&#x72;&#x64;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x27;&#x27;</div></code></pre>
+
+
+    <button id='2' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q find_word</code></pre>
+
+<h3 class="question" id="q3">Question 3: If this not that</h3>
+
+<p>Define <code>if_this_not_that</code>, which takes a list of integers <code>i_list</code>, and an
+integer <code>this</code>, and for each element in <code>i_list</code> if the element is larger than
+<code>this</code> then print the element, otherwise print <code>that</code>.</p>
+
+
+
+<pre><code>def if_this_not_that(i_list, this):
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; original_list = [1, 2, 3, 4, 5]
+    &gt;&gt;&gt; if_this_not_that(original_list, 3)
+    that
+    that
+    that
+    4
+    5
+    &quot;&quot;&quot;
+<div class="alt 3">    "*** YOUR CODE HERE ***"
+</div><div class="solution 3">&#x20;&#x20;&#x20;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x65;&#x6c;&#x65;&#x6d;&#x20;&#x69;&#x6e;&#x20;&#x69;&#x5f;&#x6c;&#x69;&#x73;&#x74;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x65;&#x6c;&#x65;&#x6d;&#x20;&#x3c;&#x3d;&#x20;&#x74;&#x68;&#x69;&#x73;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x70;&#x72;&#x69;&#x6e;&#x74;&#x28;&#x22;&#x74;&#x68;&#x61;&#x74;&#x22;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x70;&#x72;&#x69;&#x6e;&#x74;&#x28;&#x65;&#x6c;&#x65;&#x6d;&#x29;</div></code></pre>
+
+
+    <button id='3' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q if_this_not_that</code></pre>
+
+<h3 class="question" id="q4">Question 4: Shuffle</h3>
+
+<p>Define a function <code>shuffle</code> that takes a sequence with an even number of
+elements (cards) and creates a new list that interleaves the elements
+of the first half with the elements of the second half.</p>
+
+<p>Let's better understand what it means to shuffle a list in this way. Let's say there is some list <code>[1, 2, 3, 4, 5, 6, 7, 8]</code>. To interleave the first half <code>[1, 2, 3, 4]</code> with the second half <code>[5, 6, 7, 8]</code> means that your final list should contain the first element from the first half, then the first element from the second half, then the second element of the first half, then the second element of the second half and so on.</p>
+
+<p>So the interleaved version of <code>[1, 2, 3, 4, 5, 6, 7, 8]</code> would be
+<code>[1, 5, 2, 6, 3, 7, 4, 8]</code>.</p>
+
+
+
+<pre><code>def shuffle(cards):
+    &quot;&quot;&quot;Return a shuffled list that interleaves the two halves of cards.
+
+    &gt;&gt;&gt; lst = [1, 2, 3, 4, 5, 6, 7, 8]
+    &gt;&gt;&gt; shuffle(lst)
+    [1, 5, 2, 6, 3, 7, 4, 8]
+    &gt;&gt;&gt; shuffle(range(6))
+    [0, 3, 1, 4, 2, 5]
+    &gt;&gt;&gt; cards = [&#x27;AH&#x27;, &#x27;1H&#x27;, &#x27;2H&#x27;, &#x27;3H&#x27;, &#x27;AD&#x27;, &#x27;1D&#x27;, &#x27;2D&#x27;, &#x27;3D&#x27;]
+    &gt;&gt;&gt; shuffle(cards)
+    [&#x27;AH&#x27;, &#x27;AD&#x27;, &#x27;1H&#x27;, &#x27;1D&#x27;, &#x27;2H&#x27;, &#x27;2D&#x27;, &#x27;3H&#x27;, &#x27;3D&#x27;]
+    &gt;&gt;&gt; cards # should not be changed
+    [&#x27;AH&#x27;, &#x27;1H&#x27;, &#x27;2H&#x27;, &#x27;3H&#x27;, &#x27;AD&#x27;, &#x27;1D&#x27;, &#x27;2D&#x27;, &#x27;3D&#x27;]
+    &quot;&quot;&quot;
+    assert len(cards) % 2 == 0, &#x27;len(cards) must be even&#x27;
+<div class="alt 4">    "*** YOUR CODE HERE ***"
+</div><div class="solution 4">&#x20;&#x20;&#x20;&#x20;&#x68;&#x61;&#x6c;&#x66;&#x20;&#x3d;&#x20;&#x6c;&#x65;&#x6e;&#x28;&#x63;&#x61;&#x72;&#x64;&#x73;&#x29;&#x20;&#x2f;&#x2f;&#x20;&#x32;&#xa;&#x20;&#x20;&#x20;&#x20;&#x73;&#x68;&#x75;&#x66;&#x66;&#x6c;&#x65;&#x64;&#x20;&#x3d;&#x20;&#x5b;&#x5d;&#xa;&#x20;&#x20;&#x20;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x69;&#x20;&#x69;&#x6e;&#x20;&#x72;&#x61;&#x6e;&#x67;&#x65;&#x28;&#x68;&#x61;&#x6c;&#x66;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x73;&#x68;&#x75;&#x66;&#x66;&#x6c;&#x65;&#x64;&#x2e;&#x61;&#x70;&#x70;&#x65;&#x6e;&#x64;&#x28;&#x63;&#x61;&#x72;&#x64;&#x73;&#x5b;&#x69;&#x5d;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x73;&#x68;&#x75;&#x66;&#x66;&#x6c;&#x65;&#x64;&#x2e;&#x61;&#x70;&#x70;&#x65;&#x6e;&#x64;&#x28;&#x63;&#x61;&#x72;&#x64;&#x73;&#x5b;&#x68;&#x61;&#x6c;&#x66;&#x2b;&#x69;&#x5d;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x73;&#x68;&#x75;&#x66;&#x66;&#x6c;&#x65;&#x64;</div></code></pre>
+
+
+    <button id='4' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q shuffle</code></pre>
+
+<h3 class="question" id="q5">Question 5: Perfect Pairs</h3>
+
+<p>Implement the function <code>pairs</code>, which takes in an integer <code>n</code>, 
+and returns a new list of lists which contains pairs of numbers from 1 to <code>n</code>.
+Use a list comprehension.</p>
+
+
+
+<pre><code>def pairs(n):
+    &quot;&quot;&quot;Returns a new list containing two element lists from values 1 to n
+    &gt;&gt;&gt; pairs(1)
+    [[1, 1]]
+    &gt;&gt;&gt; x = pairs(2)
+    &gt;&gt;&gt; x
+    [[1, 1], [2, 2]]
+    &gt;&gt;&gt; pairs(5)
+    [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]
+    &gt;&gt;&gt; pairs(&#x2d;1)
+    []
+    &quot;&quot;&quot;
+<div class="alt 5">    "*** YOUR CODE HERE ***"
+    
+</div><div class="solution 5">&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x5b;&#x5b;&#x69;&#x2c;&#x20;&#x69;&#x5d;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x69;&#x20;&#x69;&#x6e;&#x20;&#x72;&#x61;&#x6e;&#x67;&#x65;&#x28;&#x31;&#x2c;&#x20;&#x6e;&#x20;&#x2b;&#x20;&#x31;&#x29;&#x5d;</div></code></pre>
+
+
+    <button id='5' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q pairs</code></pre>
+
+<h3 class="question" id="q6">Question 6: Coordinates</h3>
+
+<p>Implement a function <code>coords</code>, which takes a function, a sequence, and
+an upper and lower bound on output of the function. <code>coords</code> then
+returns a list of x, y coordinate pairs (lists) such that:</p>
+
+<ul>
+  <li>Each pair contains <code>[x, fn(x)]</code></li>
+  <li>The x coordinates are the elements in the sequence</li>
+  <li>Only pairs whose y coordinate is within the upper and lower bounds
+  (inclusive)</li>
+</ul>
+
+<p>See the doctests for examples.</p>
+
+<p>One other thing: your answer can only be <em>one line long</em>. You should
+make use of list comprehensions!</p>
+
+
+
+<pre><code>def coords(fn, seq, lower, upper):
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; seq = [&#x2d;4, &#x2d;2, 0, 1, 3]
+    &gt;&gt;&gt; def fn(x):
+    ...     return x**2
+    &gt;&gt;&gt; coords(fn, seq, 1, 9)
+    [[&#x2d;2, 4], [1, 1], [3, 9]]
+    &quot;&quot;&quot;
+<div class="alt 6">    "*** YOUR CODE HERE ***"
+    
+</div><div class="solution 6">&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x5b;&#x5b;&#x78;&#x2c;&#x20;&#x66;&#x6e;&#x28;&#x78;&#x29;&#x5d;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x78;&#x20;&#x69;&#x6e;&#x20;&#x73;&#x65;&#x71;&#x20;&#x69;&#x66;&#x20;&#x6c;&#x6f;&#x77;&#x65;&#x72;&#x20;&#x3c;&#x3d;&#x20;&#x66;&#x6e;&#x28;&#x78;&#x29;&#x20;&#x61;&#x6e;&#x64;&#x20;&#x66;&#x28;&#x78;&#x29;&#x20;&#x3c;&#x3d;&#x20;&#x75;&#x70;&#x70;&#x65;&#x72;&#x5d;</div></code></pre>
+
+
+    <button id='6' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q coords</code></pre>
+
+
+  </div>
+
+  <div class='col-md-3'>
+    <nav class='hidden-print hidden-sm hidden-xs sidebar'>
+      <ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#lists">Lists</a></li>
+  <li><a href="#list-comprehensions">List Comprehensions</a></li>
+  <li><a href="#introduction-to-map-filter-and-reduce">Introduction to 'Map', 'Filter', and 'Reduce'</a></li>
+  <ul>
+  <li><a href="#map">Map</a></li>
+  <li><a href="#filter">Filter</a></li>
+  <li><a href="#reduce">Reduce</a></li>
+</ul>
+
+  <li><a href="#required-problems">Required Problems</a></li>
+  <ul>
+  <li><a href="#coding-practice">Coding Practice</a></li>
+  <ul>
+  <li><a href="#q1">Question 1: Classify the elements</a></li>
+  <li><a href="#q2">Question 2: Find first word longer than n</a></li>
+  <li><a href="#q3">Question 3: If this not that</a></li>
+  <li><a href="#q4">Question 4: Shuffle</a></li>
+  <li><a href="#q5">Question 5: Perfect Pairs</a></li>
+  <li><a href="#q6">Question 6: Coordinates</a></li>
+</ul>
+
+</ul>
+
+</ul>
+
+    </nav>
+  </div>
+
+</div>
+    </div>
+
+    <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/su24/assets/js/bootstrap.min.js"></script>
+    <!-- TODO: Move to specific pages... -->
+    <script src="/su24/assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+  $('.sidebar ul').addClass('nav nav-stacked');
+  $('body').scrollspy({
+    target: '.sidebar',
+    offset: 40
+  });
+</script>
+<script src="//code.jquery.com/jquery-latest.js"></script>
+<script>
+  $(function() {
+    if (new Date("7/6/24") < new Date()) {
+      $('.toggleButton').css('display', 'inline-block');
+      $('.toggleButton').click(function() {
+        var solution_id = $(this).attr('id');
+        $('div.' + solution_id).slideToggle(600);
+      });
+    }
+    // Always display these toggle buttons
+    $('.toggleButtonShow').click(function() {
+      var solution_id = $(this).attr('id');
+      $('div.' + solution_id).slideToggle(600);
+    });
+  });
+</script>
+  </body>
+</html>

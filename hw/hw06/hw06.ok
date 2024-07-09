@@ -1,0 +1,32 @@
+{
+    "name": "Homework 6",
+    "endpoint": "cal/cs88/sp24/hw06",
+    "src": [
+        "hw06.py"
+    ],
+    "tests": {
+        "hw06.py:count_digit": "doctest",
+        "hw06.py:reduce": "doctest",
+        "hw06.py:remove_last": "doctest",
+        "hw06.py:map": "doctest",
+        "hw06.py:hailstone_iterative": "doctest",
+        "hw06.py:hailstone_recursive": "doctest",
+        "hw06.py:count_generations": "doctest"
+    },
+    "default_tests": [
+        "count_digit",
+        "reduce",
+        "remove_last",
+        "map",
+        "hailstone_iterative",
+        "hailstone_recursive",
+        "count_generations"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "analytics",
+        "grading",
+        "backup"
+    ]
+}
