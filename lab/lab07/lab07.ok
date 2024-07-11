@@ -1,0 +1,29 @@
+{
+    "name": "Lab 7",
+    "endpoint": "cal/cs88/sp24/lab07",
+    "src": [
+        "lab07.py"
+    ],
+    "tests": {
+        "tests/car.py": "ok_test",
+        "lab07.py:Beater.play": "doctest",
+        "lab07.py:Chaser.play": "doctest",
+        "lab07.py:Seeker.play": "doctest",
+        "lab07.py:Keeper.play": "doctest"
+    },
+    "default_tests": [
+        "Beater.play",
+        "Chaser.play",
+        "Seeker.play",
+        "Keeper.play"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup",
+        "scoring"
+    ]
+}
