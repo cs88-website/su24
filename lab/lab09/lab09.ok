@@ -1,0 +1,27 @@
+{
+    "name": "Lab 09",
+    "endpoint": "cal/cs88/sp24/lab09",
+    "src": [
+        "lab09.py"
+    ],
+    "tests": {
+        "lab09.py:search": "doctest",
+        "lab09.py:square_tree": "doctest",
+        "lab09.py:add_d_leaves": "doctest",
+        "lab09.py:avoid_keyerror": "doctest"
+    },
+    "default_tests": [
+        "search",
+        "square_tree",
+        "add_d_leaves",
+        "avoid_keyerror"
+    ],    
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}
