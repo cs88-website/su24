@@ -1,0 +1,30 @@
+{
+    "name": "Homework 8",
+    "endpoint": "cal/cs88/sp24/hw08",
+    "src": [
+        "hw08.py"
+    ],
+    "tests": {
+        "hw08.py:Error": "doctest",
+        "hw08.py:SyntaxError": "doctest",
+        "hw08.py:ZeroDivisionError": "doctest",
+        "hw08.py:link_to_list": "doctest",
+        "hw08.py:every_other": "doctest",
+        "hw08.py:deep_map": "doctest"
+    },
+    "default_tests": [
+        "Error",
+        "SyntaxError",
+        "ZeroDivisionError",
+        "link_to_list",
+        "every_other",
+        "deep_map"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "analytics",
+        "grading",
+        "backup"
+    ]
+}

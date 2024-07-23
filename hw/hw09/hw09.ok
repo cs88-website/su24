@@ -1,0 +1,28 @@
+{
+    "name": "Homework 9",
+    "endpoint": "cal/cs88/sp24/hw09",
+    "src": [
+        "hw09.py"
+    ],
+    "tests": {
+        "hw09.py:same_shape": "doctest",
+        "hw09.py:cumulative_sum": "doctest",
+        "hw09.py:find_level": "doctest",
+        "hw09.py:merge_trees": "doctest",
+        "hw09.py:quiet_get": "doctest"
+    },
+    "default_tests": [
+        "same_shape",
+        "cumulative_sum",
+        "find_level",
+        "merge_trees",
+        "quiet_get"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "analytics",
+        "grading",
+        "backup"
+    ]
+}
