@@ -1,0 +1,31 @@
+{
+    "name": "Lab 11",
+    "endpoint": "cal/cs88/sp24/lab11",
+    "src": [
+        "lab11.sql"
+    ],
+    "tests": {
+        "tests/obedience.py": "ok_test",
+        "tests/bluedog.py": "ok_test",
+        "tests/smallest-int.py": "ok_test",
+        "tests/sevens.py": "ok_test",
+        "tests/matchmaker.py": "ok_test",
+        "tests/smallest-int-count.py": "ok_test"
+    },
+    "default_tests": [
+        "obedience",
+        "bluedog",
+        "smallest-int",
+        "sevens",
+        "matchmaker",
+        "smallest-int-count"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}
