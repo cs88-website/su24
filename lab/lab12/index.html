@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+
+    <meta name="description" content ="C88C: Computational Structures in Data Science" />
+    <meta name="keywords" content ="CS88, C88C, Computer Science, Data Science, Programming, Berkeley, EECS, Python, intro CS, comp sci" />
+    <meta name="author" content ="Eric Kim, John Teng, Satleen Gill, Mia Lopez, Naveen Nathan, Jiayi Li, Mira	Wagner" />
+
+    <link rel="stylesheet" href="/su24/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/style.css">
+    <link rel="icon" href="/su24/assets/images/favicon.ico">
+    <link rel="stylesheet" href="/su24/assets/css/mono-blue.css">
+
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/resource.css" />
+<link rel="stylesheet" type="text/css" href="/su24/assets/css/lab.css" />
+
+
+    <title>Lab 12: Final Review (Optional) | C88C Summer 2024</title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section" aria-label="Toggle Nav Menu" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/su24/">C88C</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-section">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/su24/">Calendar</a></li>
+            <li><a href="/su24/articles/resources.html">Resources</a></li>
+            <li><a href="/su24/weekly-schedule.html">Google Calendar</a></li>
+            <li><a href="/su24/articles/about.html">Syllabus</a></li>
+            <li><a href="https://www.gradescope.com/courses/786589" target="_blank">Gradescope</a></li>
+            <li><a href="https://edstem.org/us/courses/59252/discussion/" target="_blank">Ed</a></li>
+            <li><a href="/su24/staff.html">Staff</a></li>
+            <!-- disable for DATA C88C su24 <li><a href="https://oh.c88c.org/" target="_blank">OH Queue</a></li> -->
+            <li><a href="https://tutor.cs61a.org/" target="_blank">Python Tutor</a></li>
+            <li><a href="https://bcourses.berkeley.edu/courses/1534781/external_tools/90481" target="_blank">Recordings</a></li>
+            <li><a href="https://drive.google.com/drive/folders/1eXbpkIomI6kMyXwk-iJj1GAp5CH7qWNf" target="_blank">Lecture Slides</a></li>
+            <li><a href="https://drive.google.com/drive/folders/1x4jjWH1OZm4aXgaYqRv-rQR013jIplp6" target="_blank">Lab Slides</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+
+    <div id="content" class="container">
+      <div class='row'>
+  <div class='col-md-9'>
+    <div class='page-header'>
+      <div class="row row-no-gutters">
+  <div class="col-md-8">
+      <h1 class="content-title-brand" style="padding-top: 0;">
+          Lab 12: Final Review (Optional)
+          <br>
+          <small><i>Due at 11:59:59 pm on 5/10/2024.</i></small>
+      </h1>
+  </div>
+  <div class="col-md-4">
+      <a class="h1 btn btn-lg" href="lab12.zip">lab12.zip</a>
+  </div>
+</div>
+    </div>
+
+    <h2 id='starter-files'>Starter Files</h2>
+
+<p>Download <a href="lab12.zip">lab12.zip</a>.
+Inside the archive, you will find starter files for the questions in this lab,
+  along with a copy of the OK autograder.</p>
+
+    
+
+<p><strong>This lab assignment is OPTIONAL</strong>. This means it does not count toward your final grade, and completing it will NOT earn you any extra credit. It is intended to help with studying for the final exam. Note that the topics listed in this lab are NOT comprehensive of the scope of the final.</p>
+
+<p>You do not have to submit to Gradescope, although there is an assignment with the autograder if you want to check your work.</p>
+
+<p>Solutions are available <a href="/su24/lab/sol-lab12/">here</a>.</p>
+
+
+<h2 id="control">Control</h2>
+
+
+<h3 class="question" id="q1">Question 1: Second Max</h3>
+
+<p>Write a function that finds the second highest number in a list of positive integers. You can assume that the list always has at least two integers.</p>
+
+
+
+<pre><code>def second_max(lst):
+    &quot;&quot;&quot; 
+    Return the second highest number in a list of positive integers.
+
+    &gt;&gt;&gt; second_max([3, 2, 1, 0])
+    2
+    &gt;&gt;&gt; second_max([2, 3, 3, 4, 5, 6, 7, 2, 3])
+    6
+    &gt;&gt;&gt; second_max([1, 5, 5, 5, 1])
+    5
+    &gt;&gt;&gt; second_max([5, 6, 6, 7, 1])
+    6
+    &gt;&gt;&gt; second_max([5, 6, 7, 7, 1])
+    7
+    &quot;&quot;&quot;
+
+<div class="alt 1">    "*** YOUR CODE HERE ***"
+</div><div class="solution 1">&#x20;&#x20;&#x20;&#x20;&#x68;&#x69;&#x67;&#x68;&#x65;&#x73;&#x74;&#x20;&#x3d;&#x20;&#x30;&#xa;&#x20;&#x20;&#x20;&#x20;&#x73;&#x65;&#x63;&#x6f;&#x6e;&#x64;&#x5f;&#x68;&#x69;&#x67;&#x68;&#x65;&#x73;&#x74;&#x20;&#x3d;&#x20;&#x30;&#xa;&#x20;&#x20;&#x20;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x6e;&#x75;&#x6d;&#x20;&#x69;&#x6e;&#x20;&#x6c;&#x73;&#x74;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x6e;&#x75;&#x6d;&#x20;&#x3e;&#x3d;&#x20;&#x68;&#x69;&#x67;&#x68;&#x65;&#x73;&#x74;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x73;&#x65;&#x63;&#x6f;&#x6e;&#x64;&#x5f;&#x68;&#x69;&#x67;&#x68;&#x65;&#x73;&#x74;&#x20;&#x3d;&#x20;&#x68;&#x69;&#x67;&#x68;&#x65;&#x73;&#x74;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x68;&#x69;&#x67;&#x68;&#x65;&#x73;&#x74;&#x20;&#x3d;&#x20;&#x6e;&#x75;&#x6d;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x69;&#x66;&#x20;&#x6e;&#x75;&#x6d;&#x20;&#x3c;&#x20;&#x68;&#x69;&#x67;&#x68;&#x65;&#x73;&#x74;&#x20;&#x61;&#x6e;&#x64;&#x20;&#x6e;&#x75;&#x6d;&#x20;&#x3e;&#x20;&#x73;&#x65;&#x63;&#x6f;&#x6e;&#x64;&#x5f;&#x68;&#x69;&#x67;&#x68;&#x65;&#x73;&#x74;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x73;&#x65;&#x63;&#x6f;&#x6e;&#x64;&#x5f;&#x68;&#x69;&#x67;&#x68;&#x65;&#x73;&#x74;&#x20;&#x3d;&#x20;&#x6e;&#x75;&#x6d;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x73;&#x65;&#x63;&#x6f;&#x6e;&#x64;&#x5f;&#x68;&#x69;&#x67;&#x68;&#x65;&#x73;&#x74;</div></code></pre>
+
+
+    <button id='1' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q second_max</code></pre>
+
+
+<h2 id="higher-order-functions">Higher Order Functions</h2>
+
+
+<h3 class="question" id="q2">Question 2: Count van Count</h3>
+
+<p>Consider the following implementations of <code>count_factors</code> and <code>count_primes</code>:</p>
+
+<pre><code>def count_factors(n):
+    &quot;&quot;&quot;Return the number of positive factors that n has.&quot;&quot;&quot;
+    i, count = 1, 0
+    while i &lt;= n:
+        if n % i == 0:
+            count += 1
+        i += 1
+    return count
+
+def count_primes(n):
+    &quot;&quot;&quot;Return the number of prime numbers up to and including n.&quot;&quot;&quot;
+    i, count = 1, 0
+    while i &lt;= n:
+        if is_prime(i):
+            count += 1
+        i += 1
+    return count
+
+def is_prime(n):
+    return count_factors(n) == 2 # only factors are 1 and n</code></pre>
+
+<p>The implementations look quite similar! Generalize this logic by writing a
+function <code>count_cond</code>, which takes in a two-argument predicate function <code>mystery_function(n,
+i)</code>. <code>count_cond</code> returns a count of all the numbers from 1 to <code>n</code> that satisfy
+<code>mystery_function</code>.</p>
+
+<p>Note: A predicate function is a function that returns a boolean (<code>True</code> or <code>False</code>).</p>
+
+
+
+<pre><code>def count_cond(mystery_function, n):
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; def divisible(n, i):
+    ...     return n % i == 0
+    &gt;&gt;&gt; count_cond(divisible, 2) # 1, 2
+    2
+    &gt;&gt;&gt; count_cond(divisible, 4) # 1, 2, 4
+    3
+    &gt;&gt;&gt; count_cond(divisible, 12) # 1, 2, 3, 4, 6, 12
+    6
+
+    &gt;&gt;&gt; def is_prime(n, i):
+    ...     return count_cond(divisible, i) == 2
+    &gt;&gt;&gt; count_cond(is_prime, 2) # 2
+    1
+    &gt;&gt;&gt; count_cond(is_prime, 3) # 2, 3
+    2
+    &gt;&gt;&gt; count_cond(is_prime, 4) # 2, 3
+    2
+    &gt;&gt;&gt; count_cond(is_prime, 5) # 2, 3, 5
+    3
+    &gt;&gt;&gt; count_cond(is_prime, 20) # 2, 3, 5, 7, 11, 13, 17, 19
+    8
+    &quot;&quot;&quot;
+<div class="alt 2">    "*** YOUR CODE HERE ***"
+    
+</div><div class="solution 2">&#x20;&#x20;&#x20;&#x20;&#x69;&#x2c;&#x20;&#x63;&#x6f;&#x75;&#x6e;&#x74;&#x20;&#x3d;&#x20;&#x31;&#x2c;&#x20;&#x30;&#xa;&#x20;&#x20;&#x20;&#x20;&#x77;&#x68;&#x69;&#x6c;&#x65;&#x20;&#x69;&#x20;&#x3c;&#x3d;&#x20;&#x6e;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x6d;&#x79;&#x73;&#x74;&#x65;&#x72;&#x79;&#x5f;&#x66;&#x75;&#x6e;&#x63;&#x74;&#x69;&#x6f;&#x6e;&#x28;&#x6e;&#x2c;&#x20;&#x69;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x75;&#x6e;&#x74;&#x20;&#x2b;&#x3d;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x20;&#x2b;&#x3d;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x63;&#x6f;&#x75;&#x6e;&#x74;</div></code></pre>
+
+
+    <button id='2' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q count_cond</code></pre>
+
+
+<h2 id="lists-and-dictionaries">Lists and Dictionaries</h2>
+
+
+<h3 class="question" id="q3">Question 3: Deep-Len</h3>
+
+<p>A list that contains one or more lists as elements is called a <em>deep</em>
+list. For example, <code>[1, [2, 3], 4]</code> is a deep list.</p>
+
+<p>Write a function <code>deep_len</code> that takes a list and returns its deep
+length. See the doctests for the function's behavior.</p>
+
+<p><em>Hint</em>: you can check if something is a list by using the built-in
+<code>type</code> function. For example,</p>
+
+<pre><code>&gt;&gt;&gt; type(3) == list
+False
+&gt;&gt;&gt; type([1, 2, 3]) == list
+True</code></pre>
+
+
+
+<pre><code>def deep_len(lst):
+    &quot;&quot;&quot;Returns the deep length of the list.
+
+    &gt;&gt;&gt; deep_len([1, 2, 3])     # normal list
+    3
+    &gt;&gt;&gt; x = [1, [2, 3], 4]      # deep list
+    &gt;&gt;&gt; deep_len(x)
+    4
+    &gt;&gt;&gt; x = [[1, [1, 1]], 1, [1, 1]] # deep list
+    &gt;&gt;&gt; deep_len(x)
+    6
+    &quot;&quot;&quot;
+<div class="alt 3">    "*** YOUR CODE HERE ***"
+</div><div class="solution 3">&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x6e;&#x6f;&#x74;&#x20;&#x6c;&#x73;&#x74;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x30;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x69;&#x66;&#x20;&#x74;&#x79;&#x70;&#x65;&#x28;&#x6c;&#x73;&#x74;&#x5b;&#x30;&#x5d;&#x29;&#x20;&#x3d;&#x3d;&#x20;&#x6c;&#x69;&#x73;&#x74;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x64;&#x65;&#x65;&#x70;&#x5f;&#x6c;&#x65;&#x6e;&#x28;&#x6c;&#x73;&#x74;&#x5b;&#x30;&#x5d;&#x29;&#x20;&#x2b;&#x20;&#x64;&#x65;&#x65;&#x70;&#x5f;&#x6c;&#x65;&#x6e;&#x28;&#x6c;&#x73;&#x74;&#x5b;&#x31;&#x3a;&#x5d;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x31;&#x20;&#x2b;&#x20;&#x64;&#x65;&#x65;&#x70;&#x5f;&#x6c;&#x65;&#x6e;&#x28;&#x6c;&#x73;&#x74;&#x5b;&#x31;&#x3a;&#x5d;&#x29;</div></code></pre>
+
+
+    <button id='3' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q deep_len</code></pre>
+
+<h3 class="question" id="q4">Question 4: Counter</h3>
+
+<p>Implement the function <code>counter</code> which takes in a string of words <code>message</code>, and returns a
+dictionary where each key is a word in the message, and each value is the number
+of times that word is present in the original string.</p>
+
+
+
+<pre><code>def counter(message):
+    &quot;&quot;&quot; Returns a dictionary of each word in message mapped
+    to the number of times it appears in the input string.
+
+    &gt;&gt;&gt; x = counter(&#x27;to be or not to be&#x27;)
+    &gt;&gt;&gt; x[&#x27;to&#x27;]
+    2
+    &gt;&gt;&gt; x[&#x27;be&#x27;]
+    2
+    &gt;&gt;&gt; x[&#x27;not&#x27;]
+    1
+    &gt;&gt;&gt; y = counter(&#x27;run forrest run&#x27;)
+    &gt;&gt;&gt; y[&#x27;run&#x27;]
+    2
+    &gt;&gt;&gt; y[&#x27;forrest&#x27;]
+    1
+    &quot;&quot;&quot;
+    word_list = message.split()
+<div class="alt 4">    "*** YOUR CODE HERE ***"
+    
+</div><div class="solution 4">&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x5f;&#x64;&#x69;&#x63;&#x74;&#x20;&#x3d;&#x20;&#x7b;&#x7d;&#xa;&#x20;&#x20;&#x20;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x77;&#x6f;&#x72;&#x64;&#x20;&#x69;&#x6e;&#x20;&#x77;&#x6f;&#x72;&#x64;&#x5f;&#x6c;&#x69;&#x73;&#x74;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x77;&#x6f;&#x72;&#x64;&#x20;&#x69;&#x6e;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x5f;&#x64;&#x69;&#x63;&#x74;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x5f;&#x64;&#x69;&#x63;&#x74;&#x5b;&#x77;&#x6f;&#x72;&#x64;&#x5d;&#x20;&#x2b;&#x3d;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x5f;&#x64;&#x69;&#x63;&#x74;&#x5b;&#x77;&#x6f;&#x72;&#x64;&#x5d;&#x20;&#x3d;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x5f;&#x64;&#x69;&#x63;&#x74;</div></code></pre>
+
+
+    <button id='4' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q counter</code></pre>
+
+
+<h2 id="recursion">Recursion</h2>
+
+
+<h3 class="question" id="q5">Question 5: Knapsack</h3>
+
+<p>You're are a thief, and your job is to pick among <code>n</code> items that are of
+different weights and values. You have a knapsack that supports <code>c</code> pounds, and
+you want to pick some subset of the items so that you maximize the value you've
+stolen.</p>
+
+<p>Define <code>knapsack</code>, which takes a list <code>weights</code>, list <code>values</code> and a capacity
+<code>c</code>, and returns that max value.  You may assume that item 0 weighs
+<code>weights[0]</code> pounds, and is worth <code>values[0]</code>; item 1 weighs <code>weights[1]</code>
+pounds, and is worth <code>values[1]</code>; etc.</p>
+
+
+
+<pre><code>def knapsack(weights, values, c):
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; w = [2, 6, 3, 3]
+    &gt;&gt;&gt; v = [1, 5, 3, 3]
+    &gt;&gt;&gt; knapsack(w, v, 6)
+    6
+    &quot;&quot;&quot;
+<div class="alt 5">    "*** YOUR CODE HERE ***"
+</div><div class="solution 5">&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x77;&#x65;&#x69;&#x67;&#x68;&#x74;&#x73;&#x20;&#x3d;&#x3d;&#x20;&#x5b;&#x5d;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x30;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x66;&#x69;&#x72;&#x73;&#x74;&#x5f;&#x77;&#x65;&#x69;&#x67;&#x68;&#x74;&#x2c;&#x20;&#x72;&#x65;&#x73;&#x74;&#x5f;&#x77;&#x65;&#x69;&#x67;&#x68;&#x74;&#x73;&#x20;&#x3d;&#x20;&#x77;&#x65;&#x69;&#x67;&#x68;&#x74;&#x73;&#x5b;&#x30;&#x5d;&#x2c;&#x20;&#x77;&#x65;&#x69;&#x67;&#x68;&#x74;&#x73;&#x5b;&#x31;&#x3a;&#x5d;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x66;&#x69;&#x72;&#x73;&#x74;&#x5f;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x2c;&#x20;&#x72;&#x65;&#x73;&#x74;&#x5f;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x73;&#x20;&#x3d;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x73;&#x5b;&#x30;&#x5d;&#x2c;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x73;&#x5b;&#x31;&#x3a;&#x5d;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x77;&#x69;&#x74;&#x68;&#x5f;&#x66;&#x69;&#x72;&#x73;&#x74;&#x20;&#x3d;&#x20;&#x66;&#x69;&#x72;&#x73;&#x74;&#x5f;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x20;&#x2b;&#x20;&#x6b;&#x6e;&#x61;&#x70;&#x73;&#x61;&#x63;&#x6b;&#x28;&#x72;&#x65;&#x73;&#x74;&#x5f;&#x77;&#x65;&#x69;&#x67;&#x68;&#x74;&#x73;&#x2c;&#x20;&#x72;&#x65;&#x73;&#x74;&#x5f;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x73;&#x2c;&#x20;&#x63;&#x20;&#x2d;&#x20;&#x66;&#x69;&#x72;&#x73;&#x74;&#x5f;&#x77;&#x65;&#x69;&#x67;&#x68;&#x74;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x77;&#x69;&#x74;&#x68;&#x6f;&#x75;&#x74;&#x5f;&#x66;&#x69;&#x72;&#x73;&#x74;&#x20;&#x3d;&#x20;&#x6b;&#x6e;&#x61;&#x70;&#x73;&#x61;&#x63;&#x6b;&#x28;&#x72;&#x65;&#x73;&#x74;&#x5f;&#x77;&#x65;&#x69;&#x67;&#x68;&#x74;&#x73;&#x2c;&#x20;&#x72;&#x65;&#x73;&#x74;&#x5f;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x73;&#x2c;&#x20;&#x63;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x66;&#x69;&#x72;&#x73;&#x74;&#x5f;&#x77;&#x65;&#x69;&#x67;&#x68;&#x74;&#x20;&#x3c;&#x3d;&#x20;&#x63;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x6d;&#x61;&#x78;&#x28;&#x77;&#x69;&#x74;&#x68;&#x5f;&#x66;&#x69;&#x72;&#x73;&#x74;&#x2c;&#x20;&#x77;&#x69;&#x74;&#x68;&#x6f;&#x75;&#x74;&#x5f;&#x66;&#x69;&#x72;&#x73;&#x74;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x77;&#x69;&#x74;&#x68;&#x6f;&#x75;&#x74;&#x5f;&#x66;&#x69;&#x72;&#x73;&#x74;</div></code></pre>
+
+
+    <button id='5' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q knapsack</code></pre>
+
+<h3 class="question" id="q6">Question 6: repeated, repeated</h3>
+
+<p>In Homework 2 you encountered the <code>repeated</code> function, which takes
+arguments <code>f</code> and <code>n</code> and returns a function equivalent to the nth
+repeated application of <code>f</code>. This time, we want to write <code>repeated</code>
+recursively. You'll want to use <code>compose1</code>, given below for your
+convenience:</p>
+
+<pre><code>def compose1(f, g):
+    &quot;&quot;&quot;&quot;Return a function h, such that h(x) = f(g(x)).&quot;&quot;&quot;
+    def h(x):
+        return f(g(x))
+    return h</code></pre>
+
+
+
+<pre><code>def repeated(f, n):
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; f = lambda x: x + 1
+    &gt;&gt;&gt; g = repeated(f, 1)
+    &gt;&gt;&gt; g(5)
+    6
+    &gt;&gt;&gt; h = repeated(f, 3)
+    &gt;&gt;&gt; h(5)
+    8
+    &gt;&gt;&gt; f2 = lambda x: x * 2
+    &gt;&gt;&gt; g2 = repeated(f2, 3)
+    &gt;&gt;&gt; g2(3)
+    24
+    &quot;&quot;&quot;
+<div class="alt 6">    "*** YOUR CODE HERE ***"
+</div><div class="solution 6">&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x6e;&#x20;&#x3d;&#x3d;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x6c;&#x61;&#x6d;&#x62;&#x64;&#x61;&#x20;&#x78;&#x3a;&#x20;&#x78;&#x20;&#x23;&#x20;&#x49;&#x64;&#x65;&#x6e;&#x74;&#x69;&#x74;&#x79;&#x20;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x63;&#x6f;&#x6d;&#x70;&#x6f;&#x73;&#x65;&#x31;&#x28;&#x66;&#x2c;&#x20;&#x72;&#x65;&#x70;&#x65;&#x61;&#x74;&#x65;&#x64;&#x28;&#x66;&#x2c;&#x20;&#x6e;&#x20;&#x2d;&#x20;&#x31;&#x29;&#x29;</div></code></pre>
+
+
+    <button id='6' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q repeated</code></pre>
+
+
+<h2 id="oop-and-inheritance">OOP and Inheritance</h2>
+
+
+<h3 class="question" id="q7">Question 7: Mint</h3>
+
+<p>Complete the <code>Mint</code> and <code>Coin</code> classes so that the coins created by a mint have
+the correct year and worth.</p>
+
+<ul>
+  <li>Each <code>Mint</code> instance has a <code>year</code> stamp. The <code>update</code> method sets the
+  <code>year</code> stamp to the <code>current_year</code> class attribute of the <code>Mint</code> class.</li>
+  <li>The <code>create</code> method takes a subclass of <code>Coin</code> and returns an instance of
+  that class stamped with the <code>mint</code>'s year (which may be different from
+  <code>Mint.current_year</code> if it has not been updated.) Hint: Check out the 
+  <code>create_animal</code> method in this <a href="https://tinyurl.com/4nc6ahe6">demo</a>.</li>
+  <li>A <code>Coin</code>'s <code>worth</code> method returns the <code>cents</code> value of the coin plus one
+  extra cent for each year of age beyond 50. A coin's age can be determined
+  by subtracting the coin's year from the <code>current_year</code> class attribute of
+  the <code>Mint</code> class.</li>
+</ul>
+
+
+
+<pre><code>class Mint:
+    &quot;&quot;&quot;A mint creates coins by stamping on years.
+
+    The update method sets the mint&#x27;s stamp to Mint.current_year.
+
+    &gt;&gt;&gt; mint = Mint()
+    &gt;&gt;&gt; mint.year
+    2020
+    &gt;&gt;&gt; dime = mint.create(Dime)
+    &gt;&gt;&gt; dime.year
+    2020
+    &gt;&gt;&gt; Mint.current_year = 2100  # Time passes
+    &gt;&gt;&gt; nickel = mint.create(Nickel)
+    &gt;&gt;&gt; nickel.year     # The mint has not updated its stamp yet
+    2020
+    &gt;&gt;&gt; nickel.worth()  # 5 cents + (80 &#x2d; 50 years)
+    35
+    &gt;&gt;&gt; mint.update()   # The mint&#x27;s year is updated to 2100
+    &gt;&gt;&gt; Mint.current_year = 2175     # More time passes
+    &gt;&gt;&gt; mint.create(Dime).worth()    # 10 cents + (75 &#x2d; 50 years)
+    35
+    &gt;&gt;&gt; Mint().create(Dime).worth()  # A new mint has the current year
+    10
+    &gt;&gt;&gt; dime.worth()     # 10 cents + (155 &#x2d; 50 years). 155 is because this dime instance has year 2020
+    115
+    &gt;&gt;&gt; Dime.cents = 20  # Upgrade all dimes!
+    &gt;&gt;&gt; dime.worth()     # 20 cents + (155 &#x2d; 50 years)
+    125
+    &gt;&gt;&gt; m = Mint()
+    &gt;&gt;&gt; n = m.create(Nickel)
+    &gt;&gt;&gt; n.worth()
+    5
+    &gt;&gt;&gt; n.year = 2015
+    &gt;&gt;&gt; n.worth() # 5 cents + (160 &#x2d; 50 years). 160 is from 2175 &#x2d; 2015
+    115
+    &quot;&quot;&quot;
+    current_year = 2020
+
+    def __init__(self):
+        self.update()
+
+    def create(self, coin):
+<div class="alt 7">        "*** YOUR CODE HERE ***"
+</div><div class="solution 7">&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x63;&#x6f;&#x69;&#x6e;&#x28;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x79;&#x65;&#x61;&#x72;&#x29;</div>
+    def update(self):
+<div class="alt 7">        "*** YOUR CODE HERE ***"
+</div><div class="solution 7">&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x79;&#x65;&#x61;&#x72;&#x20;&#x3d;&#x20;&#x4d;&#x69;&#x6e;&#x74;&#x2e;&#x63;&#x75;&#x72;&#x72;&#x65;&#x6e;&#x74;&#x5f;&#x79;&#x65;&#x61;&#x72;</div>
+class Coin:
+    cents = 0 # Default value of 0. This value will be overridden in subclasses.
+
+    def __init__(self, year):
+        self.year = year
+
+    def worth(self):
+        &quot;The worth is a coin&#x27;s face value + 1 cent for each year over age 50.&quot;
+<div class="alt 7">        "*** YOUR CODE HERE ***"
+</div><div class="solution 7">&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x63;&#x65;&#x6e;&#x74;&#x73;&#x20;&#x2b;&#x20;&#x6d;&#x61;&#x78;&#x28;&#x30;&#x2c;&#x20;&#x4d;&#x69;&#x6e;&#x74;&#x2e;&#x63;&#x75;&#x72;&#x72;&#x65;&#x6e;&#x74;&#x5f;&#x79;&#x65;&#x61;&#x72;&#x20;&#x2d;&#x20;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x79;&#x65;&#x61;&#x72;&#x20;&#x2d;&#x20;&#x35;&#x30;&#x29;</div>
+class Nickel(Coin):
+    cents = 5
+
+class Dime(Coin):
+    cents = 10</code></pre>
+
+
+    <button id='7' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q Mint</code></pre>
+
+
+<h2 id="linked-lists">Linked Lists</h2>
+
+
+<h3 class="question" id="q8">Question 8: Insert</h3>
+
+<p>Implement a function <code>insert</code> that takes a <code>Link</code>, a <code>value</code>, and an
+<code>index</code>, and inserts the <code>value</code> into the <code>Link</code> at the given <code>index</code>.
+You can assume the linked list already has at least one element. Do not
+return anything &mdash; <code>insert</code> should mutate the linked list.</p>
+
+<blockquote><p><strong>Note</strong>: If the index is out of bounds, you can raise an <code>IndexError</code> with:</p>
+
+<pre><code>raise IndexError</code></pre></blockquote>
+
+
+
+<pre><code>def insert(link, value, index):
+    &quot;&quot;&quot;Insert a value into a Link at the given index.
+
+    &gt;&gt;&gt; link = Link(1, Link(2, Link(3)))
+    &gt;&gt;&gt; print_link(link)
+    &lt;1 2 3&gt;
+    &gt;&gt;&gt; insert(link, 9001, 0)
+    &gt;&gt;&gt; print_link(link)
+    &lt;9001 1 2 3&gt;
+    &gt;&gt;&gt; insert(link, 100, 2)
+    &gt;&gt;&gt; print_link(link)
+    &lt;9001 1 100 2 3&gt;
+    &gt;&gt;&gt; insert(link, 4, 5)
+    IndexError
+    &quot;&quot;&quot;
+<div class="alt 8">    "*** YOUR CODE HERE ***"
+</div><div class="solution 8">&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x69;&#x6e;&#x64;&#x65;&#x78;&#x20;&#x3d;&#x3d;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x72;&#x65;&#x73;&#x74;&#x20;&#x3d;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x28;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x66;&#x69;&#x72;&#x73;&#x74;&#x2c;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x72;&#x65;&#x73;&#x74;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x66;&#x69;&#x72;&#x73;&#x74;&#x20;&#x3d;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x69;&#x66;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x72;&#x65;&#x73;&#x74;&#x20;&#x69;&#x73;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x2e;&#x65;&#x6d;&#x70;&#x74;&#x79;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x61;&#x69;&#x73;&#x65;&#x20;&#x49;&#x6e;&#x64;&#x65;&#x78;&#x45;&#x72;&#x72;&#x6f;&#x72;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x6e;&#x73;&#x65;&#x72;&#x74;&#x28;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x72;&#x65;&#x73;&#x74;&#x2c;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x2c;&#x20;&#x69;&#x6e;&#x64;&#x65;&#x78;&#x20;&#x2d;&#x20;&#x31;&#x29;&#xa;&#xa;&#x23;&#x20;&#x69;&#x74;&#x65;&#x72;&#x61;&#x74;&#x69;&#x76;&#x65;&#x20;&#x73;&#x6f;&#x6c;&#x75;&#x74;&#x69;&#x6f;&#x6e;&#xa;&#x64;&#x65;&#x66;&#x20;&#x69;&#x6e;&#x73;&#x65;&#x72;&#x74;&#x28;&#x6c;&#x69;&#x6e;&#x6b;&#x2c;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x2c;&#x20;&#x69;&#x6e;&#x64;&#x65;&#x78;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x77;&#x68;&#x69;&#x6c;&#x65;&#x20;&#x69;&#x6e;&#x64;&#x65;&#x78;&#x20;&#x3e;&#x20;&#x30;&#x20;&#x61;&#x6e;&#x64;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x72;&#x65;&#x73;&#x74;&#x20;&#x69;&#x73;&#x20;&#x6e;&#x6f;&#x74;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x2e;&#x65;&#x6d;&#x70;&#x74;&#x79;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x20;&#x3d;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x72;&#x65;&#x73;&#x74;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x6e;&#x64;&#x65;&#x78;&#x20;&#x2d;&#x3d;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x69;&#x6e;&#x64;&#x65;&#x78;&#x20;&#x3d;&#x3d;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x72;&#x65;&#x73;&#x74;&#x20;&#x3d;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x28;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x66;&#x69;&#x72;&#x73;&#x74;&#x2c;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x72;&#x65;&#x73;&#x74;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x66;&#x69;&#x72;&#x73;&#x74;&#x20;&#x3d;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x61;&#x69;&#x73;&#x65;&#x20;&#x49;&#x6e;&#x64;&#x65;&#x78;&#x45;&#x72;&#x72;&#x6f;&#x72;</div></code></pre>
+
+
+    <button id='8' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q insert</code></pre>
+
+
+<h2 id="trees">Trees</h2>
+
+
+<h3 class="question" id="q9">Question 9: Path</h3>
+
+<p>Write a function <code>path</code> that returns the path from the root of the tree to the given value <code>target</code> as a list if it exists and <code>[]</code> if it does not. You can assume all values are unique.</p>
+
+
+
+<pre><code>def path(t, target):
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; t = Tree(9, [Tree(7, [Tree(3), Tree(2)]), Tree(5)])
+    &gt;&gt;&gt; path(t, 2)
+    [9, 7, 2]
+    &gt;&gt;&gt; path(t, 5)
+    [9, 5]
+    &gt;&gt;&gt; path(t, 8)
+    []
+    &quot;&quot;&quot;
+<div class="alt 9">    "*** YOUR CODE HERE ***"
+</div><div class="solution 9">&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x74;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x20;&#x3d;&#x3d;&#x20;&#x74;&#x61;&#x72;&#x67;&#x65;&#x74;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x5b;&#x74;&#x61;&#x72;&#x67;&#x65;&#x74;&#x5d;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x69;&#x66;&#x20;&#x74;&#x2e;&#x69;&#x73;&#x5f;&#x6c;&#x65;&#x61;&#x66;&#x28;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x5b;&#x5d;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x62;&#x20;&#x69;&#x6e;&#x20;&#x74;&#x2e;&#x62;&#x72;&#x61;&#x6e;&#x63;&#x68;&#x65;&#x73;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x73;&#x74;&#x20;&#x3d;&#x20;&#x70;&#x61;&#x74;&#x68;&#x28;&#x62;&#x2c;&#x20;&#x74;&#x61;&#x72;&#x67;&#x65;&#x74;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x72;&#x65;&#x73;&#x74;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x5b;&#x74;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x5d;&#x20;&#x2b;&#x20;&#x72;&#x65;&#x73;&#x74;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x5b;&#x5d;</div></code></pre>
+
+
+    <button id='9' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q path</code></pre>
+
+
+<h2 id="iterators-and-generators">Iterators and Generators</h2>
+
+
+<h3 class="question" id="q10">Question 10: Str</h3>
+
+<p>Write an iterator that takes a string as input and outputs the letters in order
+when iterated over.</p>
+
+
+
+<div class="solution 10">
+
+<pre><code>class Str:
+    def __init__(self, str):
+        self.str = str
+    def __iter__(self):
+        return iter(self.str)</code></pre>
+
+<p>That works (why?), but just kidding.</p>
+
+</div>
+
+<pre><code>class Str:
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; hey_iter = Str(&#x27;hey&#x27;)
+    &gt;&gt;&gt; for char in hey_iter:
+    ...     print(char)
+    h
+    e
+    y
+    &gt;&gt;&gt; list(hey_iter)
+    []
+    &quot;&quot;&quot;
+    def __init__(self, str):
+<div class="alt 10">        "*** YOUR CODE HERE ***"
+</div><div class="solution 10">&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x73;&#x74;&#x72;&#x20;&#x3d;&#x20;&#x73;&#x74;&#x72;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x69;&#x20;&#x3d;&#x20;&#x2d;&#x31;</div>
+    def __iter__(self):
+<div class="alt 10">        "*** YOUR CODE HERE ***"
+</div><div class="solution 10">&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x73;&#x65;&#x6c;&#x66;</div>
+    def __next__(self):
+<div class="alt 10">        "*** YOUR CODE HERE ***"
+</div><div class="solution 10">&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x69;&#x20;&#x2b;&#x3d;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x69;&#x20;&#x3e;&#x3d;&#x20;&#x6c;&#x65;&#x6e;&#x28;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x73;&#x74;&#x72;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x61;&#x69;&#x73;&#x65;&#x20;&#x53;&#x74;&#x6f;&#x70;&#x49;&#x74;&#x65;&#x72;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x73;&#x74;&#x72;&#x5b;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x69;&#x5d;</div></code></pre>
+
+
+    <button id='10' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q Str</code></pre>
+
+<h3 class="question" id="q11">Question 11: Generate permutations</h3>
+
+<p>Given a list of unique elements, a <em>permutation</em> of the list is a
+reordering of the elements. For example, <code>[2, 1, 3]</code>, <code>[1, 3, 2]</code>, and
+<code>[3, 2, 1]</code> are all permutations of the list <code>[1, 2, 3]</code>.</p>
+
+<p>Implement <code>generate_perms</code>, a generator function which takes in a <code>lst</code> and 
+yields all the unique permutations of <code>lst</code> one at a time (see doctest for examples).</p>
+
+
+
+<pre><code>def generate_perms(lst):
+    &quot;&quot;&quot;
+    Generates the permutations of lst one by one.
+    &gt;&gt;&gt; perms = generate_perms([1, 2, 3])
+    &gt;&gt;&gt; hasattr(perms, &#x27;__next__&#x27;)
+    True
+    &gt;&gt;&gt; p = list(perms)
+    &gt;&gt;&gt; p.sort()
+    &gt;&gt;&gt; p
+    [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+    &quot;&quot;&quot;
+    if lst == []:
+<div class="alt 11">        "*** YOUR CODE HERE ***"
+</div><div class="solution 11">&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x79;&#x69;&#x65;&#x6c;&#x64;&#x20;&#x5b;&#x5d;</div>    else:
+        for perm in generate_perms(lst[1:]):
+            for i in range(len(lst)):
+<div class="alt 11">                "*** YOUR CODE HERE ***"
+</div><div class="solution 11">&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x79;&#x69;&#x65;&#x6c;&#x64;&#x20;&#x70;&#x65;&#x72;&#x6d;&#x5b;&#x3a;&#x69;&#x5d;&#x20;&#x2b;&#x20;&#x5b;&#x6c;&#x73;&#x74;&#x5b;&#x30;&#x5d;&#x5d;&#x20;&#x2b;&#x20;&#x70;&#x65;&#x72;&#x6d;&#x5b;&#x69;&#x3a;&#x5d;</div></code></pre>
+
+
+    <button id='11' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q generate_perms</code></pre>
+
+<p>Feel free to replace the <code>for</code> loops with list comprehensions 
+if you would rather use that.</p>
+
+
+<h2 id="efficiency">Efficiency</h2>
+
+
+<p>There is no code to submit for this part.</p>
+
+<h3 class="question" id="q12">Question 12</h3>
+What is the asymptotic run time of the baz function?
+
+<pre><code>def baz(n):
+    i = 1
+    sum = 0
+    while i &lt;= n:
+        sum += bam(i)
+        i += 1
+    return sum
+
+def bam(n):
+    i = 1
+    sum = 0
+    while i &lt;= n:
+        sum += i
+        i += 1
+    return sum</code></pre>
+
+<p>Highlight the text on the line below this line to see the solution:
+<br>
+Answer: <span style="color:white">O(<em>n</em><sup>2</sup>))</span>.</p>
+
+<h3 class="question" id="q13">Question 13</h3>
+
+<p>What is the asymptotic run time of the bonk function?</p>
+
+<pre><code>def bonk(n):
+    sum = 0
+    while n &gt;= 2:
+        sum += n
+        n = n / 2
+    return sum</code></pre>
+
+<p>Highlight the text on the line below this line to see the solution:
+<br>
+Answer: <span style="color:white">O(log(<em>n</em>))</span>.</p>
+
+
+
+<h2 id='submission'>Submission</h2>
+
+<p>
+    When you are done, submit your file to <a href="https://www.gradescope.com/courses/786589" target="_blank">Gradescope</a>.
+    You only need to upload the following files:
+    
+<ul>
+  <li><code>lab12.py</code></li>
+</ul>
+
+    You may submit more than once before the deadline; only the final submission will be graded.
+    It is your responsibility to check that the autograder on Gradescope runs as expected after
+    you upload your submission.
+</p>
+  </div>
+
+  <div class='col-md-3'>
+    <nav class='hidden-print hidden-sm hidden-xs sidebar'>
+      <ul>
+  <li><a href="#control">Control</a></li>
+  <ul>
+  <li><a href="#q1">Question 1: Second Max</a></li>
+</ul>
+
+  <li><a href="#higher-order-functions">Higher Order Functions</a></li>
+  <ul>
+  <li><a href="#q2">Question 2: Count van Count</a></li>
+</ul>
+
+  <li><a href="#lists-and-dictionaries">Lists and Dictionaries</a></li>
+  <ul>
+  <li><a href="#q3">Question 3: Deep-Len</a></li>
+  <li><a href="#q4">Question 4: Counter</a></li>
+</ul>
+
+  <li><a href="#recursion">Recursion</a></li>
+  <ul>
+  <li><a href="#q5">Question 5: Knapsack</a></li>
+  <li><a href="#q6">Question 6: repeated, repeated</a></li>
+</ul>
+
+  <li><a href="#oop-and-inheritance">OOP and Inheritance</a></li>
+  <ul>
+  <li><a href="#q7">Question 7: Mint</a></li>
+</ul>
+
+  <li><a href="#linked-lists">Linked Lists</a></li>
+  <ul>
+  <li><a href="#q8">Question 8: Insert</a></li>
+</ul>
+
+  <li><a href="#trees">Trees</a></li>
+  <ul>
+  <li><a href="#q9">Question 9: Path</a></li>
+</ul>
+
+  <li><a href="#iterators-and-generators">Iterators and Generators</a></li>
+  <ul>
+  <li><a href="#q10">Question 10: Str</a></li>
+  <li><a href="#q11">Question 11: Generate permutations</a></li>
+</ul>
+
+  <li><a href="#efficiency">Efficiency</a></li>
+  <ul>
+  <li><a href="#q12">Question 12</a></li>
+  <li><a href="#q13">Question 13</a></li>
+</ul>
+
+</ul>
+
+    </nav>
+  </div>
+
+</div>
+    </div>
+
+    <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/su24/assets/js/bootstrap.min.js"></script>
+    <!-- TODO: Move to specific pages... -->
+    <script src="/su24/assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+  $('.sidebar ul').addClass('nav nav-stacked');
+  $('body').scrollspy({
+    target: '.sidebar',
+    offset: 40
+  });
+</script>
+<!-- <script src="//code.jquery.com/jquery-latest.js"></script> -->
+<!-- <script>
+  $(function() {
+    if (new Date("7/31/2024") < new Date()) {
+      $('.toggleButton').css('display', 'inline-block');
+      $('.toggleButton').click(function() {
+        var solution_id = $(this).attr('id');
+        $('div.' + solution_id).slideToggle(600);
+      });
+    }
+    // Always display these toggle buttons
+    $('.toggleButtonShow').click(function() {
+      var solution_id = $(this).attr('id');
+      $('div.' + solution_id).slideToggle(600);
+    });
+  });
+</script> -->
+  </body>
+</html>

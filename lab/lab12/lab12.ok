@@ -1,0 +1,41 @@
+{
+    "name": "Lab 12",
+    "endpoint": "cal/cs88/sp24/lab12",
+    "src": [
+        "lab12.py"
+    ],
+    "tests": {
+        "lab12.py:second_max": "doctest",
+        "lab12.py:count_cond": "doctest",
+        "lab12.py:deep_len": "doctest",
+        "lab12.py:counter": "doctest",
+        "lab12.py:knapsack": "doctest",
+        "lab12.py:repeated": "doctest",
+        "lab12.py:Mint": "doctest",
+        "lab12.py:insert": "doctest",
+        "lab12.py:path": "doctest",
+        "lab12.py:Str": "doctest",
+        "lab12.py:generate_perms": "doctest"
+    },
+    "default_tests": [
+        "second_max",
+        "count_cond",
+        "deep_len",
+        "counter",
+        "knapsack",
+        "repeated",
+        "Mint",
+        "insert",
+        "path",
+        "Str",
+        "generate_perms"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}
