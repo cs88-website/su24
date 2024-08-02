@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+
+    <meta name="description" content ="C88C: Computational Structures in Data Science" />
+    <meta name="keywords" content ="CS88, C88C, Computer Science, Data Science, Programming, Berkeley, EECS, Python, intro CS, comp sci" />
+    <meta name="author" content ="Eric Kim, John Teng, Satleen Gill, Mia Lopez, Naveen Nathan, Jiayi Li, Mira	Wagner" />
+
+    <link rel="stylesheet" href="/su24/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/style.css">
+    <link rel="icon" href="/su24/assets/images/favicon.ico">
+    <link rel="stylesheet" href="/su24/assets/css/mono-blue.css">
+
+    <link rel="stylesheet" type="text/css" href="/su24/assets/css/resource.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/css/lab.css"/>
+
+
+    <title>Lab 8 Solutions | C88C Summer 2024</title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section" aria-label="Toggle Nav Menu" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/su24/">C88C</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-section">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/su24/">Calendar</a></li>
+            <li><a href="/su24/articles/resources.html">Resources</a></li>
+            <li><a href="/su24/weekly-schedule.html">Google Calendar</a></li>
+            <li><a href="/su24/articles/about.html">Syllabus</a></li>
+            <li><a href="https://www.gradescope.com/courses/786589" target="_blank">Gradescope</a></li>
+            <li><a href="https://edstem.org/us/courses/59252/discussion/" target="_blank">Ed</a></li>
+            <li><a href="/su24/staff.html">Staff</a></li>
+            <!-- disable for DATA C88C su24 <li><a href="https://oh.c88c.org/" target="_blank">OH Queue</a></li> -->
+            <li><a href="https://tutor.cs61a.org/" target="_blank">Python Tutor</a></li>
+            <li><a href="https://bcourses.berkeley.edu/courses/1534781/external_tools/90481" target="_blank">Recordings</a></li>
+            <li><a href="https://drive.google.com/drive/folders/1eXbpkIomI6kMyXwk-iJj1GAp5CH7qWNf" target="_blank">Lecture Slides</a></li>
+            <li><a href="https://drive.google.com/drive/folders/1x4jjWH1OZm4aXgaYqRv-rQR013jIplp6" target="_blank">Lab Slides</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+
+    <div id="content" class="container">
+      <div class='row'>
+  <div class='col-md-9'>
+    <div class='page-header'>
+      <div class="row row-no-gutters">
+  <div class="col-md-8">
+      <h1 class="content-title-brand" style="padding-top: 0;">
+          Lab 8 Solutions
+      </h1>
+  </div>
+</div>
+    </div>
+
+    
+
+    
+
+
+<h2 id="inheritance">Inheritance</h2>
+
+
+<h3 class="question" id="q1">Question 1: Checking account</h3>
+
+<p>Consider the <code>Account</code> class provided below, which represents the attributes and behaviors of a bank account.</p>
+
+<pre><code>class Account:
+    &quot;&quot;&quot;A bank account that allows deposits and withdrawals.
+
+    &gt;&gt;&gt; eric_account = Account(&#x27;Eric&#x27;)
+    &gt;&gt;&gt; eric_account.deposit(1000000)   # depositing my paycheck for the week
+    1000000
+    &gt;&gt;&gt; eric_account.transactions
+    [(&#x27;deposit&#x27;, 1000000)]
+    &gt;&gt;&gt; eric_account.withdraw(100)      # buying dinner
+    999900
+    &gt;&gt;&gt; eric_account.transactions
+    [(&#x27;deposit&#x27;, 1000000), (&#x27;withdraw&#x27;, 100)]
+    &quot;&quot;&quot;
+
+    interest = 0.02
+
+    def __init__(self, account_holder):
+        self.balance = 0
+        self.holder = account_holder
+        self.transactions = []
+
+    def deposit(self, amount):
+        &quot;&quot;&quot;Increase the account balance by amount and return the
+        new balance.
+        &quot;&quot;&quot;
+        self.transactions.append((&#x27;deposit&#x27;, amount))
+        self.balance = self.balance + amount
+        return self.balance
+
+    def withdraw(self, amount):
+        &quot;&quot;&quot;Decrease the account balance by amount and return the
+        new balance.
+        &quot;&quot;&quot;
+        self.transactions.append((&#x27;withdraw&#x27;, amount))
+        if amount &gt; self.balance:
+            return &#x27;Insufficient funds&#x27;
+        self.balance = self.balance &#x2d; amount
+        return self.balance</code></pre>
+
+<p>We want to create a new class called <code>CheckingAccount</code> which inherits from <code>Account</code>. We'd like to be able to cash checks to our <code>CheckingAccount</code>. To do this, you will have to implement the following:</p>
+
+<ol>
+  <li>Implement the <code>Check</code> class's <code>__init__</code> and <code>mark_deposited</code> methods, which represents a check that can be deposited into an account. Read the doctests in the <code>Check</code> class to learn about the behavior of these methods. Hint: Think about what sort of attributes our <code>Check</code> class should have.</li>
+  <li><p>Implement the <code>CheckingAccount</code> class's <code>deposit_check</code> method. It will take a <code>Check</code> object as an argument.</p>
+
+  <ul>
+    <li>If the check was already deposited, print <code>The police have been notified</code></li>
+    <li>If the check is NOT payable to the checking account holder, print <code>The police have been notified</code></li>
+    <li>Otherwise, mark the check as deposited and deposit the amount into the checking account</li>
+  </ul></li>
+</ol>
+
+<p>The doctests for this problem are extremely important and valuable in understanding how this code works and how the <code>CheckingAccount</code> and <code>Check</code> classes should interact with each other.</p>
+
+
+
+<pre><code>class Check:
+    &quot;&quot;&quot;A Check object that can be deposited.
+
+    &gt;&gt;&gt; eric_check = Check(&quot;Eric&quot;, 30)  # 30 dollars, payable to Eric
+    &gt;&gt;&gt; eric_check.payable_to
+    &#x27;Eric&#x27;
+    &gt;&gt;&gt; eric_check.amount
+    30
+    &gt;&gt;&gt; eric_check.deposited
+    False
+    &gt;&gt;&gt; eric_check.mark_deposited()
+    &gt;&gt;&gt; eric_check.deposited
+    True
+    &quot;&quot;&quot;
+    def __init__(self, payable_to, amount):
+<div class="alt 1">        "*** YOUR CODE HERE ***"
+</div><div class="solution 1">&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x70;&#x61;&#x79;&#x61;&#x62;&#x6c;&#x65;&#x5f;&#x74;&#x6f;&#x20;&#x3d;&#x20;&#x70;&#x61;&#x79;&#x61;&#x62;&#x6c;&#x65;&#x5f;&#x74;&#x6f;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x61;&#x6d;&#x6f;&#x75;&#x6e;&#x74;&#x20;&#x3d;&#x20;&#x61;&#x6d;&#x6f;&#x75;&#x6e;&#x74;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x64;&#x65;&#x70;&#x6f;&#x73;&#x69;&#x74;&#x65;&#x64;&#x20;&#x3d;&#x20;&#x46;&#x61;&#x6c;&#x73;&#x65;</div>
+    def mark_deposited(self):
+<div class="alt 1">        "*** YOUR CODE HERE ***"
+</div><div class="solution 1">&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x64;&#x65;&#x70;&#x6f;&#x73;&#x69;&#x74;&#x65;&#x64;&#x20;&#x3d;&#x20;&#x54;&#x72;&#x75;&#x65;</div>
+class CheckingAccount(Account):
+    &quot;&quot;&quot;A bank account that charges for withdrawals and can deposit checks.
+
+    &gt;&gt;&gt; check = Check(&quot;Steven&quot;, 42)  # 42 dollars, payable to Steven
+    &gt;&gt;&gt; steven_account = CheckingAccount(&quot;Steven&quot;)
+    &gt;&gt;&gt; eric_account = CheckingAccount(&quot;Eric&quot;)
+    &gt;&gt;&gt; eric_account.deposit_check(check)  # trying to steal steven&#x27;s money
+    The police have been notified.
+    &gt;&gt;&gt; eric_account.balance
+    0
+    &gt;&gt;&gt; steven_account.balance
+    0
+    &gt;&gt;&gt; check.deposited
+    False
+    &gt;&gt;&gt; eric_account.transactions
+    []
+    &gt;&gt;&gt; steven_account.transactions
+    []
+    &gt;&gt;&gt; steven_account.deposit_check(check)
+    42
+    &gt;&gt;&gt; check.deposited
+    True
+    &gt;&gt;&gt; steven_account.transactions
+    [(&#x27;deposit&#x27;, 42)]
+    &gt;&gt;&gt; steven_account.deposit_check(check)  # can&#x27;t cash check twice
+    The police have been notified.
+    &gt;&gt;&gt; steven_account.transactions  # transactions history shouldn&#x27;t have changed
+    [(&#x27;deposit&#x27;, 42)]
+    &quot;&quot;&quot;
+    withdraw_fee = 1
+    interest = 0.01
+
+    def withdraw(self, amount):
+        return Account.withdraw(self, amount + self.withdraw_fee)
+
+    def deposit_check(self, check):
+<div class="alt 1">        "*** YOUR CODE HERE ***"
+</div><div class="solution 1">&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x63;&#x68;&#x65;&#x63;&#x6b;&#x2e;&#x70;&#x61;&#x79;&#x61;&#x62;&#x6c;&#x65;&#x5f;&#x74;&#x6f;&#x20;&#x21;&#x3d;&#x20;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x68;&#x6f;&#x6c;&#x64;&#x65;&#x72;&#x20;&#x6f;&#x72;&#x20;&#x63;&#x68;&#x65;&#x63;&#x6b;&#x2e;&#x64;&#x65;&#x70;&#x6f;&#x73;&#x69;&#x74;&#x65;&#x64;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x70;&#x72;&#x69;&#x6e;&#x74;&#x28;&#x22;&#x54;&#x68;&#x65;&#x20;&#x70;&#x6f;&#x6c;&#x69;&#x63;&#x65;&#x20;&#x68;&#x61;&#x76;&#x65;&#x20;&#x62;&#x65;&#x65;&#x6e;&#x20;&#x6e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x65;&#x64;&#x2e;&#x22;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x64;&#x65;&#x70;&#x6f;&#x73;&#x69;&#x74;&#x28;&#x63;&#x68;&#x65;&#x63;&#x6b;&#x2e;&#x61;&#x6d;&#x6f;&#x75;&#x6e;&#x74;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x63;&#x68;&#x65;&#x63;&#x6b;&#x2e;&#x6d;&#x61;&#x72;&#x6b;&#x5f;&#x64;&#x65;&#x70;&#x6f;&#x73;&#x69;&#x74;&#x65;&#x64;&#x28;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x73;&#x65;&#x6c;&#x66;&#x2e;&#x62;&#x61;&#x6c;&#x61;&#x6e;&#x63;&#x65;</div></code></pre>
+
+
+    <button id='1' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q CheckingAccount</code></pre>
+
+
+<h2 id="linked-lists">Linked Lists</h2>
+
+
+<p>A linked list is either an empty linked list (<code>Link.empty</code>) <strong>or</strong> a first value
+and the rest of the linked list.</p>
+
+<pre><code>class Link:
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; s = Link(1, Link(2, Link(3)))
+    &gt;&gt;&gt; s
+    Link(1, Link(2, Link(3)))
+    &quot;&quot;&quot;
+    empty = ()
+
+    def __init__(self, first, rest=empty):
+        assert rest is Link.empty or isinstance(rest, Link)
+        self.first = first
+        self.rest = rest
+
+    def __repr__(self):
+        if self.rest is not Link.empty:
+            rest_str = &#x27;, &#x27; + repr(self.rest)
+        else:
+            rest_str = &#x27;&#x27;
+        return &#x27;Link({0}{1})&#x27;.format(repr(self.first), rest_str)</code></pre>
+
+<p>To check if a <code>Link</code> is empty, compare it against the class attribute
+<code>Link.empty</code>. For example, the below function prints out whether or not the link it is handed is empty:</p>
+
+<pre><code>def test_empty(link):
+    if link is Link.empty:
+        print(&#x27;This linked list is empty!&#x27;)
+    else:
+        print(&#x27;This linked list is not empty!&#x27;)</code></pre>
+
+<blockquote><p>Note: Linked lists are recursive data structures! A linked list contains the
+first element of the list (<code>first</code>) and a reference to another linked list
+(<code>rest</code>) which contains the rest of the values in the list.</p></blockquote>
+
+<h3 class="question" id="q2">Question 2: WWPP: Linked Lists</h3>
+
+<blockquote><p>Use OK to test your knowledge with the following "What Would Python Print?"
+questions:</p>
+
+<pre><code>python3 ok &#x2d;q link &#x2d;u</code></pre>
+
+<p>If you get stuck, try loading lab08.py into an interpreter or drawing out the
+diagram for the linked list on a piece of paper.</p></blockquote>
+
+
+    <pre><code>&gt;&gt;&gt; from lab08 import *
+&gt;&gt;&gt; link = Link(1, Link(2, Link(3)))
+&gt;&gt;&gt; link.first
+<div class="alt 5">______</div><div class="solution 5">&#x31;</div>
+&gt;&gt;&gt; link.rest.first
+<div class="alt 5">______</div><div class="solution 5">&#x32;</div>
+&gt;&gt;&gt; link.rest.rest.rest is Link.empty
+<div class="alt 5">______</div><div class="solution 5">&#x54;&#x72;&#x75;&#x65;</div>
+&gt;&gt;&gt; link.first = 9001
+&gt;&gt;&gt; link.first
+<div class="alt 5">______</div><div class="solution 5">&#x39;&#x30;&#x30;&#x31;</div>
+&gt;&gt;&gt; link.rest = link.rest.rest
+&gt;&gt;&gt; link.rest.first
+<div class="alt 5">______</div><div class="solution 5">&#x33;</div>
+&gt;&gt;&gt; link = Link(1)
+&gt;&gt;&gt; link.rest = link
+&gt;&gt;&gt; link.rest.rest.rest.rest.first
+<div class="alt 5">______</div><div class="solution 5">&#x31;</div>
+&gt;&gt;&gt; link = Link(2, Link(3, Link(4)))
+&gt;&gt;&gt; link2 = Link(1, link)
+&gt;&gt;&gt; link2.first
+<div class="alt 5">______</div><div class="solution 5">&#x31;</div>
+&gt;&gt;&gt; link2.rest.first
+<div class="alt 5">______</div><div class="solution 5">&#x32;</div>
+&gt;&gt;&gt; print_link(link2) # Look at print_link in lab08.py
+<div class="alt 5">______</div><div class="solution 5">&#x3c;&#x31;&#x20;&#x32;&#x20;&#x33;&#x20;&#x34;&#x3e;</div></code></pre>
+
+    <button id='5' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<h3 class="question" id="q3">Question 3: List to Link</h3>
+
+<p>Write a function <code>list_to_link</code> that converts a Python list to a <code>Link</code>.</p>
+
+
+
+<pre><code>def list_to_link(lst):
+    &quot;&quot;&quot;Takes a Python list and returns a Link with the same elements.
+
+    &gt;&gt;&gt; link = list_to_link([1, 2, 3])
+    &gt;&gt;&gt; print_link(link)
+    &lt;1 2 3&gt;
+    &gt;&gt;&gt; print_link(list_to_link([4]))
+    &lt;4&gt;
+    &quot;&quot;&quot;
+<div class="alt 2">    "*** YOUR CODE HERE ***"
+</div><div class="solution 2">&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x6e;&#x6f;&#x74;&#x20;&#x6c;&#x73;&#x74;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x2e;&#x65;&#x6d;&#x70;&#x74;&#x79;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x28;&#x6c;&#x73;&#x74;&#x5b;&#x30;&#x5d;&#x2c;&#x20;&#x6c;&#x69;&#x73;&#x74;&#x5f;&#x74;&#x6f;&#x5f;&#x6c;&#x69;&#x6e;&#x6b;&#x28;&#x6c;&#x73;&#x74;&#x5b;&#x31;&#x3a;&#x5d;&#x29;&#x29;</div></code></pre>
+
+
+    <button id='2' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q list_to_link</code></pre>
+
+<h3 class="question" id="q4">Question 4: Reverse</h3>
+
+<p>Implement <code>reverse</code>, which takes a linked list <code>link</code> and returns a linked list
+containing the elements of <code>link</code> in reverse order. The original <code>link</code> should be
+unchanged.</p>
+
+
+
+<pre><code>def reverse(link):
+    &quot;&quot;&quot;Returns a Link that is the reverse of the original.
+
+    &gt;&gt;&gt; print_link(reverse(Link(1)))
+    &lt;1&gt;
+    &gt;&gt;&gt; link = Link(1, Link(2, Link(3)))
+    &gt;&gt;&gt; new = reverse(link)
+    &gt;&gt;&gt; print_link(new)
+    &lt;3 2 1&gt;
+    &gt;&gt;&gt; print_link(link)
+    &lt;1 2 3&gt;
+    &quot;&quot;&quot;
+<div class="alt 3">    "*** YOUR CODE HERE ***"
+</div><div class="solution 3">&#x20;&#x20;&#x20;&#x20;&#x23;&#x6e;&#x65;&#x77;&#x20;&#x3d;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x28;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x66;&#x69;&#x72;&#x73;&#x74;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x23;&#x77;&#x68;&#x69;&#x6c;&#x65;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x72;&#x65;&#x73;&#x74;&#x20;&#x69;&#x73;&#x20;&#x6e;&#x6f;&#x74;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x2e;&#x65;&#x6d;&#x70;&#x74;&#x79;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x23;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x20;&#x3d;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x72;&#x65;&#x73;&#x74;&#xa;&#x20;&#x20;&#x20;&#x20;&#x23;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x3d;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x28;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x66;&#x69;&#x72;&#x73;&#x74;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x23;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x6e;&#x65;&#x77;&#xa;&#xa;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x3d;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x2e;&#x65;&#x6d;&#x70;&#x74;&#x79;&#xa;&#x20;&#x20;&#x20;&#x20;&#x77;&#x68;&#x69;&#x6c;&#x65;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x20;&#x69;&#x73;&#x20;&#x6e;&#x6f;&#x74;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x2e;&#x65;&#x6d;&#x70;&#x74;&#x79;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x3d;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x28;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x66;&#x69;&#x72;&#x73;&#x74;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x20;&#x3d;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x72;&#x65;&#x73;&#x74;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x6e;&#x65;&#x77;&#xa;&#xa;&#x23;&#x20;&#x52;&#x65;&#x63;&#x75;&#x72;&#x73;&#x69;&#x76;&#x65;&#x20;&#x73;&#x6f;&#x6c;&#x75;&#x74;&#x69;&#x6f;&#x6e;&#xa;&#x64;&#x65;&#x66;&#x20;&#x72;&#x65;&#x76;&#x65;&#x72;&#x73;&#x65;&#x28;&#x6c;&#x69;&#x6e;&#x6b;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x64;&#x65;&#x66;&#x20;&#x72;&#x65;&#x76;&#x65;&#x72;&#x73;&#x65;&#x5f;&#x74;&#x6f;&#x28;&#x6c;&#x69;&#x6e;&#x6b;&#x2c;&#x20;&#x74;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x6c;&#x69;&#x6e;&#x6b;&#x20;&#x69;&#x73;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x2e;&#x65;&#x6d;&#x70;&#x74;&#x79;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x74;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x72;&#x65;&#x76;&#x65;&#x72;&#x73;&#x65;&#x5f;&#x74;&#x6f;&#x28;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x72;&#x65;&#x73;&#x74;&#x2c;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x28;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x66;&#x69;&#x72;&#x73;&#x74;&#x2c;&#x20;&#x74;&#x29;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x72;&#x65;&#x76;&#x65;&#x72;&#x73;&#x65;&#x5f;&#x74;&#x6f;&#x28;&#x6c;&#x69;&#x6e;&#x6b;&#x2c;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x2e;&#x65;&#x6d;&#x70;&#x74;&#x79;&#x29;</div></code></pre>
+
+
+    <button id='3' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q reverse</code></pre>
+
+<h3 class="question" id="q5">Question 5: Slice</h3>
+
+<p>Implement a function <code>slice_link</code> that slices a given <code>link</code>. <code>slice_link</code>
+should slice the <code>link</code> starting at <code>start</code> and ending one element before 
+<code>end</code>, as with slicing a normal Python list.</p>
+
+
+
+<pre><code>def slice_link(link, start, end):
+    &quot;&quot;&quot;Slices a Link from start to end (as with a normal Python list).
+
+    &gt;&gt;&gt; link = Link(3, Link(1, Link(4, Link(1, Link(5, Link(9))))))
+    &gt;&gt;&gt; new = slice_link(link, 1, 4)
+    &gt;&gt;&gt; new
+    Link(1, Link(4, Link(1)))
+    &gt;&gt;&gt; link2 = slice_link(Link(1), 0, 1)
+    &gt;&gt;&gt; link2
+    Link(1)
+    &gt;&gt;&gt; link3 = slice_link(Link.empty, 0, 0)
+    &gt;&gt;&gt; link3
+    ()
+    &quot;&quot;&quot;
+<div class="alt 4">    "*** YOUR CODE HERE ***"
+</div><div class="solution 4">&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x65;&#x6e;&#x64;&#x20;&#x3d;&#x3d;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x2e;&#x65;&#x6d;&#x70;&#x74;&#x79;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x69;&#x66;&#x20;&#x73;&#x74;&#x61;&#x72;&#x74;&#x20;&#x3d;&#x3d;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x4c;&#x69;&#x6e;&#x6b;&#x28;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x66;&#x69;&#x72;&#x73;&#x74;&#x2c;&#x20;&#x73;&#x6c;&#x69;&#x63;&#x65;&#x5f;&#x6c;&#x69;&#x6e;&#x6b;&#x28;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x72;&#x65;&#x73;&#x74;&#x2c;&#x20;&#x30;&#x2c;&#x20;&#x65;&#x6e;&#x64;&#x2d;&#x31;&#x29;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x73;&#x6c;&#x69;&#x63;&#x65;&#x5f;&#x6c;&#x69;&#x6e;&#x6b;&#x28;&#x6c;&#x69;&#x6e;&#x6b;&#x2e;&#x72;&#x65;&#x73;&#x74;&#x2c;&#x20;&#x73;&#x74;&#x61;&#x72;&#x74;&#x2d;&#x31;&#x2c;&#x20;&#x65;&#x6e;&#x64;&#x2d;&#x31;&#x29;</div></code></pre>
+
+
+    <button id='4' class='toggleButton'>
+    Toggle Solution<noscript> (enable JavaScript)</noscript>
+    </button>
+    
+
+<p>Use OK to test your code:</p><pre class="pre-copy-block"><code>python3 ok -q slice_link</code></pre>
+
+
+  </div>
+
+  <div class='col-md-3'>
+    <nav class='hidden-print hidden-sm hidden-xs sidebar'>
+      <ul>
+  <li><a href="#inheritance">Inheritance</a></li>
+  <ul>
+  <li><a href="#q1">Question 1: Checking account</a></li>
+</ul>
+
+  <li><a href="#linked-lists">Linked Lists</a></li>
+  <ul>
+  <li><a href="#q2">Question 2: WWPP: Linked Lists</a></li>
+  <li><a href="#q3">Question 3: List to Link</a></li>
+  <li><a href="#q4">Question 4: Reverse</a></li>
+  <li><a href="#q5">Question 5: Slice</a></li>
+</ul>
+
+</ul>
+
+    </nav>
+  </div>
+
+</div>
+    </div>
+
+    <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/su24/assets/js/bootstrap.min.js"></script>
+    <!-- TODO: Move to specific pages... -->
+    <script src="/su24/assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+  $('.sidebar ul').addClass('nav nav-stacked');
+  $('body').scrollspy({
+    target: '.sidebar',
+    offset: 40
+  });
+</script>
+<script src="//code.jquery.com/jquery-latest.js"></script>
+<script>
+  $(function() {
+    if (new Date("7/30/2024") < new Date()) {
+      $('.toggleButton').css('display', 'inline-block');
+      $('.toggleButton').click(function() {
+        var solution_id = $(this).attr('id');
+        $('div.' + solution_id).slideToggle(600);
+      });
+    }
+    // Always display these toggle buttons
+    $('.toggleButtonShow').click(function() {
+      var solution_id = $(this).attr('id');
+      $('div.' + solution_id).slideToggle(600);
+    });
+  });
+</script>
+  </body>
+</html>
